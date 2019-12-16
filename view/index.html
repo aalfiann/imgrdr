@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>ImgReader</title>
+
+        <link href="../css/app-reader.min.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+        <button id="goTopBtn" title="Go to top"><i class="ico">⇧</i></button>
+        <div class="preloader" id="preloader">
+            <div class="cssload-container">
+                <div class="cssload-whirlpool"></div>
+            </div>
+        </div>
+		<nav class="nav" tabindex="-1" onclick="this.focus()">
+			<div id="menunav" class="container">
+				<a id="backlink" class="pagename current" href="../" rel="nofollow">ImgReader</a>
+                <a href="#" id="about">About</a>
+			</div>
+		</nav>
+		<button class="btn-close btn btn-sm">×</button>
+        <div class="container">
+            <div id="error"></div>
+            <div id="data-content" class="hero">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td id="content-cover" class="mobile-hide" rowspan="5" width="10%"></td>
+                            <td><b>Title:</b> <span id="content-title">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Original:</b> <span id="content-original">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Genre:</b> <span id="content-genre">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Author:</b> <span id="content-author">-</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Chapter:</b> <span id="content-chapter">-</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="content-description"></div>
+            <p id="content-images"></p>
+            <hr>
+            <p align="center">Copyright @ <span id="copyrightyear"></span> ImgReader. All rights reserved.</p>
+        </div>
+        <script src="../js/app-reader.js"></script>
+	</body>
+</html>

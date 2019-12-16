@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Makes your images content to become easier to read.">
+    <title>ImgReader</title>    
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+    <!--<![endif]-->
+    
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/app-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/app.css">
+    <!--<![endif]-->
+    <style>.msg{padding:1.5em;background:#def;border-left:5px solid #59d}.msg-error{padding:1.5em;background:#fdd;border-left:5px solid #e44}</style>
+</head>
+<body>
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <h1 class="brand-title">ImgReader</h1>
+            <h2 class="brand-tagline">Makes your images content to become easier to read.</h2>
+        </div>
+    </div>
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            
+            <div class="posts">
+                <h1 class="content-subhead">About</h1>
+
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">What is ImgReader ?</h2>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            ImgReader is a free images reader web application that makes your images content to become easier to read.
+                        </p>
+                        <h3>Features :</h3>
+                        <p>
+                            <ol>
+                                <li>Secured from an automatic content thieves</li>
+                                <li>You control the image source</li>
+                                <li>Lightweight and Fast Loading</li>
+                                <li>Shareable</li>
+                                <li>Free Forever</li>
+                            </ol>
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="posts">
+                <h1 class="content-subhead">How to use</h1>
+
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">1. Generate Json Source</h2>
+                        <p>This is to generate the json data source to be uploaded to your webserver.</p>
+                        <hr>
+                    </header>
+
+                    <div class="post-description">
+                        <form id="form-source" class="pure-form pure-form-stacked">
+                            <fieldset>
+                                <legend>Fields are marked with <span style="color:red">*</span> is required!</legend>
+                                <label for="content-cover"><span style="color:red">*</span> Cover</label>
+                                <span id="error-content-cover" class="pure-form-message" style="color:red"></span>
+                                <input class="pure-input-1" id="content-cover" type="text" placeholder="http://your-domain.com/your-cover-image.jpg" required>
+
+                                <label for="content-title"><span style="color:red">*</span> Title</label>
+                                <span id="error-content-title" class="pure-form-message" style="color:red"></span>
+                                <input class="pure-input-1" id="content-title" type="text" placeholder="Title of your content..." maxlength="250" required>
+                        
+                                <label for="content-images"><span style="color:red">*</span> Images</label>
+                                <span id="error-content-images" class="pure-form-message" style="color:red"></span>
+                                <textarea class="pure-input-1" id="content-images" rows="5" placeholder="https://url.com/your-image-1.jpg&#10;https://url.com/your-image-2.jpg&#10;https://url.com/your-image-3.jpg&#10;https://url.com/your-image-4.jpg"></textarea>
+                                <span class="pure-form-message">Images must be separated by new line.</span>
+
+                                <hr>
+                                <legend><b>Additional Information</b></legend>
+                                <label for="content-origin-title">Original Title</label>
+                                <input class="pure-input-1" id="content-origin-title" type="text" placeholder="Original title of your content..." maxlength="250">
+
+                                <label for="content-genre">Genre</label>
+                                <input class="pure-input-1" id="content-genre" type="text" placeholder="Genre of your content..." maxlength="250">
+
+                                <label for="content-author">Author</label>
+                                <input class="pure-input-1" id="content-author" type="text" placeholder="Author name of your content..." maxlength="250">
+
+                                <label for="content-chapter">Chapter</label>
+                                <span id="error-content-chapter" class="pure-form-message" style="color:red"></span>
+                                <input class="pure-input-1" id="content-chapter" type="text" placeholder="Chapter number of your content...">
+
+                                <label for="content-backlink">Backlink</label>
+                                <span id="error-content-backlink" class="pure-form-message" style="color:red"></span>
+                                <input class="pure-input-1" id="content-backlink" type="text" placeholder="https://your-domain.com/here-is-your-backlink.html">
+
+                                <label for="content-description">Description</label>
+                                <textarea class="pure-input-1" id="content-description" rows="3" placeholder="Description of your content..." maxlength="250"></textarea>
+                                <span class="pure-form-message">HTML is not allowed in description.</span>
+
+                                <button id="generate-source" type="button" class="pure-button pure-button-primary">Generate</button>
+                                <button id="generate-source-reset" type="button" class="pure-button pure-button-secondary">Reset</button>
+                            </fieldset>
+                        </form>
+                        <div id="msg"></div>
+                        <form id="result-form-source" class="pure-form pure-form-stacked" style="display: none;">
+                            <fieldset>
+                                <textarea class="pure-input-1" id="result-source" type="text" rows="5"></textarea>
+                            </fieldset>
+                        </form>
+
+                    </div>
+                </section>
+
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">2. Generate Link</h2>
+                        <p>After you have the link of your json data source, you must generate it to hash the link.</p>
+                        <hr>
+                    </header>
+
+                    <div class="post-description">
+                        <form id="form-link" class="pure-form pure-form-stacked">
+                            <fieldset>
+                                <legend>Fields are marked with <span style="color:red">*</span> is required!</legend>
+                                <label for="content-link"><span style="color:red">*</span> Source Link</label>
+                                <span id="error-content-link" class="pure-form-message" style="color:red"></span>
+                                <input class="pure-input-1" id="content-link" type="text" placeholder="Your content link" required>
+
+                                <button id="generate-link" type="button" class="pure-button pure-button-primary">Generate</button>
+                                <button id="generate-link-reset" type="button" class="pure-button pure-button-secondary">Reset</button>
+                            </fieldset>
+                        </form>
+                        <div id="msg-link"></div>
+                        <form id="result-form-link" class="pure-form pure-form-stacked" style="display: none;">
+                            <fieldset>
+                                <textarea class="pure-input-1" id="result-link" type="text" rows="3"></textarea>
+                            </fieldset>
+                        </form>
+
+                    </div>
+                </section>
+            </div>
+
+            <div class="posts">
+                <h1 class="content-subhead">Docs</h1>
+
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">Requirement Web Server</h2>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            The requirement of web server to upload the json source is :
+                            <ul>
+                                <li>Request HTTP method is <b>GET</b>.</li>
+                                <li>CORS must be allowed for <b><span id="website"></span></b>.</li>
+                                <li>Response Content-Type must be <b>application/json</b>.</li>
+                            </ul>
+                        </p>
+                        <p>
+                            If you don't want to use web server, as alternative, you are able to upload your json source into <b>GitHub</b>, <b>GitLab</b>, <b>CDN</b>, <b>etc</b>.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">Example Json Source</h2>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            Click here to see the <a href="https://raw.githubusercontent.com/aalfiann/research-test/master/imgreader/example-api-content.json" rel="nofollow" target="_blank">example json source</a>.
+                        </p>
+                    </div>
+                </section>
+                
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">Example Demo</h2>
+                    </header>
+
+                    <div class="post-description">
+                        <p>
+                            Click here to see the <a href="view?content=24%3Dpzb0LmZW52501jbwaSLWFGxlFtcleGci9WRlJlYtZ3L2lGVyFzdvbWc3QXRlNoLhcmc2V3Jl5uLpYWbGZ2Fh9tLuY2bnQnRlNvblcmdXNHVil0auZ2YXcy9yM6L0cHaHR" rel="nofollow" target="_blank">example demo</a>.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="footer">Copyright @ <span id="copyrightyear"></span> ImgReader. All rights reserved.</div>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
