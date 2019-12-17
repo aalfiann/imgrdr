@@ -112,7 +112,7 @@
 
                     if(json.hasOwnProperty('backlink')){
                         if(json.backlink.length > 0) {
-                            document.getElementById('backlink').innerHTML = '<i class="ico">⇦</i> Back';
+                            document.getElementById('backlink').innerHTML = 'Back';
                             document.getElementById('backlink').href = json.backlink;
                         } else {
                             document.getElementById('backlink').href = "../";
