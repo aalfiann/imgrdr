@@ -11,4 +11,4 @@ getScript("https://cdn.jsdelivr.net/gh/aalfiann/ajax@3.0.4/dist/ajax.min.js", fu
         });
     });
 });
-getScript("https://platform-api.sharethis.com/js/sharethis.js#property=5df7c13594a4f20013d38900&product=custom-share-buttons&cms=sop");
+getScript("https://static.addtoany.com/menu/page.js");

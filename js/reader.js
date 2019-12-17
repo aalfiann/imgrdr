@@ -132,10 +132,8 @@
                     }
                     document.title = newtitle;
                     var share = document.createElement('a');
-                    share.href = "javascript:void(0)";
-                    share.setAttribute("data-title",newtitle);
-                    share.setAttribute("data-network","sharethis");
-                    share.setAttribute("class","st-custom-button");
+                    share.href = window.location.href;
+                    share.setAttribute("class","a2a_dd");
                     share.innerText = "Share";
                     document.getElementById("menunav").appendChild(share);
                     removeLoader();
