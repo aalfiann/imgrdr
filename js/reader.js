@@ -136,6 +136,8 @@
                     share.setAttribute("class","a2a_dd");
                     share.innerText = "Share";
                     document.getElementById("menunav").appendChild(share);
+                    var a2a_config = a2a_config || {};
+                    a2a_config.onclick = 1;
                     removeLoader();
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");

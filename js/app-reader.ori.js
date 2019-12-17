@@ -4,8 +4,6 @@ getScript("https://cdn.jsdelivr.net/gh/aalfiann/ajax@3.0.4/dist/ajax.min.js", fu
     getScript("../js/tobs.min.js", function(){
         getScript("../js/crypto.min.js", function(){
             getScript("../js/reader.min.js",function(){
-                var a2a_config = a2a_config || {};
-                a2a_config.onclick = 1;
                 getScript("https://static.addtoany.com/menu/page.js");
                 getScript("https://cdn.jsdelivr.net/gh/robinparisi/tingle@0.15.2/dist/tingle.min.js",function(){
                     getCss("https://cdn.jsdelivr.net/gh/robinparisi/tingle@0.15.2/dist/tingle.min.css");
