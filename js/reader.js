@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.1.1";
+    var imgreader_version = "1.1.2";
     function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
     var hash = parse_query_string(window.location.search)['content'];
     if(hash) {
@@ -99,18 +99,21 @@
                     if(json.hasOwnProperty('original')){
                         if(hasValue(json.original)) {
                             document.getElementById('content-original').innerHTML = escapeHTML(json.original);
+                            document.getElementById('tb-original').style.display = "block";
                         }
                     }
 
                     if(json.hasOwnProperty('genre')){
                         if(hasValue(json.genre)) {
                             document.getElementById('content-genre').innerHTML = escapeHTML(json.genre);
+                            document.getElementById('tb-genre').style.display = "block";
                         }
                     }
 
                     if(json.hasOwnProperty('author')){
                         if(hasValue(json.author)) {
                             document.getElementById('content-author').innerHTML = escapeHTML(json.author);
+                            document.getElementById('tb-author').style.display = "block";
                         }
                     }
 
@@ -118,6 +121,7 @@
                         if(hasValue(json.chapter)) {
                             var achapter = escapeHTML(json.chapter);
                             document.getElementById('content-chapter').innerHTML = achapter;
+                            document.getElementById('tb-chapter').style.display = "block";
                             newtitle = newtitle+" - Chapter: "+achapter;
                         }
                     }
@@ -165,6 +169,7 @@
                         json.images.forEach(function(item,index){
                             loadImages("content-images",item,false,index);
                         });
+                        document.getElementById('content-files').innerText = json.images.length;
                     }
                     
                     if(json.hasOwnProperty('title')){
