@@ -1,9 +1,17 @@
 (function(){
-
+    var imgreader_version = "1.1.0";
     function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
     var hash = parse_query_string(window.location.search)['content'];
     if(hash) {
         var link = Crypto.decode(TextObfuscator.decode(hash,3));
+    }
+
+    function hasValue(str) {
+        str = str.trim();
+        if(str.length > 0) {
+            return true;
+        }
+        return false;
     }
 
     function escapeHTML (unsafe_str) {
@@ -16,11 +24,12 @@
             .replace(/\//g, '&#x2F;');
     }
 
-    function loadImages(el,url) {
+    function loadImages(el,url,fullwidth) {
+        fullwidth = (fullwidth === undefined)?false:fullwidth;
         var img = document.createElement("img");
         img.setAttribute("class","lazyload");
         img.setAttribute("style","display:block");
-        img.setAttribute("width","100%");
+        if(fullwidth) img.setAttribute("width","100%");
         img.setAttribute("referrerpolicy","no-referrer")
         img.setAttribute("data-src", url);
         var src = document.getElementById(el);
@@ -48,7 +57,7 @@
             stickyFooter: false,
             closeMethods: ['overlay', 'button', 'escape']
         });
-        modal.setContent('<h3>ImgReader - v.1.0.0</h3><p>Makes your images content to become easier to read.</p>');
+        modal.setContent('<h3>ImgReader - v.'+imgreader_version+'</h3><p>Makes your images content to become easier to read.</p>');
         modal.addFooterBtn('Create Your Own', 'tingle-btn tingle-btn--primary', function() {
             window.location='../';
         });
@@ -76,42 +85,54 @@
                 try {
                     var newtitle = "Read Online: ";
                     if(json.hasOwnProperty('title')){
-                        var atitle = escapeHTML(json.title);
-                        document.getElementById('content-title').innerHTML = atitle;
-                        newtitle = newtitle+atitle;
+                        if(hasValue(json.title)) {
+                            var atitle = escapeHTML(json.title);
+                            document.getElementById('content-title').innerHTML = atitle;
+                            newtitle = newtitle+atitle;
+                        }
                     }
 
                     if(json.hasOwnProperty('original')){
-                        document.getElementById('content-original').innerHTML = escapeHTML(json.original);
+                        if(hasValue(json.original)) {
+                            document.getElementById('content-original').innerHTML = escapeHTML(json.original);
+                        }
                     }
 
                     if(json.hasOwnProperty('genre')){
-                        document.getElementById('content-genre').innerHTML = escapeHTML(json.genre);
+                        if(hasValue(json.genre)) {
+                            document.getElementById('content-genre').innerHTML = escapeHTML(json.genre);
+                        }
                     }
 
                     if(json.hasOwnProperty('author')){
-                        document.getElementById('content-author').innerHTML = escapeHTML(json.author);
+                        if(hasValue(json.author)) {
+                            document.getElementById('content-author').innerHTML = escapeHTML(json.author);
+                        }
                     }
 
                     if(json.hasOwnProperty('chapter')){
-                        var achapter = escapeHTML(json.chapter);
-                        document.getElementById('content-chapter').innerHTML = achapter;
-                        newtitle = newtitle+" - Chapter: "+achapter;
+                        if(hasValue(json.chapter)) {
+                            var achapter = escapeHTML(json.chapter);
+                            document.getElementById('content-chapter').innerHTML = achapter;
+                            newtitle = newtitle+" - Chapter: "+achapter;
+                        }
                     }
 
                     if(json.hasOwnProperty('description')){
-                        var adesc = escapeHTML(json.description);
-                        var div_desc = document.getElementById('content-description');
-                        div_desc.setAttribute("class","hero");
-                        div_desc.innerHTML = "<b>Description:</b><p>"+adesc+"</p>";
-                        var meta = document.createElement('meta');
-                        meta.name = "description";
-                        meta.content = adesc;
-                        document.getElementsByTagName('head')[0].appendChild(meta);
+                        if(hasValue(json.description)) {
+                            var adesc = escapeHTML(json.description);
+                            var div_desc = document.getElementById('content-description');
+                            div_desc.setAttribute("class","hero");
+                            div_desc.innerHTML = "<b>Description:</b><p>"+adesc+"</p>";
+                            var meta = document.createElement('meta');
+                            meta.name = "description";
+                            meta.content = adesc;
+                            document.getElementsByTagName('head')[0].appendChild(meta);
+                        }
                     }
 
                     if(json.hasOwnProperty('backlink')){
-                        if(json.backlink.length > 0) {
+                        if(hasValue(json.backlink)) {
                             document.getElementById('backlink').innerHTML = '&#x2190; Back';
                             document.getElementById('backlink').href = json.backlink;
                         } else {
@@ -122,7 +143,18 @@
                     }
 
                     if(json.hasOwnProperty('cover')){
-                        loadImages("content-cover",json.cover);
+                        if(hasValue(json.cover)) {
+                            loadImages("content-cover",json.cover,true);
+                        }
+                    }
+
+                    if(json.hasOwnProperty('download')){
+                        if(hasValue(json.download)) {
+                            var dl = document.createElement('a');
+                            dl.href = json.download;
+                            dl.innerText = "Download";
+                            document.getElementById("menunav").appendChild(dl);
+                        }
                     }
 
                     if(json.hasOwnProperty('images')){
@@ -130,7 +162,11 @@
                             loadImages("content-images",item);
                         });
                     }
-                    document.title = newtitle;
+                    
+                    if(json.hasOwnProperty('title')){
+                        if(hasValue(json.title)) document.title = newtitle;
+                    }
+
                     var share = document.createElement('a');
                     share.href = window.location.href;
                     share.setAttribute("class","a2a_dd");

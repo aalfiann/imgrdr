@@ -8,31 +8,55 @@
             required: true,
             message: 'Link for image cover is required!',
             regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-            errorPlace:'error-content-cover'
+            errorPlace:'error-content-cover',
+            errorAddClass: {
+                "error-content-cover":"validate-error"
+            }
         },
         "content-title": {
             required: true,
             message: 'Title must be min 3-250 chars!',
             minLength:3,
             maxLength:250,
-            errorPlace:'error-content-title'
+            errorPlace:'error-content-title',
+            errorAddClass: {
+                "error-content-title":"validate-error"
+            }
         },
         "content-chapter": {
             required: false,
             message: 'Chapter must be a number!',
             regex: /^[0-9]/,
-            errorPlace:'error-content-chapter'
+            errorPlace:'error-content-chapter',
+            errorAddClass: {
+                "error-content-chapter":"validate-error"
+            }
         },
         "content-backlink": {
             required: false,
             message: 'Wrong format link!',
             regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-            errorPlace:'error-content-backlink'
+            errorPlace:'error-content-backlink',
+            errorAddClass: {
+                "error-content-backlink":"validate-error"
+            }
+        },
+        "content-download": {
+            required: false,
+            message: 'Wrong format link!',
+            regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+            errorPlace:'error-content-download',
+            errorAddClass: {
+                "error-content-download":"validate-error"
+            }
         },
         "content-images": {
             required: true,
             message: 'Images data is required!',
-            errorPlace:'error-content-images'
+            errorPlace:'error-content-images',
+            errorAddClass: {
+                "error-content-images":"validate-error"
+            }
         }
     });
 
@@ -41,7 +65,10 @@
             required: true,
             message: 'Link of your json source is required!',
             regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
-            errorPlace:'error-content-link'
+            errorPlace:'error-content-link',
+            errorAddClass: {
+                "error-content-link":"validate-error"
+            }
         }
     });
 
@@ -69,10 +96,16 @@
         if(formid === "form-source") {
             document.getElementById("result-form-source").style.display = "none";
             document.getElementById("msg").style.display = "none";
+            var x, i;
+            x = document.querySelectorAll(".validate-error");
+            for (i = 0; i < (x.length-1); i++) {
+                x[i].classList.remove('validate-error');
+            }
         }
         if(formid === "form-link") {
             document.getElementById("result-form-link").style.display = "none";
             document.getElementById("msg-link").style.display = "none";
+            document.getElementById("error-content-link").classList.remove('validate-error');
         }
     }
 
@@ -108,6 +141,10 @@
 
             if(!isEmpty("content-backlink")) {
                 json.backlink = document.getElementById("content-backlink").value.trim();
+            }
+
+            if(!isEmpty("content-download")) {
+                json.download = document.getElementById("content-download").value.trim();
             }
 
             if(!isEmpty("content-description")) {
@@ -163,6 +200,10 @@
 
     document.getElementById("content-backlink").addEventListener("blur", function(){
         FV.element("content-backlink").validate();
+    });
+
+    document.getElementById("content-download").addEventListener("blur", function(){
+        FV.element("content-download").validate();
     });
 
     document.getElementById("content-images").addEventListener("blur", function(){
