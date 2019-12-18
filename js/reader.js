@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.1.0";
+    var imgreader_version = "1.1.1";
     function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
     var hash = parse_query_string(window.location.search)['content'];
     if(hash) {
@@ -29,7 +29,11 @@
         var img = document.createElement("img");
         img.setAttribute("class","lazyload");
         img.setAttribute("style","display:block");
-        if(fullwidth) img.setAttribute("width","100%");
+        if(fullwidth) {
+            img.setAttribute("width","100%");
+        } else {
+            img.setAttribute("style","max-width:100%;max-height:100%;");
+        }
         img.setAttribute("referrerpolicy","no-referrer")
         img.setAttribute("data-src", url);
         var src = document.getElementById(el);
@@ -158,8 +162,8 @@
                     }
 
                     if(json.hasOwnProperty('images')){
-                        json.images.forEach(function(item){
-                            loadImages("content-images",item);
+                        json.images.forEach(function(item,index){
+                            loadImages("content-images",item,false,index);
                         });
                     }
                     
