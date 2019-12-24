@@ -1,3 +1,10 @@
+// Don't forget to obfucate this protection library
+// use this >> https://javascriptobfuscator.com/Javascript-Obfuscator.aspx
+
+
+/**
+ * Bot Protection
+ */
 (function (d, w) {
     var bD = {
             tests: {},
@@ -99,6 +106,9 @@
     runTests();
 })(document, window);
 
+/**
+ * Devtools protection
+ */
 (function () {
     'use strict';
   
@@ -145,3 +155,29 @@
       window.devtools = devtools;
     }
   })();
+
+/**
+ * User Control Protection
+ */
+document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
+document.onkeydown = function(e) {
+    if (e.ctrlKey && 
+        (e.keyCode === 67 || //ctrl+c
+            e.keyCode === 86 || //ctrl+v
+            e.keyCode === 85 || //ctrl+u
+            e.keyCode === 117 || //ctrl+F6
+            e.shiftKey && e.keyCode===73)) { //ctrl+shift+i
+        return false;
+    } else if (e.keyCode === 123){ //F12
+        return false;
+    } else {
+        return true;
+    }
+};
+
+/**
+ * Proxy Protection
+ */
+if(window.location.hostname !== 'imgreader.netlify.com'){
+    location.href = 'https://imgreader.netlify.com';
+}

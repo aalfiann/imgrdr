@@ -215,21 +215,4 @@
 
     document.getElementById('copyrightyear').innerHTML= new Date().getFullYear();
 
-    
-    document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
-    document.onkeydown = function(e) {
-        if (e.ctrlKey && 
-            (e.keyCode === 67 || //ctrl+c
-                e.keyCode === 86 || //ctrl+v
-                e.keyCode === 85 || //ctrl+u
-                e.keyCode === 117 || //ctrl+F6
-                e.shiftKey && e.keyCode===73)) { //ctrl+shift+i
-            return false;
-        } else if (e.keyCode === 123){ //F12
-            return false;
-        } else {
-            return true;
-        }
-    };
-
 })();
