@@ -294,9 +294,10 @@
     var btnNextBottom = document.getElementById("next-page-bottom");
     var paginationTop = document.getElementById("pagination-top");
     var paginationBottom = document.getElementById("pagination-bottom");
+    var pagination = document.getElementsByClassName("pagination");
 
     function showPagination() {
-        var x = document.getElementsByClassName("pagination");
+        var x = pagination;
         for(var i=0;i<x.length;i++) {
             x[i].style.display = "block";
         }
@@ -366,6 +367,22 @@
         }
     }
 
+    function checkKey(e) {
+        e = e || window.event;
+        if (e.keyCode == '37') {
+            if(pagination[0].style.display === "block") {
+                prevPage();
+                checkPage();
+            }
+        }
+        else if (e.keyCode == '39') {
+            if(pagination[0].style.display === "block") {
+                nextPage(totalpage);
+                checkPage();
+            }
+        }
+    }
+
     paginationTop.addEventListener("change", function(){
         pagenow = parseInt(this.options[this.selectedIndex].value);
         loadImagePerPage(result[pagenow-1]);
@@ -399,5 +416,7 @@
         nextPage(totalpage);
         checkPage();
     });
+
+    document.onkeydown = checkKey;
 
 })();
