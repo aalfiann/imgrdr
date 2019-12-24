@@ -25,7 +25,7 @@
         },
         "content-chapter": {
             required: false,
-            message: 'Chapter must be a number!',
+            message: 'Chapter must be a positive number!',
             regex: /^[0-9]/,
             errorPlace:'error-content-chapter',
             errorAddClass: {
@@ -34,7 +34,7 @@
         },
         "content-per-page": {
             required: false,
-            message: 'Item per page must be a number!',
+            message: 'Item per page must be a positive number!',
             regex: /^[0-9]/,
             errorPlace:'error-content-per-page',
             errorAddClass: {
