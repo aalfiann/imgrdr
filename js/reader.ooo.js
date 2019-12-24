@@ -137,6 +137,13 @@
                         }
                     }
 
+                    if(json.hasOwnProperty('release_date')){
+                        if(hasValue(json.release_date)) {
+                            document.getElementById('content-release').innerHTML = escapeHTML(json.release_date);
+                            document.getElementById('tb-release').style.display = "block";
+                        }
+                    }
+
                     if(json.hasOwnProperty('description')){
                         if(hasValue(json.description)) {
                             var adesc = escapeHTML(json.description);
@@ -207,6 +214,20 @@
                         setOption("pagination-top",pagenow);
                         setOption("pagination-bottom",pagenow);
                         document.getElementById('content-files').innerText = totalimg;
+                    }
+
+                    if(json.hasOwnProperty('translator')){
+                        if(hasValue(json.translator)) {
+                            document.getElementById('content-translator').innerHTML = escapeHTML(json.translator);
+                            document.getElementById('tb-translator').style.display = "block";
+                        }
+                    }
+
+                    if(json.hasOwnProperty('status')){
+                        if(hasValue(json.status)) {
+                            document.getElementById('content-status').innerHTML = escapeHTML(json.status);
+                            document.getElementById('tb-status').style.display = "block";
+                        }
                     }
                     
                     if(json.hasOwnProperty('title')){

@@ -32,6 +32,15 @@
                 "error-content-chapter":"validate-error"
             }
         },
+        "content-per-page": {
+            required: false,
+            message: 'Item per page must be a number!',
+            regex: /^[0-9]/,
+            errorPlace:'error-content-per-page',
+            errorAddClass: {
+                "error-content-per-page":"validate-error"
+            }
+        },
         "content-backlink": {
             required: false,
             message: 'Wrong format link!',
@@ -139,6 +148,22 @@
                 json.chapter = document.getElementById("content-chapter").value.trim();
             }
 
+            if(!isEmpty("content-release")) {
+                json.release_date = document.getElementById("content-release").value.trim();
+            }
+
+            if(!isEmpty("content-translator")) {
+                json.translator = document.getElementById("content-translator").value.trim();
+            }
+
+            if(!isEmpty("content-status")) {
+                json.status = document.getElementById("content-status").value.trim();
+            }
+
+            if(!isEmpty("content-per-page")) {
+                json.item_per_page = document.getElementById("content-per-page").value.trim();
+            }
+
             if(!isEmpty("content-backlink")) {
                 json.backlink = document.getElementById("content-backlink").value.trim();
             }
@@ -196,6 +221,10 @@
 
     document.getElementById("content-chapter").addEventListener("blur", function(){
         FV.element("content-chapter").validate();
+    });
+
+    document.getElementById("content-per-page").addEventListener("blur", function(){
+        FV.element("content-per-page").validate();
     });
 
     document.getElementById("content-backlink").addEventListener("blur", function(){
