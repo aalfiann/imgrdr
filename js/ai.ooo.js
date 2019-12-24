@@ -176,9 +176,10 @@ document.onkeydown = function(e) {
 };
 
 /**
- * Proxy Protection
+ * Web Proxy, Web Mirror and Direct IP Protection
  */
-var domainorigin = 'imgreader.netlify.com';
+var domainorigin = 'imgreader.netlify.com'; // change with your origin domain
+var uniquepath = '/view'; // leave blank if you don't want to detect spesific page.
 var urla = window.location.href;
 var urlb = urla.split('//');
 var urlc = urlb[1];
@@ -191,5 +192,13 @@ if(urlc.indexOf('/')>0) {
 }
 if(domain !== domainorigin) {
     urla = urla.replace(domain,domainorigin);
-    location.href = urla;
+    if(uniquepath) {
+        if(urla.indexOf(uniquepath)>0) { // detect if direct mirror ("view" is the unique path of your address)
+            location.href = urla;
+        } else { // detect if proxy mirror
+            location.href = domainorigin;
+        }
+    } else {
+        location.href = domainorigin;
+    }
 }
