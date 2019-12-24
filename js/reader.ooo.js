@@ -367,22 +367,6 @@
         }
     }
 
-    function checkKey(e) {
-        e = e || window.event;
-        if (e.keyCode == '37') {
-            if(pagination[0].style.display === "block") {
-                prevPage();
-                checkPage();
-            }
-        }
-        else if (e.keyCode == '39') {
-            if(pagination[0].style.display === "block") {
-                nextPage(totalpage);
-                checkPage();
-            }
-        }
-    }
-
     paginationTop.addEventListener("change", function(){
         pagenow = parseInt(this.options[this.selectedIndex].value);
         loadImagePerPage(result[pagenow-1]);
@@ -417,6 +401,43 @@
         checkPage();
     });
 
-    document.onkeydown = checkKey;
+    document.onkeydown = function(e) {
+        if(isSecured()) {
+            if (e.ctrlKey && 
+                (e.keyCode === 67 || //ctrl+c
+                    e.keyCode === 86 || //ctrl+v
+                    e.keyCode === 85 || //ctrl+u
+                    e.keyCode === 117 || //ctrl+F6
+                    e.shiftKey && e.keyCode===73)) { //ctrl+shift+i
+                return false;
+            } else if (e.keyCode === 123){ //F12
+                return false;
+            } else if (e.keyCode == '37') { // Left Arrow
+                if(pagination[0].style.display === "block") {
+                    prevPage();
+                    checkPage();
+                }
+            }
+            else if (e.keyCode == '39') { // Right Arrow
+                if(pagination[0].style.display === "block") {
+                    nextPage(totalpage);
+                    checkPage();
+                }
+            }
+        } else {
+            if (e.keyCode == '37') { // Left Arrow
+                if(pagination[0].style.display === "block") {
+                    prevPage();
+                    checkPage();
+                }
+            }
+            else if (e.keyCode == '39') { // Right Arrow
+                if(pagination[0].style.display === "block") {
+                    nextPage(totalpage);
+                    checkPage();
+                }
+            }
+        }
+    };
 
 })();
