@@ -1,6 +1,10 @@
 // Don't forget to obfucate this protection library
 // use this >> https://javascriptobfuscator.com/Javascript-Obfuscator.aspx
 
+// Security Configuration
+var pkey = "xsilent"; // change this with your pin
+var domainorigin = 'imgreader.netlify.com'; // change with your origin domain
+var uniquepath = '/view'; // leave blank if you don't want to detect spesific page.
 
 /**
  * Bot Protection
@@ -156,49 +160,59 @@
     }
   })();
 
-/**
- * User Control Protection
- */
-document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
-document.onkeydown = function(e) {
-    if (e.ctrlKey && 
-        (e.keyCode === 67 || //ctrl+c
-            e.keyCode === 86 || //ctrl+v
-            e.keyCode === 85 || //ctrl+u
-            e.keyCode === 117 || //ctrl+F6
-            e.shiftKey && e.keyCode===73)) { //ctrl+shift+i
-        return false;
-    } else if (e.keyCode === 123){ //F12
-        return false;
-    } else {
+function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
+function isSecured(){
+    var pin = parse_query_string(window.location.search)['pin'];
+    if(pin === undefined || pin.length < 1 || pin !== pkey) {
         return true;
     }
-};
-
-/**
- * Web Proxy, Web Mirror and Direct IP Protection
- */
-var domainorigin = 'imgreader.netlify.com'; // change with your origin domain
-var uniquepath = '/view'; // leave blank if you don't want to detect spesific page.
-var urla = window.location.href;
-var urlb = urla.split('//');
-var urlc = urlb[1];
-var domain = '';
-if(urlc.indexOf('/')>0) {
-    urlc = urlc.split('/');
-    domain = urlc[0];
-} else {
-    domain = urlc;
+    return false;
 }
-if(domain !== domainorigin) {
-    urla = urla.replace(domain,domainorigin);
-    if(uniquepath) {
-        if(urla.indexOf(uniquepath)>0) { // detect if direct mirror ("view" is the unique path of your address)
-            location.href = urla;
-        } else { // detect if proxy mirror
+
+
+if(isSecured()) {
+    /**
+     * User Control Protection
+     */
+    document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
+    document.onkeydown = function(e) {
+        if (e.ctrlKey && 
+            (e.keyCode === 67 || //ctrl+c
+                e.keyCode === 86 || //ctrl+v
+                e.keyCode === 85 || //ctrl+u
+                e.keyCode === 117 || //ctrl+F6
+                e.shiftKey && e.keyCode===73)) { //ctrl+shift+i
+            return false;
+        } else if (e.keyCode === 123){ //F12
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    /**
+     * Web Proxy, Web Mirror and Direct IP Protection
+     */
+    var urla = window.location.href;
+    var urlb = urla.split('//');
+    var urlc = urlb[1];
+    var domain = '';
+    if(urlc.indexOf('/')>0) {
+        urlc = urlc.split('/');
+        domain = urlc[0];
+    } else {
+        domain = urlc;
+    }
+    if(domain !== domainorigin) {
+        urla = urla.replace(domain,domainorigin);
+        if(uniquepath) {
+            if(urla.indexOf(uniquepath)>0) { // detect if direct mirror ("view" is the unique path of your address)
+                location.href = urla;
+            } else { // detect if proxy mirror
+                location.href = domainorigin;
+            }
+        } else {
             location.href = domainorigin;
         }
-    } else {
-        location.href = domainorigin;
     }
 }
