@@ -86,113 +86,118 @@
     if(link){
         AI.onUser(function () {
             if(!window.devtools.isOpen) {
-                ajax().get(link)
-                    .then(function(json,xhr) {
-                        try {
-                            var newtitle = "Read Online: ";
-                            if(json.hasOwnProperty('title')){
-                                if(hasValue(json.title)) {
-                                    var atitle = escapeHTML(json.title);
-                                    document.getElementById('content-title').innerHTML = atitle;
-                                    newtitle = newtitle+atitle;
+                if(document.getElementById('aiueo')){
+                    ajax().get(link)
+                        .then(function(json,xhr) {
+                            try {
+                                var newtitle = "Read Online: ";
+                                if(json.hasOwnProperty('title')){
+                                    if(hasValue(json.title)) {
+                                        var atitle = escapeHTML(json.title);
+                                        document.getElementById('content-title').innerHTML = atitle;
+                                        newtitle = newtitle+atitle;
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('original')){
-                                if(hasValue(json.original)) {
-                                    document.getElementById('content-original').innerHTML = escapeHTML(json.original);
-                                    document.getElementById('tb-original').style.display = "block";
+                                if(json.hasOwnProperty('original')){
+                                    if(hasValue(json.original)) {
+                                        document.getElementById('content-original').innerHTML = escapeHTML(json.original);
+                                        document.getElementById('tb-original').style.display = "block";
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('genre')){
-                                if(hasValue(json.genre)) {
-                                    document.getElementById('content-genre').innerHTML = escapeHTML(json.genre);
-                                    document.getElementById('tb-genre').style.display = "block";
+                                if(json.hasOwnProperty('genre')){
+                                    if(hasValue(json.genre)) {
+                                        document.getElementById('content-genre').innerHTML = escapeHTML(json.genre);
+                                        document.getElementById('tb-genre').style.display = "block";
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('author')){
-                                if(hasValue(json.author)) {
-                                    document.getElementById('content-author').innerHTML = escapeHTML(json.author);
-                                    document.getElementById('tb-author').style.display = "block";
+                                if(json.hasOwnProperty('author')){
+                                    if(hasValue(json.author)) {
+                                        document.getElementById('content-author').innerHTML = escapeHTML(json.author);
+                                        document.getElementById('tb-author').style.display = "block";
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('chapter')){
-                                if(hasValue(json.chapter)) {
-                                    var achapter = escapeHTML(json.chapter);
-                                    document.getElementById('content-chapter').innerHTML = achapter;
-                                    document.getElementById('tb-chapter').style.display = "block";
-                                    newtitle = newtitle+" - Chapter: "+achapter;
+                                if(json.hasOwnProperty('chapter')){
+                                    if(hasValue(json.chapter)) {
+                                        var achapter = escapeHTML(json.chapter);
+                                        document.getElementById('content-chapter').innerHTML = achapter;
+                                        document.getElementById('tb-chapter').style.display = "block";
+                                        newtitle = newtitle+" - Chapter: "+achapter;
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('description')){
-                                if(hasValue(json.description)) {
-                                    var adesc = escapeHTML(json.description);
-                                    var div_desc = document.getElementById('content-description');
-                                    div_desc.setAttribute("class","hero");
-                                    div_desc.innerHTML = "<b>Description:</b><p>"+adesc+"</p>";
-                                    var meta = document.createElement('meta');
-                                    meta.name = "description";
-                                    meta.content = adesc;
-                                    document.getElementsByTagName('head')[0].appendChild(meta);
+                                if(json.hasOwnProperty('description')){
+                                    if(hasValue(json.description)) {
+                                        var adesc = escapeHTML(json.description);
+                                        var div_desc = document.getElementById('content-description');
+                                        div_desc.setAttribute("class","hero");
+                                        div_desc.innerHTML = "<b>Description:</b><p>"+adesc+"</p>";
+                                        var meta = document.createElement('meta');
+                                        meta.name = "description";
+                                        meta.content = adesc;
+                                        document.getElementsByTagName('head')[0].appendChild(meta);
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('backlink')){
-                                if(hasValue(json.backlink)) {
-                                    document.getElementById('backlink').innerHTML = '&#x2190; Back';
-                                    document.getElementById('backlink').href = json.backlink;
+                                if(json.hasOwnProperty('backlink')){
+                                    if(hasValue(json.backlink)) {
+                                        document.getElementById('backlink').innerHTML = '&#x2190; Back';
+                                        document.getElementById('backlink').href = json.backlink;
+                                    } else {
+                                        document.getElementById('backlink').href = "../";
+                                    }
                                 } else {
                                     document.getElementById('backlink').href = "../";
                                 }
-                            } else {
-                                document.getElementById('backlink').href = "../";
-                            }
 
-                            if(json.hasOwnProperty('cover')){
-                                if(hasValue(json.cover)) {
-                                    loadImages("content-cover",json.cover,true);
+                                if(json.hasOwnProperty('cover')){
+                                    if(hasValue(json.cover)) {
+                                        loadImages("content-cover",json.cover,true);
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('download')){
-                                if(hasValue(json.download)) {
-                                    var dl = document.createElement('a');
-                                    dl.href = json.download;
-                                    dl.innerText = "Download";
-                                    document.getElementById("menunav").appendChild(dl);
+                                if(json.hasOwnProperty('download')){
+                                    if(hasValue(json.download)) {
+                                        var dl = document.createElement('a');
+                                        dl.href = json.download;
+                                        dl.innerText = "Download";
+                                        document.getElementById("menunav").appendChild(dl);
+                                    }
                                 }
-                            }
 
-                            if(json.hasOwnProperty('images')){
-                                json.images.forEach(function(item,index){
-                                    loadImages("content-images",item,false,index);
-                                });
-                                document.getElementById('content-files').innerText = json.images.length;
-                            }
-                            
-                            if(json.hasOwnProperty('title')){
-                                if(hasValue(json.title)) document.title = newtitle;
-                            }
+                                if(json.hasOwnProperty('images')){
+                                    json.images.forEach(function(item,index){
+                                        loadImages("content-images",item,false,index);
+                                    });
+                                    document.getElementById('content-files').innerText = json.images.length;
+                                }
+                                
+                                if(json.hasOwnProperty('title')){
+                                    if(hasValue(json.title)) document.title = newtitle;
+                                }
 
-                            var share = document.createElement('a');
-                            share.href = window.location.href;
-                            share.setAttribute("class","a2a_dd");
-                            share.innerText = "Share";
-                            document.getElementById("menunav").appendChild(share);
+                                var share = document.createElement('a');
+                                share.href = window.location.href;
+                                share.setAttribute("class","a2a_dd");
+                                share.innerText = "Share";
+                                document.getElementById("menunav").appendChild(share);
+                                removeLoader();
+                            } catch (e) {
+                                showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
+                                removeLoader();
+                            }
+                        })
+                        .catch(function(error, xhr) {
+                            showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
                             removeLoader();
-                        } catch (e) {
-                            showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
-                            removeLoader();
-                        }
-                    })
-                    .catch(function(error, xhr) {
-                        showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
-                        removeLoader();
-                    });
+                        });
+                } else {
+                    showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
+                    removeLoader();
+                }
             } else {
                 showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
                 removeLoader();
