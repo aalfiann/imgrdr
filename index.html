@@ -93,53 +93,55 @@
                                 <span class="pure-form-message">Images must be separated by new line.</span>
 
                                 <hr>
-                                <legend><b>Additional Information</b></legend>
-                                <label for="content-origin-title">Original Title</label>
-                                <input class="pure-input-1" id="content-origin-title" type="text" placeholder="Original title of your content..." maxlength="250">
+                                <legend><button id="btnMore" type="button" class="pure-button"><b>Add More Information &rang;</b></button></legend>
+                                <div id="more-info" style="display: none;">
+                                    <label for="content-origin-title">Original Title</label>
+                                    <input class="pure-input-1" id="content-origin-title" type="text" placeholder="Original title of your content..." maxlength="250">
 
-                                <label for="content-genre">Genre</label>
-                                <input class="pure-input-1" id="content-genre" type="text" placeholder="Genre of your content..." maxlength="250">
+                                    <label for="content-genre">Genre</label>
+                                    <input class="pure-input-1" id="content-genre" type="text" placeholder="Genre of your content..." maxlength="250">
 
-                                <label for="content-author">Author</label>
-                                <input class="pure-input-1" id="content-author" type="text" placeholder="Author name of your content..." maxlength="250">
+                                    <label for="content-author">Author</label>
+                                    <input class="pure-input-1" id="content-author" type="text" placeholder="Author name of your content..." maxlength="250">
 
-                                <div class="pure-g">
-                                    <div class="pure-u-1 pure-u-md-1-2">
-                                        <label for="content-chapter">Chapter</label>
-                                        <span id="error-content-chapter" class="pure-form-message" style="display:none"></span>
-                                        <input class="pure-u-23-24" id="content-chapter" type="text" placeholder="Chapter number of your content...">
+                                    <div class="pure-g">
+                                        <div class="pure-u-1 pure-u-md-1-2">
+                                            <label for="content-chapter">Chapter</label>
+                                            <span id="error-content-chapter" class="pure-form-message" style="display:none"></span>
+                                            <input class="pure-u-23-24" id="content-chapter" type="text" placeholder="Chapter number of your content...">
+                                        </div>
+
+                                        <div class="pure-u-1 pure-u-md-1-2">
+                                            <label for="content-release">Release Date</label>
+                                            <input class="pure-u-23-24" id="content-release" type="text" placeholder="Release date of your content..." maxlength="50">
+                                        </div>
                                     </div>
 
-                                    <div class="pure-u-1 pure-u-md-1-2">
-                                        <label for="content-release">Release Date</label>
-                                        <input class="pure-u-23-24" id="content-release" type="text" placeholder="Release date of your content..." maxlength="50">
-                                    </div>
-                                </div>
+                                    <label for="content-backlink">Backlink</label>
+                                    <span id="error-content-backlink" class="pure-form-message" style="display:none"></span>
+                                    <input class="pure-input-1" id="content-backlink" type="text" placeholder="https://your-domain.com/here-is-your-backlink">
 
-                                <label for="content-backlink">Backlink</label>
-                                <span id="error-content-backlink" class="pure-form-message" style="display:none"></span>
-                                <input class="pure-input-1" id="content-backlink" type="text" placeholder="https://your-domain.com/here-is-your-backlink">
+                                    <label for="content-download">Download</label>
+                                    <span id="error-content-download" class="pure-form-message" style="display:none"></span>
+                                    <input class="pure-input-1" id="content-download" type="text" placeholder="https://your-domain.com/here-is-your-download-link">
 
-                                <label for="content-download">Download</label>
-                                <span id="error-content-download" class="pure-form-message" style="display:none"></span>
-                                <input class="pure-input-1" id="content-download" type="text" placeholder="https://your-domain.com/here-is-your-download-link">
+                                    <label for="content-description">Description</label>
+                                    <textarea class="pure-input-1" id="content-description" rows="3" placeholder="Description of your content..." maxlength="500"></textarea>
+                                    <span class="pure-form-message">HTML is not allowed in description.</span>
 
-                                <label for="content-description">Description</label>
-                                <textarea class="pure-input-1" id="content-description" rows="3" placeholder="Description of your content..." maxlength="500"></textarea>
-                                <span class="pure-form-message">HTML is not allowed in description.</span>
+                                    <label for="content-translator">Translator</label>
+                                    <input class="pure-input-1" id="content-translator" type="text" placeholder="Translator name of your content..." maxlength="250">
 
-                                <label for="content-translator">Translator</label>
-                                <input class="pure-input-1" id="content-translator" type="text" placeholder="Translator name of your content..." maxlength="250">
-
-                                <div class="pure-g">
-                                    <div class="pure-u-1 pure-u-md-1-2">
-                                        <label for="content-status">Status</label>
-                                        <input class="pure-u-23-24" id="content-status" type="text" placeholder="Status of your content..." maxlength="50">
-                                    </div>
-                                    <div class="pure-u-1 pure-u-md-1-2">
-                                        <label for="content-per-page">Item Per Page</label>
-                                        <span id="error-content-per-page" class="pure-form-message" style="display:none"></span>
-                                        <input class="pure-u-23-24" id="content-per-page" type="text" placeholder="Default is 50 item per page...">
+                                    <div class="pure-g">
+                                        <div class="pure-u-1 pure-u-md-1-2">
+                                            <label for="content-status">Status</label>
+                                            <input class="pure-u-23-24" id="content-status" type="text" placeholder="Status of your content..." maxlength="50">
+                                        </div>
+                                        <div class="pure-u-1 pure-u-md-1-2">
+                                            <label for="content-per-page">Item Per Page</label>
+                                            <span id="error-content-per-page" class="pure-form-message" style="display:none"></span>
+                                            <input class="pure-u-23-24" id="content-per-page" type="text" placeholder="Default is 50 item per page...">
+                                        </div>
                                     </div>
                                 </div>
                                 <hr>

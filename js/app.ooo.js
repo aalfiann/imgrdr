@@ -251,6 +251,15 @@
         FVLink.element("content-link").validate();
     });
 
+    document.getElementById("btnMore").addEventListener("click", function(){
+        var moreInfo = document.getElementById("more-info");
+        if(moreInfo.style.display === "none") {
+            moreInfo.style.display = "inline";
+        } else {
+            moreInfo.style.display = "none";
+        }
+    });
+
     document.getElementById('copyrightyear').innerHTML= new Date().getFullYear();
     document.getElementById('website').innerHTML = window.location.href;
 
