@@ -1,5 +1,9 @@
 (function(){
-    var imgreader_version = "1.3.0";
+    var imgreader_version = "1.4.0";
+    var pagenow = 1;
+    var totalpage = 1;
+    var itemPerPage = 50;
+    var result = [];
     
     var hash = parse_query_string(window.location.search)['content'];
     if(hash) {
@@ -38,6 +42,13 @@
         img.setAttribute("data-src", url);
         var src = document.getElementById(el);
         src.appendChild(img);
+    }
+
+    function loadImagePerPage(data) {
+        document.getElementById("content-images").innerHTML = "";
+        data.forEach(function(item,index){
+            loadImages("content-images",item,false,index);
+        });
     }
 
     function showError(el,content) {
@@ -166,10 +177,36 @@
                     }
 
                     if(json.hasOwnProperty('images')){
-                        json.images.forEach(function(item,index){
-                            loadImages("content-images",item,false,index);
-                        });
-                        document.getElementById('content-files').innerText = json.images.length;
+                        var ch = new ChunkHandler();
+                        if(json.hasOwnProperty('item_per_page')){
+                            if(hasValue(json.item_per_page)) itemPerPage = json.item_per_page;
+                        }
+                        var totalimg = json.images.length;
+                        if(itemPerPage > totalimg) {
+                            itemPerPage = totalimg;
+                        } else {
+                            showPagination();
+                        }
+                        result = ch.make(json.images,itemPerPage);
+                        totalpage = result.length;
+                        var datapage = parse_query_string(window.location.search)['page'];
+                        if(datapage) {
+                            var reqpage = parseInt(datapage);
+                            if(reqpage > totalpage) {
+                                pagenow = totalpage;
+                                checkPage();
+                            } else {
+                                if(reqpage >= 1) {
+                                    pagenow = reqpage;
+                                }
+                            }
+                        }
+                        loadImagePerPage(result[pagenow-1]);
+                        fillPage('pagination-top',totalpage);
+                        fillPage('pagination-bottom',totalpage);
+                        setOption("pagination-top",pagenow);
+                        setOption("pagination-bottom",pagenow);
+                        document.getElementById('content-files').innerText = totalimg;
                     }
                     
                     if(json.hasOwnProperty('title')){
@@ -227,5 +264,118 @@
     });
 
     document.getElementById('copyrightyear').innerHTML= new Date().getFullYear();
+
+    // pagination
+    var btnPrevTop = document.getElementById("prev-page-top");
+    var btnPrevBottom = document.getElementById("prev-page-bottom");
+    var btnNextTop = document.getElementById("next-page-top");
+    var btnNextBottom = document.getElementById("next-page-bottom");
+    var paginationTop = document.getElementById("pagination-top");
+    var paginationBottom = document.getElementById("pagination-bottom");
+
+    function showPagination() {
+        var x = document.getElementsByClassName("pagination");
+        for(var i=0;i<x.length;i++) {
+            x[i].style.display = "block";
+        }
+    }
+
+    function setOption(el,value) {
+        var div = document.getElementById(el);
+        div.value =value;
+    }
+
+    function fillPage(el,totalpage) {
+        var select = document.getElementById(el);
+        for (var i = 1; i<=totalpage; i++){
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.innerHTML = i;
+            select.appendChild(opt);
+        }
+    }
+
+    function prevPage() {
+        if(pagenow >1) {
+            pagenow -= 1;
+            loadImagePerPage(result[pagenow-1]);
+            paginationTop.value = pagenow;
+            paginationBottom.value = pagenow;
+        }
+    }
+
+    function nextPage(totalpage) {
+        if(pagenow < totalpage) {
+            pagenow += 1;
+            loadImagePerPage(result[pagenow-1]);
+            paginationTop.value = pagenow;
+            paginationBottom.value = pagenow;
+        }
+    }
+
+    function isFirstPage() {
+        if(pagenow === 1) {
+            return true;
+        }
+        return false;
+    }
+
+    function isLastPage() {
+        if(pagenow === totalpage) {
+            return true;
+        }
+        return false;
+    }
+
+    function checkPage() {
+        if(isFirstPage()) {
+            btnPrevTop.style.display = "none";
+            btnPrevBottom.style.display = "none";
+        } else {
+            btnPrevTop.style.display = "inline";
+            btnPrevBottom.style.display = "inline";
+        }
+        if(isLastPage()) {
+            btnNextTop.style.display = "none";
+            btnNextBottom.style.display = "none";
+        } else {
+            btnNextTop.style.display = "inline";
+            btnNextBottom.style.display = "inline";
+        }
+    }
+
+    paginationTop.addEventListener("change", function(){
+        pagenow = parseInt(this.options[this.selectedIndex].value);
+        loadImagePerPage(result[pagenow-1]);
+        setOption("pagination-bottom",pagenow);
+        checkPage();
+    });
+
+    paginationBottom.addEventListener("change", function(){
+        pagenow = parseInt(this.options[this.selectedIndex].value);
+        loadImagePerPage(result[pagenow-1]);
+        setOption("pagination-top",pagenow);
+        checkPage();
+    });
+
+    document.getElementById("prev-page-top").addEventListener("click", function(){
+        prevPage();
+        checkPage();
+    });
+
+    document.getElementById("next-page-top").addEventListener("click", function(){
+        nextPage(totalpage);
+        checkPage();
+    });
+
+    document.getElementById("prev-page-bottom").addEventListener("click", function(){
+        prevPage();
+        checkPage();
+    });
+
+    document.getElementById("next-page-bottom").addEventListener("click", function(){
+        nextPage(totalpage);
+        checkPage();
+    });
 
 })();
