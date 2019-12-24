@@ -253,6 +253,7 @@
 
     if(link){
         if(isSecured()) {
+            document.getElementById("xoxo").innerHTML = "Are you human?<br>Touch the screen or Move your mouse.";
             AI.onUser(function () { 
                 if(!window.devtools.isOpen) {
                     if(document.getElementById('aiueo')){
