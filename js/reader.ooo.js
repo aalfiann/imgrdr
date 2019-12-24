@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.1.2";
+    var imgreader_version = "1.2.0";
     function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
     var hash = parse_query_string(window.location.search)['content'];
     if(hash) {
@@ -85,7 +85,7 @@
 
     if(link){
         AI.onUser(function () {
-            if(!AI.isBot) {
+            if(!window.devtools.isOpen) {
                 ajax().get(link)
                     .then(function(json,xhr) {
                         try {
@@ -194,7 +194,7 @@
                         removeLoader();
                     });
             } else {
-                showError("error","<b>Whoops!</b><p>Are you real human?</p>");
+                showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
                 removeLoader();
             }
         });
