@@ -178,6 +178,18 @@ document.onkeydown = function(e) {
 /**
  * Proxy Protection
  */
-if(window.location.hostname !== 'imgreader.netlify.com'){
-    location.href = 'https://imgreader.netlify.com';
+var domainorigin = 'imgreader.netlify.com';
+var urla = window.location.href;
+var urlb = urla.split('//');
+var urlc = urlb[1];
+var domain = '';
+if(urlc.indexOf('/')>0) {
+    urlc = urlc.split('/');
+    domain = urlc[0];
+} else {
+    domain = urlc;
+}
+if(domain !== domainorigin) {
+    urla = urla.replace(domain,domainorigin);
+    location.href = urla;
 }
