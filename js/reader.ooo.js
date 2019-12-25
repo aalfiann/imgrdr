@@ -234,6 +234,8 @@
                         if(hasValue(json.title)) document.title = newtitle;
                     }
 
+                    document.getElementById("share").style.display = "block";
+
                     removeLoader();
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
