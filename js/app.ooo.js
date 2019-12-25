@@ -105,10 +105,16 @@
         if(formid === "form-source") {
             document.getElementById("result-form-source").style.display = "none";
             document.getElementById("msg").style.display = "none";
-            var x, i;
-            x = document.querySelectorAll(".validate-error");
-            for (i = 0; i < (x.length-1); i++) {
-                x[i].classList.remove('validate-error');
+            var x = document.querySelectorAll(".validate-error");
+            var z = x.length;
+            if(document.getElementById("error-content-link").style.display === "none") {
+                for (var i = 0; i < z; i++) {
+                    x[i].classList.remove('validate-error');
+                }
+            } else {
+                for (var i = 0; i < (z-1); i++) {
+                    x[i].classList.remove('validate-error');
+                }
             }
         }
         if(formid === "form-link") {
