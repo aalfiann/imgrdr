@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.4.1";
+    var imgreader_version = "1.4.2";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -234,11 +234,6 @@
                         if(hasValue(json.title)) document.title = newtitle;
                     }
 
-                    var share = document.createElement('a');
-                    share.href = window.location.href;
-                    share.setAttribute("class","a2a_dd");
-                    share.innerText = "Share";
-                    document.getElementById("menunav").appendChild(share);
                     removeLoader();
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
@@ -439,5 +434,20 @@
             }
         }
     };
+
+    // social media
+    var curlink = encodeURIComponent(window.location.href);
+    var curtitle = encodeURIComponent(document.title);
+    document.getElementById("sb_facebook").href = "https://facebook.com/sharer/sharer.php?u="+curlink;
+    document.getElementById("sb_twitter").href = "https://twitter.com/intent/tweet/?text="+curtitle+"&amp;url="+curlink;
+    document.getElementById("sb_tumblr").href = "https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title="+curtitle+"&amp;caption="+curtitle+"&amp;content="+curlink+"&amp;canonicalUrl="+curlink+"&amp;shareSource=tumblr_share_button";
+    document.getElementById("sb_email").href = "mailto:?subject="+curtitle+"&amp;body="+curlink;
+    document.getElementById("sb_pinterest").href = "https://pinterest.com/pin/create/button/?url="+curlink+"&amp;media="+curlink+"&amp;description="+curtitle;
+    document.getElementById("sb_linkedin").href = "https://www.linkedin.com/shareArticle?mini=true&amp;url="+curlink+"&amp;title="+curtitle+"&amp;summary="+curtitle+"&amp;source="+curlink;
+    document.getElementById("sb_reddit").href = "https://reddit.com/submit/?url="+curlink+"&amp;resubmit=true&amp;title="+curtitle;
+    document.getElementById("sb_xing").href = "https://www.xing.com/app/user?op=share;url="+curlink+";title="+curtitle;
+    document.getElementById("sb_whatsapp").href = "whatsapp://send?text="+curtitle+"%20"+curlink;
+    document.getElementById("sb_hacker").href = "https://news.ycombinator.com/submitlink?u="+curlink+"&amp;t="+curtitle;
+    document.getElementById("sb_twitter").href = "http://vk.com/share.php?title="+curtitle+"&amp;url="+curlink;
 
 })();

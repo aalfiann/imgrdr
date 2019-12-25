@@ -7,7 +7,7 @@ getScript("https://cdn.jsdelivr.net/gh/aalfiann/ajax@3.0.4/dist/ajax.min.js", fu
             getScript("../js/ai.min.js", function(){
                 getScript("https://cdn.jsdelivr.net/npm/chunk-handler@1.2.0/dist/chunkhandler.min.js",function(){
                     getScript("../js/reader.min.js",function(){
-                        getScript("https://static.addtoany.com/menu/page.js");
+                        getCss("../css/social.min.css");
                         getScript("https://cdn.jsdelivr.net/gh/robinparisi/tingle@0.15.2/dist/tingle.min.js",function(){
                             getCss("https://cdn.jsdelivr.net/gh/robinparisi/tingle@0.15.2/dist/tingle.min.css");
                         });
