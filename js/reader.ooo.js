@@ -440,10 +440,8 @@
     var curtitle = encodeURIComponent(document.title);
     document.getElementById("sb_facebook").href = "https://facebook.com/sharer/sharer.php?u="+curlink;
     document.getElementById("sb_twitter").href = "https://twitter.com/intent/tweet/?text="+curtitle+"&amp;url="+curlink;
-    document.getElementById("sb_tumblr").href = "https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title="+curtitle+"&amp;caption="+curtitle+"&amp;content="+curlink+"&amp;canonicalUrl="+curlink+"&amp;shareSource=tumblr_share_button";
     document.getElementById("sb_email").href = "mailto:?subject="+curtitle+"&amp;body="+curlink;
     document.getElementById("sb_pinterest").href = "https://pinterest.com/pin/create/button/?url="+curlink+"&amp;media="+curlink+"&amp;description="+curtitle;
-    document.getElementById("sb_linkedin").href = "https://www.linkedin.com/shareArticle?mini=true&amp;url="+curlink+"&amp;title="+curtitle+"&amp;summary="+curtitle+"&amp;source="+curlink;
     document.getElementById("sb_reddit").href = "https://reddit.com/submit/?url="+curlink+"&amp;resubmit=true&amp;title="+curtitle;
     document.getElementById("sb_xing").href = "https://www.xing.com/app/user?op=share;url="+curlink+";title="+curtitle;
     document.getElementById("sb_whatsapp").href = "whatsapp://send?text="+curtitle+"%20"+curlink;
