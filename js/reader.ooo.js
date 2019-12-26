@@ -250,20 +250,25 @@
 
     if(link){
         if(isSecured()) {
-            document.getElementById("xoxo").innerHTML = "Are you human?<br>Touch the screen or Move your mouse.";
-            AI.onUser(function () { 
-                if(!window.devtools.isOpen) {
-                    if(document.getElementById('aiueo')){
-                        getData(link);
+            if(!isHeadless()) {
+                document.getElementById("xoxo").innerHTML = "Are you human?<br>Touch the screen or Move your mouse.";
+                AI.onUser(function () { 
+                    if(!window.devtools.isOpen) {
+                        if(document.getElementById('aiueo')){
+                            getData(link);
+                        } else {
+                            showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
+                            removeLoader();
+                        }
                     } else {
-                        showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
+                        showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
                         removeLoader();
-                    }
-                } else {
-                    showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
-                    removeLoader();
-                } 
-            });
+                    } 
+                });
+            } else {
+                showError("error","<b>Whoops!</b><p>Your browser is too old! Please update your browser into the latest version and reload this page!</p>");
+                removeLoader();
+            }
         } else {
             getData(link);
         }
