@@ -76,7 +76,7 @@
             stickyFooter: false,
             closeMethods: ['overlay', 'button', 'escape']
         });
-        modal.setContent('<h3>ImgReader - v.'+imgreader_version+'</h3><p>Makes your images content to become easier to read.</p>');
+        modal.setContent('<h3>ImgFo - v.'+imgreader_version+'</h3><p>Makes your images content to become easier to read.</p>');
         modal.addFooterBtn('Create Your Own', 'tingle-btn tingle-btn--primary', function() {
             window.location='../';
         });

@@ -3,7 +3,7 @@
 
 // Security Configuration
 var pkey = "xsilent"; // change this with your pin
-var domainorigin = 'imgreader.netlify.com'; // change with your origin domain
+var domainorigin = 'imgfo.com'; // change with your origin domain
 var uniquepath = '/view'; // leave blank if you don't want to detect spesific page.
 
 /**
