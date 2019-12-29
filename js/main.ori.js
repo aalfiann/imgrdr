@@ -1,4 +1,4 @@
-var domainorigin = 'imgfo.com';
+var domainorigin = 'https://imgfo.com';
 var uniquepath = '';
 var urla = window.location.href;
 var urlb = urla.split('//');
