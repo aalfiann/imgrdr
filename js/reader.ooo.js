@@ -385,6 +385,7 @@
         loadImagePerPage(result[pagenow-1]);
         setOption("pagination-top",pagenow);
         checkPage();
+        topFunction();
     });
 
     document.getElementById("prev-page-top").addEventListener("click", function(){
@@ -400,11 +401,13 @@
     document.getElementById("prev-page-bottom").addEventListener("click", function(){
         prevPage();
         checkPage();
+        topFunction();
     });
 
     document.getElementById("next-page-bottom").addEventListener("click", function(){
         nextPage(totalpage);
         checkPage();
+        topFunction();
     });
 
     document.onkeydown = function(e) {
