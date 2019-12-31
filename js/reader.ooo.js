@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.5.1";
+    var imgreader_version = "1.5.2";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -93,9 +93,16 @@
         }
     }
 
-    function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+    function topFunction(focus) {
+        focus = (focus === undefined)?false:true;
+        if(focus) {
+            setTimeout(function(){
+                document.getElementById('share').scrollIntoView();
+            },100);
+        } else {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     }
 
     function getData(link) {
@@ -385,7 +392,7 @@
         loadImagePerPage(result[pagenow-1]);
         setOption("pagination-top",pagenow);
         checkPage();
-        topFunction();
+        topFunction(true);
     });
 
     document.getElementById("prev-page-top").addEventListener("click", function(){
@@ -401,13 +408,13 @@
     document.getElementById("prev-page-bottom").addEventListener("click", function(){
         prevPage();
         checkPage();
-        topFunction();
+        topFunction(true);
     });
 
     document.getElementById("next-page-bottom").addEventListener("click", function(){
         nextPage(totalpage);
         checkPage();
-        topFunction();
+        topFunction(true);
     });
 
     document.onkeydown = function(e) {
@@ -425,12 +432,14 @@
                 if(pagination[0].style.display === "block") {
                     prevPage();
                     checkPage();
+                    topFunction(true);
                 }
             }
             else if (e.keyCode == '39') { // Right Arrow
                 if(pagination[0].style.display === "block") {
                     nextPage(totalpage);
                     checkPage();
+                    topFunction(true);
                 }
             }
         } else {
@@ -438,12 +447,14 @@
                 if(pagination[0].style.display === "block") {
                     prevPage();
                     checkPage();
+                    topFunction(true);
                 }
             }
             else if (e.keyCode == '39') { // Right Arrow
                 if(pagination[0].style.display === "block") {
                     nextPage(totalpage);
                     checkPage();
+                    topFunction(true);
                 }
             }
         }
