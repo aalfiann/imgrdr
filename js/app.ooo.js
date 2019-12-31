@@ -1,5 +1,7 @@
 (function(){
 
+    var fullpath = window.location.href.split('?');
+    var website = fullpath[0];
     var FV = new FormValidation();
     var FVLink = new FormValidation();
 
@@ -197,7 +199,7 @@
     function generateLink() {
         if(FVLink.validate().isValid()){
             var link = encodeURIComponent(TextObfuscator.encode(Crypto.encode(document.getElementById('content-link').value),3));
-            document.getElementById('result-link').value = window.location.href+'view?content='+link;
+            document.getElementById('result-link').value = website+'view?content='+link;
             msgShow("msg-link","msg","<b>Generate Success!</b><br>Your content is ready at this link.");
             document.getElementById("result-form-link").style.display = "block";
             document.getElementById('result-link').select();
@@ -267,6 +269,6 @@
     });
 
     document.getElementById('copyrightyear').innerHTML= new Date().getFullYear();
-    document.getElementById('website').innerHTML = window.location.href;
+    document.getElementById('website').innerHTML = website;
 
 })();
