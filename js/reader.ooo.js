@@ -252,6 +252,15 @@
                     document.getElementById("share").style.display = "block";
 
                     removeLoader();
+
+                    // load banner
+                    if(isMobileDevice()) {
+                        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
+                        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
+                    } else {
+                        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
+                        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
+                    }
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
                     removeLoader();
@@ -520,15 +529,6 @@
         ifrm.setAttribute("marginheight","0");
         ifrm.setAttribute("frameborder","0");
         document.getElementById(el).appendChild(ifrm);
-    }
-
-    // load banner
-    if(isMobileDevice()) {
-        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
-        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
-    } else {
-        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
-        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
     }
 
 })();
