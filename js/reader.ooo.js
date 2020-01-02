@@ -255,11 +255,11 @@
 
                     // load banner
                     if(isMobileDevice()) {
-                        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
-                        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
+                        insertBanner('banner_top','https://a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
+                        insertBanner('banner_bottom','https://a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
                     } else {
-                        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
-                        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
+                        insertBanner('banner_top','https://a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
+                        insertBanner('banner_bottom','https://a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
                     }
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
