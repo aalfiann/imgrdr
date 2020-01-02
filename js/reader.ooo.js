@@ -477,7 +477,7 @@
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
                 ctx.drawImage(img, 0,0,e.target.clientWidth,e.target.clientHeight);
-            } else {
+            } else if (e.target.id !== 'banner_top' || e.target.id !== 'banner_bottom') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
                 cvs.setAttribute("height",e.target.clientHeight);
@@ -488,8 +488,10 @@
                 var img = document.getElementById(e.target.id);
                 ctx.drawImage(img, 0,0,e.target.clientWidth,e.target.clientHeight);
             }
-            var image_x = document.getElementById(e.target.id);
-            image_x.parentNode.removeChild(image_x);
+            if (e.target.id !== 'banner_top' || e.target.id !== 'banner_bottom') {
+                var image_x = document.getElementById(e.target.id);
+                image_x.parentNode.removeChild(image_x);
+            }
         }
     });
 
