@@ -28,6 +28,10 @@
             .replace(/\//g, '&#x2F;');
     }
 
+    function isMobileDevice() {
+        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+    };
+
     function loadImages(el,url,fullwidth,index) {
         fullwidth = (fullwidth === undefined)?false:fullwidth;
         var div = document.createElement('div');
@@ -500,5 +504,28 @@
     document.getElementById("sb_whatsapp").href = "whatsapp://send?text="+curtitle+"%20"+curlink;
     document.getElementById("sb_hacker").href = "https://news.ycombinator.com/submitlink?u="+curlink+"&amp;t="+curtitle;
     document.getElementById("sb_vk").href = "http://vk.com/share.php?title="+curtitle+"&amp;url="+curlink;
+
+    // banner
+    function insertBanner(el,src,width,height) {
+        var ifrm = document.createElement("iframe");
+        ifrm.setAttribute("class", "lazyload");
+        ifrm.setAttribute("src", src);
+        ifrm.setAttribute("width",width);
+        ifrm.setAttribute("height",height);
+        ifrm.setAttribute("scrolling","no");
+        ifrm.setAttribute("marginwidth","0");
+        ifrm.setAttribute("marginheight","0");
+        ifrm.setAttribute("frameborder","0");
+        document.getElementById(el).appendChild(ifrm);
+    }
+
+    // load banner
+    if(isMobileDevice()) {
+        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
+        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652967&size=300x250','300','250');
+    } else {
+        insertBanner('banner_top','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
+        insertBanner('banner_bottom','//a.exdynsrv.com/iframe.php?idzone=3652039&size=468x60','468','60');
+    }
 
 })();
