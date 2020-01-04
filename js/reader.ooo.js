@@ -70,6 +70,7 @@
     }
 
     function removeLoader(){
+        document.getElementById("xoxo").innerHTML = "";
         var element = document.getElementById('preloader');
             element.parentNode.removeChild(element);
     }
@@ -270,6 +271,7 @@
                 AI.onUser(function () { 
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
+                            document.getElementById("xoxo").innerHTML = "Loading...";
                             getData(link);
                         } else {
                             showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
