@@ -491,9 +491,6 @@
                 ctx.drawImage(img, 0,0,e.target.clientWidth,e.target.clientHeight);
             }
         } else {
-            var ratio = window.devicePixelRatio || 1;
-            var w = screen.width * ratio;
-            var h = screen.height * ratio;
             var imgp = e.target.parentNode;
             var cvs = document.createElement('canvas');
             if(e.target.id === 'img_cover') {
@@ -504,7 +501,7 @@
                 var c = document.getElementById(e.target.id+"_cvs");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
-                ctx.drawImage(img, 0,0,w,h);
+                ctx.drawImage(img, 0,0);
             } else if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
@@ -514,7 +511,7 @@
                 var c = document.getElementById(e.target.id+"_cvs");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
-                ctx.drawImage(img, 0,0,w,h);
+                ctx.drawImage(img, 0,0);
             }
         }
         if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
