@@ -495,15 +495,15 @@
             var cvs = document.createElement('canvas');
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
-                cvs.setAttribute("width",e.target.clientWidth);
-                cvs.setAttribute("height",e.target.clientHeight);
+                cvs.setAttribute("width",e.target.width);
+                cvs.setAttribute("height",e.target.height);
                 imgp.appendChild(cvs);
                 var img = document.getElementById(e.target.id);
                 resizeCanvasImage(img, cvs, e.target.clientWidth, e.target.clientWidth);
             } else if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
                 cvs.id = e.target.id+"_cvs";
-                cvs.setAttribute("width",e.target.clientWidth);
-                cvs.setAttribute("height",e.target.clientHeight);
+                cvs.setAttribute("width",e.target.width);
+                cvs.setAttribute("height",e.target.height);
                 cvs.setAttribute("style","display:block");
                 imgp.appendChild(cvs);
                 var img = document.getElementById(e.target.id);
