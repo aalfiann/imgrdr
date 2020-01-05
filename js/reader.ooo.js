@@ -495,23 +495,23 @@
             var cvs = document.createElement('canvas');
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
-                cvs.setAttribute("width",window.innerWidth);
-                cvs.setAttribute("height",window.innerHeight);
+                cvs.setAttribute("width",e.target.clientWidth);
+                cvs.setAttribute("height",e.target.clientHeight);
                 imgp.appendChild(cvs);
                 var c = document.getElementById(e.target.id+"_cvs");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
-                ctx.drawImage(img, 0,0,window.innerWidth,window.innerHeight);
+                ctx.drawImage(img, 0,0,e.target.clientWidth,e.target.clientHeight);
             } else if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
                 cvs.id = e.target.id+"_cvs";
-                cvs.setAttribute("width",window.innerWidth);
-                cvs.setAttribute("height",window.innerHeight);
+                cvs.setAttribute("width",e.target.clientWidth);
+                cvs.setAttribute("height",e.target.clientHeight);
                 cvs.setAttribute("style","display:block");
                 imgp.appendChild(cvs);
                 var c = document.getElementById(e.target.id+"_cvs");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
-                ctx.drawImage(img, 0,0,window.innerWidth,window.innerHeight);
+                ctx.drawImage(img, 0,0,e.target.clientWidth,e.target.clientHeight);
             }
         }
         if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
