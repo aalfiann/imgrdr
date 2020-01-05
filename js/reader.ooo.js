@@ -501,7 +501,9 @@
                 var c = document.getElementById(e.target.id+"_cvs");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
-                ctx.drawImage(img, 0,0,e.target.width,e.target.height,0,0,e.target.clientWidth,e.target.clientHeight);
+                img.width = e.target.clientWidth;
+                img.height = e.target.clientHeight;
+                ctx.drawImage(img, 0,0,img.width,img.height,0,0,e.target.clientWidth,e.target.clientHeight);
             } else if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
@@ -511,7 +513,9 @@
                 var c = document.getElementById(e.target.id+"_cvs");
                 var ctx = c.getContext("2d");
                 var img = document.getElementById(e.target.id);
-                ctx.drawImage(img, 0,0,e.target.width,e.target.height,0,0,e.target.clientWidth,e.target.clientHeight);
+                img.width = e.target.clientWidth;
+                img.height = e.target.clientHeight;
+                ctx.drawImage(img, 0,0,img.width,img.height,0,0,e.target.clientWidth,e.target.clientHeight);
             }
         }
         if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
