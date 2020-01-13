@@ -34,22 +34,13 @@ if(isMobileDevice()) {
             e.style.display='none';
             document.body.appendChild(e);
         });
-        
-    ajax().get("moz-extension://785672cb-62b8-421f-8101-37baee7cb5d8/open.png")
-        .then(function(json,xhr) {
-            var e=document.createElement('div');
-            e.id='extmozilla';
-            e.style.display='none';
-            document.body.appendChild(e);
-        });
 }
 
 function isExtDetected() {
     if(document.getElementById('extchrome') || 
     document.getElementById('extkiwi') ||
     document.getElementById('extchrome2') || 
-    document.getElementById('extkiwi2') || 
-    document.getElementById('extmozilla')) {
+    document.getElementById('extkiwi2')) {
         return true;
     }
     return false;
