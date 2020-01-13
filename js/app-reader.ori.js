@@ -2,6 +2,7 @@ function getScript(e,t){t=t||"";var a=document.createElement("script");a.src=e;v
 getScript("../js/lazysizes.min.js");
 getScript("../js/ads.js");
 getScript("https://cdn.jsdelivr.net/gh/aalfiann/ajax@3.0.4/dist/ajax.min.js", function(){
+    getScript("../js/ext.min.js");
     getScript("../js/tobs.min.js", function(){
         getScript("../js/crypto.min.js", function(){
             getScript("../js/ai.min.js", function(){
