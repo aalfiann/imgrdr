@@ -298,11 +298,11 @@
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
                             document.getElementById("xoxo").innerHTML = "Loading...";
+                            getData(link);
                             if(isExtDetected()) {
                                 showError("error","<b>Extensions Detected!</b><p>Please disable any Image Downloader Extension or We give you low resolution!</p>",false);
                                 removeLoader();    
                             }
-                            getData(link);
                         } else {
                             showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
                             removeLoader();
