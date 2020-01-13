@@ -31,10 +31,6 @@
             .replace(/\//g, '&#x2F;');
     }
 
-    function isMobileDevice() {
-        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-    };
-
     function loadImages(el,url,fullwidth,index) {
         fullwidth = (fullwidth === undefined)?false:fullwidth;
         var div = document.createElement('div');
@@ -299,6 +295,9 @@
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
                             document.getElementById("xoxo").innerHTML = "Loading...";
+                            if(isExtDetected()) {
+                                showError("warning","<b>Extensions Detected!</b><p>Please disable any Image Downloader Extension or We give you low resolution!</p>");
+                            }
                             getData(link);
                         } else {
                             showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
@@ -533,7 +532,7 @@
                 var image_x = document.getElementById(e.target.id);
                 image_x.parentNode.removeChild(image_x);
             }
-        } else if(document.getElementById('extchrome') || document.getElementById('extkiwi')) {
+        } else if(isExtDetected()) {
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
