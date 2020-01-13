@@ -58,14 +58,17 @@
         });
     }
 
-    function showError(el,content) {
+    function showError(el,content,hide) {
+        hide = (hide === undefined)?true:false;
         var msg = document.createElement("div");
         msg.setAttribute("class","msg-error");
         msg.innerHTML= content;
         var x = document.getElementById(el);
         x.appendChild(msg);
-        document.getElementById("data-content").style.visibility = 'hidden';
-        document.getElementById("content-images").style.visibility = 'hidden';
+        if(hide) {
+            document.getElementById("data-content").style.visibility = 'hidden';
+            document.getElementById("content-images").style.visibility = 'hidden';
+        }
     }
 
     function removeLoader(){
@@ -296,7 +299,8 @@
                         if(document.getElementById('aiueo')){
                             document.getElementById("xoxo").innerHTML = "Loading...";
                             if(isExtDetected()) {
-                                showError("warning","<b>Extensions Detected!</b><p>Please disable any Image Downloader Extension or We give you low resolution!</p>");
+                                showError("warning","<b>Extensions Detected!</b><p>Please disable any Image Downloader Extension or We give you low resolution!</p>",false);
+                                removeLoader();    
                             }
                             getData(link);
                         } else {
