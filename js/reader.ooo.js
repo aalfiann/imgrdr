@@ -299,7 +299,7 @@
                         if(document.getElementById('aiueo')){
                             document.getElementById("xoxo").innerHTML = "Loading...";
                             if(isExtDetected()) {
-                                showError("warning","<b>Extensions Detected!</b><p>Please disable any Image Downloader Extension or We give you low resolution!</p>",false);
+                                showError("error","<b>Extensions Detected!</b><p>Please disable any Image Downloader Extension or We give you low resolution!</p>",false);
                                 removeLoader();    
                             }
                             getData(link);
