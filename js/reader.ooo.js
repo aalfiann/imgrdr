@@ -548,8 +548,8 @@
     document.getElementById("sb_hacker").href = "https://news.ycombinator.com/submitlink?u="+curlink+"&amp;t="+curtitle;
     document.getElementById("sb_vk").href = "http://vk.com/share.php?title="+curtitle+"&amp;url="+curlink;
 
-    // banner
-    function insertBanner(el,src,width,height) {
+    // banner ads
+    function insertBannerAds(el,src,width,height) {
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("class", "lazyload");
         ifrm.setAttribute("id","frm_"+el);
@@ -561,6 +561,23 @@
         ifrm.setAttribute("marginheight","0");
         ifrm.setAttribute("frameborder","0");
         document.getElementById(el).appendChild(ifrm);
+    }
+
+    // native ads
+    function insertNativeAds(el,idzone,src) {
+        var ntv = document.createElement('script');
+        ntv.setAttribute('data-idzone',idzone);
+        ntv.setAttribute('src',src);
+        ntv.setAttribute('async','');
+        document.getElementById(el).appendChild(ntv);
+    }
+
+    if(isMobileDevice()) {
+        insertNativeAds('native_top','3668863','https://a.exdynsrv.com/nativeads.js');
+        insertNativeAds('native_bottom','3668865','https://a.exdynsrv.com/nativeads.js');
+    } else {
+        insertNativeAds('native_top','3654495','https://a.exdynsrv.com/nativeads.js');
+        insertNativeAds('native_bottom','3654503','https://a.exdynsrv.com/nativeads.js');
     }
 
 })();
