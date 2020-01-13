@@ -1,6 +1,0 @@
-{
-    "method": "POST",
-    "url": "https://api.imgfo.com/generate-link",
-    "headers": [{ "name": "Content-Type", "value": "application/json" }],
-    "postData" : {"url":"https://glcdn.githack.com/xsilent-cleopatra/research-test/raw/master/imgfo/example-json-source-1.6.0.json"}
-}
