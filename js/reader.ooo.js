@@ -5,6 +5,9 @@
     var itemPerPage = 50;
     var result = [];
     
+    var dataitem = parse_query_string(window.location.search)['style'];
+    var viewmode = 'default';
+
     var hash = parse_query_string(window.location.search)['content'];
     if(hash) {
         var link = Crypto.decode(TextObfuscator.decode(hash,3));
@@ -45,7 +48,7 @@
             img.setAttribute("id","img_"+index);
             img.setAttribute("style","max-width:100%;max-height:100%;");
         }
-        img.setAttribute("referrerpolicy","no-referrer")
+        img.setAttribute("referrerpolicy","no-referrer");
         img.setAttribute("data-src", url);
         div.appendChild(img);
         var src = document.getElementById(el);
@@ -201,10 +204,27 @@
 
                     if(json.hasOwnProperty('images')){
                         var ch = new ChunkHandler();
+                        var totalimg = json.images.length;
                         if(json.hasOwnProperty('item_per_page')){
                             if(hasValue(json.item_per_page)) itemPerPage = json.item_per_page;
                         }
-                        var totalimg = json.images.length;
+                        if(totalimg > 1 && itemPerPage > 1) {
+                            var styleview = document.getElementsByClassName('change-style');
+                            var xx = styleview;
+                            for(var i=0;i<xx.length;i++) {
+                                xx[i].style.display = "inline";
+                                if(dataitem && dataitem.toLowerCase() == 'single') {
+                                    itemPerPage = 1;
+                                    xx[i].textContent = 'Mode Default';
+                                    xx[i].href = window.location.href.replace('&style=single','');
+                                    viewmode = 'single';
+                                } else {
+                                    xx[i].textContent = 'Mode Single';
+                                    xx[i].href = window.location.href+'&style=single';
+                                    viewmode = 'default';
+                                }
+                            }
+                        }
                         if(itemPerPage > totalimg) {
                             itemPerPage = totalimg;
                         } else {
@@ -393,6 +413,12 @@
         }
     }
 
+    function nextImageSingle() {
+        nextPage(totalpage);
+        checkPage();
+        topFunction(true);
+    }
+
     paginationTop.addEventListener("change", function(){
         pagenow = parseInt(this.options[this.selectedIndex].value);
         loadImagePerPage(result[pagenow-1]);
@@ -428,6 +454,12 @@
         nextPage(totalpage);
         checkPage();
         topFunction(true);
+    });
+
+    document.getElementById("content-images").addEventListener("click", function(){
+        if(viewmode === 'single') {
+            nextImageSingle();
+        }
     });
 
     document.onkeydown = function(e) {
