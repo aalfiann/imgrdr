@@ -164,6 +164,10 @@
                 json.translator = document.getElementById("content-translator").value.trim();
             }
 
+            if(!isEmpty("content-language")) {
+                json.language = document.getElementById("content-language").value.trim();
+            }
+
             if(!isEmpty("content-status")) {
                 json.status = document.getElementById("content-status").value.trim();
             }

@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.5.2";
+    var imgreader_version = "1.6.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -236,6 +236,13 @@
                         if(hasValue(json.translator)) {
                             document.getElementById('content-translator').innerHTML = escapeHTML(json.translator);
                             document.getElementById('tb-translator').style.display = "block";
+                        }
+                    }
+
+                    if(json.hasOwnProperty('language')){
+                        if(hasValue(json.language)) {
+                            document.getElementById('content-language').innerHTML = escapeHTML(json.language);
+                            document.getElementById('tb-language').style.display = "block";
                         }
                     }
 
