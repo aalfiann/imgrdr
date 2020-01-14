@@ -46,9 +46,22 @@ function isExtDetected() {
     return false;
 }
 
-function isFirefoxMobile() {
+function isBlacklistedMobileBrowser() {
     if(isMobileDevice()) {
-        return (navigator.userAgent.toLowerCase().indexOf('firefox') > -1);
+        var ug = navigator.userAgent.toLowerCase();
+        if (
+            (ug.indexOf('firefox') > -1) || // Firefox
+            (ug.indexOf('rocket') > -1) || // Firefox Lite
+            (ug.indexOf('fxios') > -1) || // Firefox iOS Webkit
+            (ug.indexOf('opera mini') > -1) ||  // Opera Mini
+            (ug.indexOf('opios') > -1) ||  // Opera Mini iOS Webkit
+            (ug.indexOf('ucbrowser') > -1) ||  // UCBrowser/Mini/Turbo
+            (ug.indexOf('acheetahi') > -1) ||  // CMBrowser
+            (ug.indexOf('mint browser') > -1) || // Mint Browser
+            (ug.indexOf('phx') > -1) // PHX
+        ) {
+            return true;
+        }
     }
     return false;
 }
