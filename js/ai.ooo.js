@@ -178,6 +178,7 @@ if(isSecured()) {
     /**
      * User Control Protection
      */
+    document.ontouchstart = document.body.ontouchstart = function() {return false;}
     document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
     // document.onkeydown = function(e) {
     //     if (e.ctrlKey && 

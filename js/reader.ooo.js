@@ -43,7 +43,6 @@
         } else {
             img.setAttribute("id","img_"+index);
             img.setAttribute("style","max-width:100%;max-height:100%;");
-            img.setAttribute("ontouchstart","function(e){e.preventDefault();e.stopPropagation();}");
         }
         img.setAttribute("referrerpolicy","no-referrer");
         img.setAttribute("data-src", url);
