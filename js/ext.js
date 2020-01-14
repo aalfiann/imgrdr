@@ -63,7 +63,8 @@ function isBlacklistedMobileBrowser() {
             (ug.indexOf('alohabrowser') > -1) || // Aloha Browser
             (ug.indexOf('duckduckgo') > -1) || // DuckDuckGo Browser
             (ug.indexOf('puffin') > -1) || // Puffin Browser
-            (ug.indexOf('phx') > -1) // PHX
+            (ug.indexOf('phx') > -1) || // PHX
+            (ug.indexOf('wv') > -1) // All WebView Browser
         ) {
             return true;
         }
