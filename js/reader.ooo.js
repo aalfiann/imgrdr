@@ -294,14 +294,19 @@
                 AI.onUser(function () { 
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
-                            document.getElementById("xoxo").innerHTML = "Loading...";
-                            getData(link);
-                            if(isMobileDevice()) {
-                                if(isExtDetected()) {
-                                    var warn = document.getElementById("warning");
-                                    warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you low resolution!</p>';
-                                    warn.style.display = 'block';
+                            if(!isFirefoxMobile()) {
+                                document.getElementById("xoxo").innerHTML = "Loading...";
+                                getData(link);
+                                if(isMobileDevice()) {
+                                    if(isExtDetected()) {
+                                        var warn = document.getElementById("warning");
+                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you low resolution!</p>';
+                                        warn.style.display = 'block';
+                                    }
                                 }
+                            } else {
+                                showError("error","<b>Not Support Firefox Mobile!</b><p>Sorry, currently we doesn't support firefox mobile! Please use Chrome browser.</p>");
+                                removeLoader();
                             }
                         } else {
                             showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");

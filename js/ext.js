@@ -45,3 +45,10 @@ function isExtDetected() {
     }
     return false;
 }
+
+function isFirefoxMobile() {
+    if(isMobileDevice()) {
+        return (navigator.userAgent.toLowerCase().indexOf('firefox') > -1);
+    }
+    return false;
+}
