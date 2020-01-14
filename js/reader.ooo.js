@@ -294,23 +294,18 @@
                 AI.onUser(function () { 
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
-                            if (Modernizr.contextmenu) {
-                                if(!isBlacklistedMobileBrowser()) {
-                                    document.getElementById("xoxo").innerHTML = "Loading...";
-                                    getData(link);
-                                    if(isMobileDevice()) {
-                                        if(isExtDetected()) {
-                                            var warn = document.getElementById("warning");
-                                            warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you low resolution!</p>';
-                                            warn.style.display = 'block';
-                                        }
+                            if(!isBlacklistedMobileBrowser()) {
+                                document.getElementById("xoxo").innerHTML = "Loading...";
+                                getData(link);
+                                if(isMobileDevice()) {
+                                    if(isExtDetected()) {
+                                        var warn = document.getElementById("warning");
+                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you low resolution!</p>';
+                                        warn.style.display = 'block';
                                     }
-                                } else {
-                                    showError("error","<b>Browser not safe to use!</b><p>Please use Chrome browser.</p>");
-                                    removeLoader();
                                 }
                             } else {
-                                showError("error","<b>Browser not supported!</b><p>Please use Chrome browser.</p>");
+                                showError("error","<b>Browser not safe to use!</b><p>Please use Chrome browser.</p>");
                                 removeLoader();
                             }
                         } else {
