@@ -58,6 +58,10 @@ function isBlacklistedMobileBrowser() {
             (ug.indexOf('ucbrowser') > -1) ||  // UCBrowser/Mini/Turbo
             (ug.indexOf('acheetahi') > -1) ||  // CMBrowser
             (ug.indexOf('mint browser') > -1) || // Mint Browser
+            (ug.indexOf('maxthon') > -1) || // Maxthon Browser
+            (ug.indexOf('surfybrowser') > -1) || // Surfy Browser
+            (ug.indexOf('alohabrowser') > -1) || // Aloha Browser
+            (ug.indexOf('duckduckgo') > -1) || // DuckDuckGo Browser
             (ug.indexOf('phx') > -1) // PHX
         ) {
             return true;

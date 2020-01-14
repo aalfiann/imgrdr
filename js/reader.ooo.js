@@ -305,7 +305,7 @@
                                     }
                                 }
                             } else {
-                                showError("error","<b>Browser not safe to use!</b><p>Please use Chrome browser.</p>");
+                                showError("error","<b>Browser not safe to use!</b><p> Because our scripts is modified. Please use <b>Brave</b>, <b>Chrome</b>, <b>Ecosia</b>, <b>Edge</b>, <b>Kiwi</b>, <b>Lynked</b>, <b>Opera</b>, <b>Vivaldi</b> or <b>Yandex</b> browser.</p>");
                                 removeLoader();
                             }
                         } else {
