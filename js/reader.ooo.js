@@ -300,12 +300,12 @@
                                 if(isMobileDevice()) {
                                     if(isExtDetected()) {
                                         var warn = document.getElementById("warning");
-                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you low resolution!</p>';
+                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
                                         warn.style.display = 'block';
                                     }
                                 }
                             } else {
-                                showError("error","<b>This browser is not safe to use!</b><p> Because this browser has modified our scripts. Please use <b>Brave</b>, <b>Chrome</b>, <b>Ecosia</b>, <b>Edge</b>, <b>Kiwi</b>, <b>Lynked</b>, <b>Opera</b>, <b>Vivaldi</b> or <b>Yandex</b> browser.</p>");
+                                showError("error","<b>This browser is not allowed!</b><p> Currently we don't allow for <b>Firefox mobile</b> and any <b>WebView</b> browsers for security reason.</p><p>Please use <b>Brave</b>, <b>Chrome</b>, <b>Ecosia</b>, <b>Edge</b>, <b>Kiwi</b>, <b>Lynked</b>, <b>Opera</b>, <b>Vivaldi</b> or <b>Yandex</b> browser.</p>");
                                 removeLoader();
                             }
                         } else {
