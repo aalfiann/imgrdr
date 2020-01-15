@@ -212,11 +212,11 @@
                                 if(dataitem && dataitem.toLowerCase() == 'single') {
                                     itemPerPage = 1;
                                     xx[i].textContent = 'Mode Default';
-                                    xx[i].href = window.location.href.replace('&style=single','');
+                                    xx[i].href = window.location.href.replace('#','').replace('&style=single','');
                                     viewmode = 'single';
                                 } else {
                                     xx[i].textContent = 'Mode Single';
-                                    xx[i].href = window.location.href+'&style=single';
+                                    xx[i].href = window.location.href.replace('#','')+'&style=single';
                                     viewmode = 'default';
                                 }
                             }
