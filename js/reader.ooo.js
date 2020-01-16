@@ -348,12 +348,12 @@
     var btnNextBottom = document.getElementById("next-page-bottom");
     var paginationTop = document.getElementById("pagination-top");
     var paginationBottom = document.getElementById("pagination-bottom");
-    var pagination = document.getElementsByClassName("pagination");
+    var pagination = document.getElementsByClassName("pagination-view");
 
     function showPagination() {
         var x = pagination;
         for(var i=0;i<x.length;i++) {
-            x[i].style.display = "block";
+            x[i].style.display = "inline";
         }
     }
 
@@ -482,14 +482,14 @@
             } else if (e.keyCode === 123){ //F12
                 return false;
             } else if (e.keyCode == '37') { // Left Arrow
-                if(pagination[0].style.display === "block") {
+                if(pagination[0].style.display === "inline") {
                     prevPage();
                     checkPage();
                     topFunction(true);
                 }
             }
             else if (e.keyCode == '39') { // Right Arrow
-                if(pagination[0].style.display === "block") {
+                if(pagination[0].style.display === "inline") {
                     nextPage(totalpage);
                     checkPage();
                     topFunction(true);
@@ -497,14 +497,14 @@
             }
         } else {
             if (e.keyCode == '37') { // Left Arrow
-                if(pagination[0].style.display === "block") {
+                if(pagination[0].style.display === "inline") {
                     prevPage();
                     checkPage();
                     topFunction(true);
                 }
             }
             else if (e.keyCode == '39') { // Right Arrow
-                if(pagination[0].style.display === "block") {
+                if(pagination[0].style.display === "inline") {
                     nextPage(totalpage);
                     checkPage();
                     topFunction(true);
