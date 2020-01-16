@@ -7,16 +7,10 @@
 
 		<title>ImgFo</title>
 
-        <link href="../css/app-reader.min.css" rel="stylesheet" type="text/css">
+        <link href="../css/min.css" rel="stylesheet" type="text/css">
+        <link href="../css/reader-dark.min.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon.ico" type="image/x-icon">
-        <style>canvas {
-            image-rendering: optimizeQuality;
-            image-rendering: -moz-crisp-edges;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: optimize-contrast;
-            -ms-interpolation-mode: nearest-neighbor;
-        }</style>
 	</head>
 	<body>
         <button id="goTopBtn" title="Go to top">Top</button>
@@ -138,11 +132,11 @@
                     </div>
                     </div>
                 </a>
-                <hr>
+                <hr class="dotted">
             </div>
             <div class="row">
-                <div align="center" class="col c12" style="overflow: hidden;">
-                    <div class="pagination" style="margin-top:10px;margin-bottom:15px;">
+                <div align="center" class="col c12 images-content">
+                    <div class="pagination">
                         <a class="btn btn-sm smooth change-style" title="Change Style View"></a>
                         <span class="pagination-view" style="display: none;">
                             <a id="prev-page-top" class="btn btn-sm smooth" title="Previous Page">&lang;</a>
@@ -165,7 +159,7 @@
                     </div>
                 </div>
             </div>
-            <hr>
+            <hr class="dotted">
             <p align="center">Copyright @ <span id="copyrightyear"></span> ImgFo. All rights reserved.</p>
         </div>
         <script src="../js/app-reader.js"></script>
