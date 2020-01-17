@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.6.0";
+    var imgreader_version = "1.6.1";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -109,6 +109,21 @@
         }
     }
 
+    function addRow(text,html) {
+        html = (html === undefined)?true:false;
+        // Get a reference to the table
+        var tableRef = document.getElementById('datatable').getElementsByTagName('tbody')[0];
+        // Insert a row at the end of the table
+        var newRow = tableRef.insertRow(-1);
+        // Insert a cell in the row at index 0
+        var newCell = newRow.insertCell(0);
+        if (html) {
+            newCell.innerHTML = text;
+        } else {
+            newCell.appendChild(document.createTextNode(text));
+        }
+    }
+
     function getData(link) {
         ajax().get(link)
             .then(function(json,xhr) {
@@ -124,38 +139,51 @@
 
                     if(json.hasOwnProperty('original')){
                         if(hasValue(json.original)) {
-                            document.getElementById('content-original').innerHTML = escapeHTML(json.original);
-                            document.getElementById('tb-original').style.display = "block";
+                            addRow('<b>Original : </b>'+escapeHTML(json.original));
                         }
                     }
 
                     if(json.hasOwnProperty('genre')){
                         if(hasValue(json.genre)) {
-                            document.getElementById('content-genre').innerHTML = escapeHTML(json.genre);
-                            document.getElementById('tb-genre').style.display = "block";
+                            addRow('<b>Genre : </b>'+escapeHTML(json.genre));
                         }
                     }
 
                     if(json.hasOwnProperty('author')){
                         if(hasValue(json.author)) {
-                            document.getElementById('content-author').innerHTML = escapeHTML(json.author);
-                            document.getElementById('tb-author').style.display = "block";
+                            addRow('<b>Author : </b>'+escapeHTML(json.author));
                         }
                     }
 
                     if(json.hasOwnProperty('chapter')){
                         if(hasValue(json.chapter)) {
                             var achapter = escapeHTML(json.chapter);
-                            document.getElementById('content-chapter').innerHTML = achapter;
-                            document.getElementById('tb-chapter').style.display = "block";
+                            addRow('<b>Chapter : </b>'+achapter);
                             newtitle = newtitle+" - Chapter: "+achapter;
                         }
                     }
 
                     if(json.hasOwnProperty('release_date')){
                         if(hasValue(json.release_date)) {
-                            document.getElementById('content-release').innerHTML = escapeHTML(json.release_date);
-                            document.getElementById('tb-release').style.display = "block";
+                            addRow('<b>Release : </b>'+escapeHTML(json.release_date));
+                        }
+                    }
+
+                    if(json.hasOwnProperty('translator')){
+                        if(hasValue(json.translator)) {
+                            addRow('<b>Translator : </b>'+escapeHTML(json.translator));
+                        }
+                    }
+
+                    if(json.hasOwnProperty('language')){
+                        if(hasValue(json.language)) {
+                            addRow('<b>Language : </b>'+escapeHTML(json.language));
+                        }
+                    }
+
+                    if(json.hasOwnProperty('status')){
+                        if(hasValue(json.status)) {
+                            addRow('<b>Status : </b>'+escapeHTML(json.status));
                         }
                     }
 
@@ -245,28 +273,7 @@
                         fillPage('pagination-bottom',totalpage);
                         setOption("pagination-top",pagenow);
                         setOption("pagination-bottom",pagenow);
-                        document.getElementById('content-files').innerText = totalimg;
-                    }
-
-                    if(json.hasOwnProperty('translator')){
-                        if(hasValue(json.translator)) {
-                            document.getElementById('content-translator').innerHTML = escapeHTML(json.translator);
-                            document.getElementById('tb-translator').style.display = "block";
-                        }
-                    }
-
-                    if(json.hasOwnProperty('language')){
-                        if(hasValue(json.language)) {
-                            document.getElementById('content-language').innerHTML = escapeHTML(json.language);
-                            document.getElementById('tb-language').style.display = "block";
-                        }
-                    }
-
-                    if(json.hasOwnProperty('status')){
-                        if(hasValue(json.status)) {
-                            document.getElementById('content-status').innerHTML = escapeHTML(json.status);
-                            document.getElementById('tb-status').style.display = "block";
-                        }
+                        addRow('<b>Files : </b>'+totalimg);
                     }
                     
                     if(json.hasOwnProperty('title')){
