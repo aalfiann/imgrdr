@@ -336,7 +336,7 @@
             getData(link);
         }
     } else {
-        showError("error","<b>Whoops!</b><p>There is no any data source detected!</p>");
+        showError("error","<b>Whoops!</b><p>There is no any data source detected!</p><p>Try to clear your browser cache sometimes will fix this.</p>");
         removeLoader();
     }
 
