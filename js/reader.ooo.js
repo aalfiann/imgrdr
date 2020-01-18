@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.6.1";
+    var imgreader_version = "1.6.2";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -78,7 +78,11 @@
         var modal = new tingle.modal({
             footer: true,
             stickyFooter: false,
-            closeMethods: ['overlay', 'button', 'escape']
+            closeMethods: ['overlay', 'button', 'escape'],
+            onOpen: function() {
+                document.getElementsByClassName('tingle-modal-box__content')[0].style.backgroundColor = '#000000';
+                document.getElementsByClassName('tingle-modal-box__footer')[0].style.backgroundColor = '#2f2f2f';
+            }
         });
         modal.setContent('<h3>ImgFo - v.'+imgreader_version+'</h3><p>Makes your images content to become easier to read.</p>');
         modal.addFooterBtn('Create Your Own', 'tingle-btn tingle-btn--primary', function() {
