@@ -528,7 +528,6 @@
         var imgp = e.target.parentNode;
         if(screen.width > 870) {
             var cvs = document.createElement('canvas');
-            cvs.setAttribute("class","disable-select");
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
@@ -555,7 +554,6 @@
             }
         } else if(isExtDetected()) {
             var cvs = document.createElement('canvas');
-            cvs.setAttribute("class","disable-select");
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
