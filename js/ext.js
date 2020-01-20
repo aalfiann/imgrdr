@@ -57,7 +57,7 @@ function isBlacklistedMobileBrowser() {
             (ug.indexOf('opera mini') > -1) ||  // Opera Mini
             (ug.indexOf('opios') > -1) ||  // Opera Mini iOS Webkit
             (ug.indexOf('ucbrowser') > -1) ||  // UCBrowser/Mini/Turbo
-            (ug.indexOf('acheetahi') > -1) ||  // CMBrowser
+            // (ug.indexOf('acheetahi') > -1) ||  // CMBrowser
             (ug.indexOf('mint browser') > -1) || // Mint Browser
             (ug.indexOf('maxthon') > -1) || // Maxthon Browser
             (ug.indexOf('surfybrowser') > -1) || // Surfy Browser
