@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.6.2";
+    var imgreader_version = "1.6.3";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -35,7 +35,7 @@
         fullwidth = (fullwidth === undefined)?false:fullwidth;
         var div = document.createElement('div');
         var img = document.createElement("img");
-        img.setAttribute("class","lazyload lazypreload");
+        img.setAttribute("class","disable-select lazyload lazypreload");
         img.setAttribute("style","display:block");
         if(fullwidth) {
             img.setAttribute("id","img_cover");
