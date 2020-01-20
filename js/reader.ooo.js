@@ -59,6 +59,7 @@
     }
 
     function showError(el,content) {
+        document.getElementById('error').innerHTML = '';
         var msg = document.createElement("div");
         msg.setAttribute("class","msg-error");
         msg.innerHTML= content;
