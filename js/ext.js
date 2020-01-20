@@ -51,23 +51,23 @@ function isBlacklistedMobileBrowser() {
         var ug = navigator.userAgent.toLowerCase();
         if (
             (ug.indexOf('firefox') > -1) || // Firefox
-            (ug.indexOf('rocket') > -1) || // Firefox Lite
-            (ug.indexOf('fxios') > -1) || // Firefox iOS Webkit
-            (ug.indexOf('opt') > -1) ||  // Opera Touch
-            (ug.indexOf('opera mini') > -1) ||  // Opera Mini
-            (ug.indexOf('opios') > -1) ||  // Opera Mini iOS Webkit
-            (ug.indexOf('ucbrowser') > -1) ||  // UCBrowser/Mini/Turbo
+            // (ug.indexOf('rocket') > -1) || // Firefox Lite
+            // (ug.indexOf('fxios') > -1) || // Firefox iOS Webkit
+            // (ug.indexOf('opt') > -1) ||  // Opera Touch
+            // (ug.indexOf('opera mini') > -1) ||  // Opera Mini
+            // (ug.indexOf('opios') > -1) ||  // Opera Mini iOS Webkit
+            // (ug.indexOf('ucbrowser') > -1) ||  // UCBrowser/Mini/Turbo
             // (ug.indexOf('acheetahi') > -1) ||  // CMBrowser
-            (ug.indexOf('mint browser') > -1) || // Mint Browser
-            (ug.indexOf('maxthon') > -1) || // Maxthon Browser
-            (ug.indexOf('surfybrowser') > -1) || // Surfy Browser
-            (ug.indexOf('alohabrowser') > -1) || // Aloha Browser
-            (ug.indexOf('turbobrowser') > -1) || // Turbo Browser
-            (ug.indexOf('noxbrowser') > -1) || // Nox Browser
-            (ug.indexOf('duckduckgo') > -1) || // DuckDuckGo Browser
-            (ug.indexOf('focus') > -1) || // Focus Browser
-            (ug.indexOf('puffin') > -1) || // Puffin Browser
-            (ug.indexOf('phx') > -1) || // PHX
+            // (ug.indexOf('mint browser') > -1) || // Mint Browser
+            // (ug.indexOf('maxthon') > -1) || // Maxthon Browser
+            // (ug.indexOf('surfybrowser') > -1) || // Surfy Browser
+            // (ug.indexOf('alohabrowser') > -1) || // Aloha Browser
+            // (ug.indexOf('turbobrowser') > -1) || // Turbo Browser
+            // (ug.indexOf('noxbrowser') > -1) || // Nox Browser
+            // (ug.indexOf('duckduckgo') > -1) || // DuckDuckGo Browser
+            // (ug.indexOf('focus') > -1) || // Focus Browser
+            // (ug.indexOf('puffin') > -1) || // Puffin Browser
+            // (ug.indexOf('phx') > -1) || // PHX
             (ug.indexOf('headlesschrome') > -1) || // HeadlessChrome/Puppeteer
             (ug.indexOf('phantomjs') > -1) // PhantomJS
             // (ug.indexOf('wv') > -1) // All WebView Browser
