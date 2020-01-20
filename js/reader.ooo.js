@@ -526,8 +526,9 @@
 
     document.addEventListener('lazyloaded',function(e) {
         var imgp = e.target.parentNode;
-        var cvs = document.createElement('canvas');
         if(screen.width > 870) {
+            var cvs = document.createElement('canvas');
+            cvs.setAttribute("class","disable-select");
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
@@ -553,6 +554,8 @@
                 image_x.parentNode.removeChild(image_x);
             }
         } else if(isExtDetected()) {
+            var cvs = document.createElement('canvas');
+            cvs.setAttribute("class","disable-select");
             if(e.target.id === 'img_cover') {
                 cvs.id = e.target.id+"_cvs";
                 cvs.setAttribute("width",e.target.clientWidth);
