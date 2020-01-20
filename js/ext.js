@@ -69,8 +69,8 @@ function isBlacklistedMobileBrowser() {
             (ug.indexOf('puffin') > -1) || // Puffin Browser
             (ug.indexOf('phx') > -1) || // PHX
             (ug.indexOf('headlesschrome') > -1) || // HeadlessChrome/Puppeteer
-            (ug.indexOf('phantomjs') > -1) || // PhantomJS
-            (ug.indexOf('wv') > -1) // All WebView Browser
+            (ug.indexOf('phantomjs') > -1) // PhantomJS
+            // (ug.indexOf('wv') > -1) // All WebView Browser
         ) {
             return true;
         }
