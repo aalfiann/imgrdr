@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.6.3";
+    var imgreader_version = "1.6.5";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -577,6 +577,28 @@
             if (e.target.id !== 'frm_banner_top' && e.target.id !== 'frm_banner_bottom') {
                 var image_x = document.getElementById(e.target.id);
                 image_x.parentNode.removeChild(image_x);
+            }
+        }
+    });
+
+    window.addEventListener('devtoolschange', function(event) {
+        if(event.detail.isOpen) {
+            if(isSecured()) {
+                var z = pagination;
+                for(var i=0;i<z.length;i++) {
+                    z[i].style.display = "none";
+                }
+                var zz = document.getElementsByClassName('change-style');
+                for(var i=0;i<zz.length;i++) {
+                    zz[i].style.display = "none";
+                }
+                document.getElementById("share").style.display = "none";
+                document.getElementById("data-content").innerHTML = '';
+                var desc = document.getElementById("content-description");
+                desc.innerHTML = '';
+                desc.style.display = 'none';
+                document.getElementById("content-images").innerHTML = '';
+                showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
             }
         }
     });
