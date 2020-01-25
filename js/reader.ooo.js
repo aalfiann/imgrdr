@@ -306,23 +306,18 @@
                 AI.onUser(function () { 
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
-                            if(!isBadExtDetected()) {
-                                if(!isBlacklistedMobileBrowser()) {
-                                    document.getElementById("xoxo").innerHTML = "Loading...";
-                                    getData(link);
-                                    if(isMobileDevice()) {
-                                        if(isExtDetected()) {
-                                            var warn = document.getElementById("warning");
-                                            warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
-                                            warn.style.display = 'block';
-                                        }
+                            if(!isBlacklistedMobileBrowser()) {
+                                document.getElementById("xoxo").innerHTML = "Loading...";
+                                getData(link);
+                                if(isMobileDevice()) {
+                                    if(isExtDetected()) {
+                                        var warn = document.getElementById("warning");
+                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
+                                        warn.style.display = 'block';
                                     }
-                                } else {
-                                    showError("error","<b>This browser is not allowed!</b><p> Currently we don't allow for <b>Firefox mobile</b> browser for security reason.</p><p>Please use Firefox Lite or another well known browsers.</p>");
-                                    removeLoader();
                                 }
                             } else {
-                                showError("error","<b>Bad Extension Detected!</b><p> Please check your extension browser.</p>");
+                                showError("error","<b>This browser is not allowed!</b><p> Currently we don't allow for <b>Firefox mobile</b> browser for security reason.</p><p>Please use Firefox Lite or another well known browsers.</p>");
                                 removeLoader();
                             }
                         } else {
