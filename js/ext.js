@@ -19,20 +19,27 @@ if(isMobileDevice()) {
             document.body.appendChild(e);
         });
 
-    ajax().get("chrome-extension://ndfgffclcpdbgghfgkmooklaendohaef/scripts/injected.js")
-        .then(function(json,xhr) {
-            var e=document.createElement('div');
-            e.id='extchrome3';
-            e.style.display='none';
-            document.body.appendChild(e);
-        });
+}
 
+// blacklist ext
+ajax().get("chrome-extension://ndfgffclcpdbgghfgkmooklaendohaef/scripts/injected.js")
+    .then(function(json,xhr) {
+        var e=document.createElement('div');
+        e.id='extchrome3';
+        e.style.display='none';
+        document.body.appendChild(e);
+    });
+
+function isBadExtDetected() {
+    if(document.getElementById('extchrome3')) {
+        return true;
+    }
+    return false;
 }
 
 function isExtDetected() {
     if(document.getElementById('extchrome') || 
-    document.getElementById('extchrome2') ||
-    document.getElementById('extchrome3')) {
+    document.getElementById('extchrome2')) {
         return true;
     }
     return false;
