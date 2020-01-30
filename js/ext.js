@@ -2,8 +2,9 @@ function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
+// Bad extension which is only work in mobile
 if(isMobileDevice()) {
-    // Bad extension which is only work in mobile
+    // Image Downloader
     ajax().get("chrome-extension://cnpniohnfphhjihaiiggeabnkjhpaldj/images/open.png")
         .then(function(json,xhr) {
             var e=document.createElement('div');
@@ -11,7 +12,8 @@ if(isMobileDevice()) {
             e.style.display='none';
             document.body.appendChild(e);
         });
-        
+    
+    // Image Downloader Continued
     ajax().get("chrome-extension://jfkjbfhcfaoldhgbnkekkoheganchiea/scripts/injected.js")
         .then(function(json,xhr) {
             var e=document.createElement('div');
@@ -20,7 +22,8 @@ if(isMobileDevice()) {
             document.body.appendChild(e);
         });
 
-    ajax().get("chrome-extension://nnjjahlikiabnchcpehcpkdeckfgnohf/icon-small.png")
+    // Image Picker
+    ajax().get("chrome-extension://bhibldekjicdbnjeeecmgoogcihoalhe/js/content.js")
         .then(function(json,xhr) {
             var e=document.createElement('div');
             e.id='extchrome3';
@@ -28,17 +31,10 @@ if(isMobileDevice()) {
             document.body.appendChild(e);
         });
 
-    ajax().get("chrome-extension://bhibldekjicdbnjeeecmgoogcihoalhe/js/content.js")
-        .then(function(json,xhr) {
-            var e=document.createElement('div');
-            e.id='extchrome4';
-            e.style.display='none';
-            document.body.appendChild(e);
-        });
-
 }
 
 // Bad Extension Desktop and Mobile
+// ImageAssistant Batch Image Downloader
 ajax().get("chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js")
     .then(function(json,xhr) {
         var e=document.createElement('div');
@@ -47,8 +43,18 @@ ajax().get("chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspecto
         document.body.appendChild(e);
     });
 
+// Fatkun Batch Download Image
+ajax().get("chrome-extension://nnjjahlikiabnchcpehcpkdeckfgnohf/icon-small.png")
+    .then(function(json,xhr) {
+        var e=document.createElement('div');
+        e.id='badext2';
+        e.style.display='none';
+        document.body.appendChild(e);
+    });
+
 function isBlacklistExt() {
-    if(document.getElementById('badext1')) {
+    if(document.getElementById('badext1') ||
+    document.getElementById('badext2')) {
         return true;
     }
     return false;
@@ -57,8 +63,7 @@ function isBlacklistExt() {
 function isExtDetected() {
     if(document.getElementById('extchrome') || 
     document.getElementById('extchrome2') ||
-    document.getElementById('extchrome3') ||
-    document.getElementById('extchrome4')) {
+    document.getElementById('extchrome3')) {
         return true;
     }
     return false;
