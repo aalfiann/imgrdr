@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.7.0";
+    var imgreader_version = "1.7.1";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -306,18 +306,23 @@
                 AI.onUser(function () { 
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
-                            if(!isBlacklistedMobileBrowser()) {
-                                document.getElementById("xoxo").innerHTML = "Loading...";
-                                getData(link);
-                                if(isMobileDevice()) {
-                                    if(isExtDetected()) {
-                                        var warn = document.getElementById("warning");
-                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
-                                        warn.style.display = 'block';
+                            if(!isBlacklistExt()) {
+                                if(!isBlacklistedMobileBrowser()) {
+                                    document.getElementById("xoxo").innerHTML = "Loading...";
+                                    getData(link);
+                                    if(isMobileDevice()) {
+                                        if(isExtDetected()) {
+                                            var warn = document.getElementById("warning");
+                                            warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
+                                            warn.style.display = 'block';
+                                        }
                                     }
+                                } else {
+                                    showError("error","<b>This browser is not allowed!</b><p> Currently we don't allow for <b>Firefox mobile</b> browser for security reason.</p><p>Please use Firefox Lite or another well known browsers.</p>");
+                                    removeLoader();
                                 }
                             } else {
-                                showError("error","<b>This browser is not allowed!</b><p> Currently we don't allow for <b>Firefox mobile</b> browser for security reason.</p><p>Please use Firefox Lite or another well known browsers.</p>");
+                                showError("error","<b>Bad Extension Detected!</b><p>Please disable any image downloader extensions.</p>");
                                 removeLoader();
                             }
                         } else {

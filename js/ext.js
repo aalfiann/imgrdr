@@ -3,6 +3,7 @@ function isMobileDevice() {
 };
 
 if(isMobileDevice()) {
+    // Bad extension which is only work in mobile
     ajax().get("chrome-extension://cnpniohnfphhjihaiiggeabnkjhpaldj/images/open.png")
         .then(function(json,xhr) {
             var e=document.createElement('div');
@@ -19,11 +20,45 @@ if(isMobileDevice()) {
             document.body.appendChild(e);
         });
 
+    ajax().get("chrome-extension://nnjjahlikiabnchcpehcpkdeckfgnohf/icon-small.png")
+        .then(function(json,xhr) {
+            var e=document.createElement('div');
+            e.id='extchrome3';
+            e.style.display='none';
+            document.body.appendChild(e);
+        });
+
+    ajax().get("chrome-extension://bhibldekjicdbnjeeecmgoogcihoalhe/js/content.js")
+        .then(function(json,xhr) {
+            var e=document.createElement('div');
+            e.id='extchrome4';
+            e.style.display='none';
+            document.body.appendChild(e);
+        });
+
+}
+
+// Bad Extension Desktop and Mobile
+ajax().get("chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js")
+    .then(function(json,xhr) {
+        var e=document.createElement('div');
+        e.id='badext1';
+        e.style.display='none';
+        document.body.appendChild(e);
+    });
+
+function isBlacklistExt() {
+    if(document.getElementById('badext1')) {
+        return true;
+    }
+    return false;
 }
 
 function isExtDetected() {
     if(document.getElementById('extchrome') || 
-    document.getElementById('extchrome2')) {
+    document.getElementById('extchrome2') ||
+    document.getElementById('extchrome3') ||
+    document.getElementById('extchrome4')) {
         return true;
     }
     return false;
