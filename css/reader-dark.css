@@ -105,6 +105,7 @@ select:hover, select:focus {
 }
 
 body {
+    margin-top: 75px;
     background-color:#2f2f2f;
     color: #aaa;
 }
@@ -236,4 +237,10 @@ canvas {
     -moz-pointer-events: none;
     -ms-pointer-events: none;
     pointer-events: none;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }

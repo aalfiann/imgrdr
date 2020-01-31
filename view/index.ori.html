@@ -20,13 +20,13 @@
             </div>
             <center><span id="xoxo"></span></center>
         </div>
-		<nav class="nav" tabindex="-1" onclick="this.focus()">
+		<nav class="nav sticky" tabindex="-1" onblur="document.getElementById('close').style.visibility ='hidden'" onclick="this.focus();document.getElementById('close').style.visibility ='visible';">
 			<div id="menunav" class="container">
 				<a id="backlink" class="pagename current" href="../" rel="nofollow">ImgFo</a>
                 <a href="#" id="about">About</a>
-			</div>
-		</nav>
-		<button class="btn-close btn btn-sm">×</button>
+            </div>
+        </nav>
+        <button id="close" class="btn-close btn btn-sm" style="position: fixed;top:100px; right: 0px; visibility: hidden;" onclick="this.style.visibility ='hidden'">×</button>
         <div class="container">
             <div id="error"></div>
             <div id="warning" class="msg-error" style="display: none;"></div>
