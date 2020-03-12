@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.7.1";
+    var imgreader_version = "1.7.2";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -646,11 +646,13 @@
     }
 
     if(isMobileDevice()) {
-        insertNativeAds('native_top','3668863','https://a.exdynsrv.com/nativeads.js');
-        insertNativeAds('native_bottom','3668865','https://a.exdynsrv.com/nativeads.js');
+        insertNativeAds('native_content','3668863','https://a.exdynsrv.com/nativeads.js');
+        // insertNativeAds('native_top','3668863','https://a.exdynsrv.com/nativeads.js');
+        // insertNativeAds('native_bottom','3668865','https://a.exdynsrv.com/nativeads.js');
     } else {
-        insertNativeAds('native_top','3654495','https://a.exdynsrv.com/nativeads.js');
-        insertNativeAds('native_bottom','3654503','https://a.exdynsrv.com/nativeads.js');
+        insertNativeAds('native_content','3654495','https://a.exdynsrv.com/nativeads.js');
+        // insertNativeAds('native_top','3654495','https://a.exdynsrv.com/nativeads.js');
+        // insertNativeAds('native_bottom','3654503','https://a.exdynsrv.com/nativeads.js');
     }
 
 })();
