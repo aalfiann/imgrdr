@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.7.3";
+    var imgreader_version = "1.7.4";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -482,7 +482,7 @@
     });
 
     document.getElementById("content-images").addEventListener("click", function(){
-        if(viewmode === 'single' || itemPerPage === 1) {
+        if(viewmode === 'single' || itemPerPage == 1) {
             nextImageSingle();
         }
     });
