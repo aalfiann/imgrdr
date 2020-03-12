@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.7.2";
+    var imgreader_version = "1.7.3";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -482,7 +482,7 @@
     });
 
     document.getElementById("content-images").addEventListener("click", function(){
-        if(viewmode === 'single') {
+        if(viewmode === 'single' || itemPerPage === 1) {
             nextImageSingle();
         }
     });
@@ -622,19 +622,19 @@
     document.getElementById("sb_vk").href = "http://vk.com/share.php?title="+curtitle+"&amp;url="+curlink;
 
     // banner ads
-    function insertBannerAds(el,src,width,height) {
-        var ifrm = document.createElement("iframe");
-        ifrm.setAttribute("class", "lazyload");
-        ifrm.setAttribute("id","frm_"+el);
-        ifrm.setAttribute("src", src);
-        ifrm.setAttribute("width",width);
-        ifrm.setAttribute("height",height);
-        ifrm.setAttribute("scrolling","no");
-        ifrm.setAttribute("marginwidth","0");
-        ifrm.setAttribute("marginheight","0");
-        ifrm.setAttribute("frameborder","0");
-        document.getElementById(el).appendChild(ifrm);
-    }
+    // function insertBannerAds(el,src,width,height) {
+    //     var ifrm = document.createElement("iframe");
+    //     ifrm.setAttribute("class", "lazyload");
+    //     ifrm.setAttribute("id","frm_"+el);
+    //     ifrm.setAttribute("src", src);
+    //     ifrm.setAttribute("width",width);
+    //     ifrm.setAttribute("height",height);
+    //     ifrm.setAttribute("scrolling","no");
+    //     ifrm.setAttribute("marginwidth","0");
+    //     ifrm.setAttribute("marginheight","0");
+    //     ifrm.setAttribute("frameborder","0");
+    //     document.getElementById(el).appendChild(ifrm);
+    // }
 
     // native ads
     function insertNativeAds(el,idzone,src) {
