@@ -111,7 +111,7 @@
                                     <input class="pure-input-1" id="content-origin-title" type="text" placeholder="Original title of your content..." maxlength="250">
 
                                     <label for="content-genre">Genre</label>
-                                    <input class="pure-input-1" id="content-genre" type="text" placeholder="Genre of your content..." maxlength="250">
+                                    <input class="pure-input-1" id="content-genre" type="text" placeholder="Genre of your content (use commas to separate) ..." maxlength="250">
 
                                     <label for="content-author">Author</label>
                                     <input class="pure-input-1" id="content-author" type="text" placeholder="Author name of your content..." maxlength="250">
@@ -141,6 +141,17 @@
                                     <textarea class="pure-input-1" id="content-description" rows="3" placeholder="Description of your content..." maxlength="500"></textarea>
                                     <span class="pure-form-message">HTML is not allowed in description.</span>
 
+                                    <div class="pure-g">
+                                        <div class="pure-u-1 pure-u-md-1-2">
+                                            <label for="content-isbn">ISBN</label>
+                                            <input class="pure-u-23-24" id="content-isbn" type="text" placeholder="ISBN code of your content (use commas to separate) ..." maxlength="250">
+                                        </div>
+                                        <div class="pure-u-1 pure-u-md-1-2">
+                                            <label for="content-publisher">Publisher</label>
+                                            <input class="pure-u-23-24" id="content-publisher" type="text" placeholder="Publisher name of your content..." maxlength="50">
+                                        </div>
+                                    </div>
+                                    
                                     <div class="pure-g">
                                         <div class="pure-u-1 pure-u-md-1-2">
                                             <label for="content-translator">Translator</label>
@@ -244,11 +255,13 @@
                                 <li><b>title</b> {string} : This is the title of your content. [<b style="color:rgb(104, 1, 1)">required</b style="color:red">]</li>
                                 <li><b>images</b> {array} : This is the array of your images content. [<b style="color:rgb(104, 1, 1)">required</b style="color:red">]</li>
                                 <li><b>original</b> {string} : This is the original title of your content.</li>
-                                <li><b>genre</b> {string} : This is the genre of your content.</li>
+                                <li><b>genre</b> {string} : This is the genre of your content (use commas to separate).</li>
                                 <li><b>author</b> {string} : This is the author name of your content.</li>
                                 <li><b>chapter</b> {string} : This is the chapter number of your content.</li>
                                 <li><b>release_date</b> {string} : This is the release date of your content.</li>
                                 <li><b>status</b> {string} : This is the project status of your content.</li>
+                                <li><b>isbn</b> {string} : This is the isbn code of your content (use commas to separate).</li>
+                                <li><b>publisher</b> {string} : This is the publisher name of your content.</li>
                                 <li><b>translator</b> {string} : This is the translator name of your content.</li>
                                 <li><b>language</b> {string} : This is the language of your content.</li>
                                 <li><b>backlink</b> {string} : This is the link going back to your website.</li>
@@ -342,7 +355,8 @@
                         <p>
                             ImgFo is only an application to show your images content, so here is our disclaimer:
                             <ul>
-                                <li>You are having 100% control for your content because we don't save your content into our database, if you're lost or delete your source link, so you will lost your content in ImgFo.</li>
+                                <li>We are using <b>Decentralized Server Concept</b>, means that all the contents in ImgFO is placed in our users server.</li>
+                                <li>You are having 100% control for your content because we have no server to save your content, if you're lost or delete your source link, so you will lost your content in ImgFo.</li>
                                 <li>We have no control with third party advertisers. If you had a problem with our 3rd party advertiser, you should contact to them.</li>
                             </ul>
                         </p>

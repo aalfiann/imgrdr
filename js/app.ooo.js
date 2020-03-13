@@ -160,6 +160,14 @@
                 json.release_date = document.getElementById("content-release").value.trim();
             }
 
+            if(!isEmpty("content-isbn")) {
+                json.isbn = document.getElementById("content-isbn").value.trim();
+            }
+
+            if(!isEmpty("content-publisher")) {
+                json.publisher = document.getElementById("content-publisher").value.trim();
+            }
+            
             if(!isEmpty("content-translator")) {
                 json.translator = document.getElementById("content-translator").value.trim();
             }

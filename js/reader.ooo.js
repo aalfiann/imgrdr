@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.7.4";
+    var imgreader_version = "1.8.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -174,6 +174,18 @@
                         }
                     }
 
+                    if(json.hasOwnProperty('isbn')){
+                        if(hasValue(json.isbn)) {
+                            addRow('<b>ISBN : </b>'+escapeHTML(json.isbn));
+                        }
+                    }
+
+                    if(json.hasOwnProperty('publisher')){
+                        if(hasValue(json.publisher)) {
+                            addRow('<b>Publisher : </b>'+escapeHTML(json.publisher));
+                        }
+                    }
+                    
                     if(json.hasOwnProperty('translator')){
                         if(hasValue(json.translator)) {
                             addRow('<b>Translator : </b>'+escapeHTML(json.translator));
