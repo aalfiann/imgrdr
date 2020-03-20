@@ -567,7 +567,7 @@
             {
                 links[i].style.color = '#000';
             }
-            document.getElementById("xoxo").color = '#fff';
+            document.getElementById("xoxo").style.color = '#fff';
         }
     });
 
