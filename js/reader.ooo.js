@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.8.0";
+    var imgreader_version = "1.9.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -298,6 +298,21 @@
                     }
 
                     document.getElementById("share").style.display = "block";
+
+                    var comment = document.getElementById("comment");
+                    if(json.hasOwnProperty('use_comment')){
+                        if(hasValue(json.use_comment)) {
+                            if(json.use_comment == false || json.use_comment == 'false') {
+                                comment.style.display = "none";
+                            } else {
+                                comment.style.display = "block";
+                            }
+                        } else {
+                            comment.style.display = "block";
+                        }
+                    } else {
+                        comment.style.display = "block";
+                    }
 
                     removeLoader();
                 } catch (e) {
@@ -666,5 +681,13 @@
         // insertNativeAds('native_top','3654495','https://a.exdynsrv.com/nativeads.js');
         // insertNativeAds('native_bottom','3654503','https://a.exdynsrv.com/nativeads.js');
     }
+
+    // Disqus comment
+    document.getElementById("show-comment").addEventListener("click", function(){
+        getScript('../js/disqus.min.js',function(){
+            showComment(hash);
+        });
+        this.style.display = "none";
+    });
 
 })();
