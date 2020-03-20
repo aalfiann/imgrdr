@@ -5,6 +5,7 @@
 var pkey = "xsilent"; // change this with your pin
 var domainorigin = 'imgfo.com'; // change with your origin domain
 var uniquepath = '/view'; // leave blank if you don't want to detect spesific page.
+var secondpath = '/embed'; // leave blank if you don't allow embed feature.
 
 /**
  * Bot Protection
@@ -213,8 +214,16 @@ if(isSecured()) {
         if(uniquepath) {
             if(urla.indexOf(uniquepath)>0) { // detect if direct mirror ("view" is the unique path of your address)
                 location.href = urla;
-            } else { // detect if proxy mirror
-                location.href = domainorigin;
+            } else { // detect if embed page or proxy mirror
+                if(secondpath) {
+                    if(urla.indexOf(secondpath)>0) { // detect if direct mirror ("embed" is the second unique path of your address)
+                        location.href = urla;
+                    } else { // detect if proxy mirror
+                        location.href = domainorigin;
+                    }
+                } else {
+                    location.href = domainorigin;        
+                }
             }
         } else {
             location.href = domainorigin;
