@@ -105,6 +105,7 @@
                         if(hasValue(json.title)) {
                             var atitle = escapeHTML(json.title);
                             newtitle = newtitle+atitle;
+                            document.getElementById("data-content").innerHTML = "<h3>"+atitle+"</h3>";
                         }
                     }
 
