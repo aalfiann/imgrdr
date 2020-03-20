@@ -216,7 +216,15 @@
         if(FVLink.validate().isValid()){
             var link = encodeURIComponent(TextObfuscator.encode(Crypto.encode(document.getElementById('content-link').value),3));
             document.getElementById('result-link').value = website+'view?content='+link;
-            msgShow("msg-link","msg","<b>Generate Success!</b><br>Your content is ready at this link.");
+            var emlight = '',mosingle='';
+            if(document.getElementById("embed-light").checked) {
+                emlight = '&theme=light';
+            }
+            if(document.getElementById("mode-single").checked) {
+                mosingle = '&style=single';
+            }
+            document.getElementById('result-embed').value = '<iframe src="'+website+'embed?content='+link+mosingle+emlight+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+            msgShow("msg-link","msg","<b>Generate Success!</b><br>Your content is ready.");
             document.getElementById("result-form-link").style.display = "block";
             document.getElementById('result-link').select();
         } else {

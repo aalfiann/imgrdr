@@ -207,6 +207,12 @@
                                 <label for="content-link"><span style="color:red">*</span> Source Link</label>
                                 <span id="error-content-link" class="pure-form-message" style="display:none"></span>
                                 <input class="pure-input-1" id="content-link" type="text" placeholder="Your content link" required>
+                                <label for="embed-light" class="pure-checkbox">
+                                    <input id="embed-light" type="checkbox"> Embed with Light Theme
+                                </label>
+                                <label for="mode-single" class="pure-checkbox">
+                                    <input id="mode-single" type="checkbox"> Embed with mode View Single
+                                </label>
                                 <hr>
                                 <button id="generate-link" type="button" class="pure-button pure-button-primary">Generate</button>
                                 <button id="generate-link-reset" type="button" class="pure-button pure-button-secondary">Reset</button>
@@ -215,7 +221,12 @@
                         <div id="msg-link"></div>
                         <form id="result-form-link" class="pure-form pure-form-stacked" style="display: none;">
                             <fieldset>
+                                <label for="result-link"><b>Viewer</b></label>
                                 <textarea class="pure-input-1" id="result-link" type="text" rows="3"></textarea>
+                            </fieldset>
+                            <fieldset>
+                                <label for="result-embed"><b>Embed</b></label>
+                                <textarea class="pure-input-1" id="result-embed" type="text" rows="3"></textarea>
                             </fieldset>
                         </form>
 
