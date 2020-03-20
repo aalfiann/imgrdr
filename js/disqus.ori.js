@@ -1,7 +1,8 @@
 // DON'T AUTO COMPRESS BELOW THIS
 function showComment(hash) {
     var fullpath = window.location.href.split('?');
-    var canonical = fullpath[0]+'?content='+hash;
+    var oripath = fullpath[0].replace('embed','view');
+    var canonical = oripath+'?content='+hash;
     
     var disqus_config = function () {
         this.page.url = canonical;  // Replace PAGE_URL with your page's canonical URL variable

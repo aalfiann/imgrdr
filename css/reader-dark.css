@@ -249,3 +249,15 @@ a {
     color:#fff;
     text-decoration: none;
 }
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
+}
+
+.clearfix {
+    clear: both;
+}

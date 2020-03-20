@@ -75,24 +75,6 @@
             element.parentNode.removeChild(element);
     }
 
-    function showAbout(){
-        var modal = new tingle.modal({
-            footer: true,
-            stickyFooter: false,
-            closeMethods: ['overlay', 'button', 'escape'],
-            onOpen: function() {
-                document.getElementsByClassName('tingle-modal-box__content')[0].style.backgroundColor = '#000000';
-                document.getElementsByClassName('tingle-modal-box__footer')[0].style.backgroundColor = '#2f2f2f';
-            }
-        });
-        modal.setContent('<h3>ImgFo - v.'+imgreader_version+'</h3><p>Makes your images content to become easier to read.</p>');
-        modal.addFooterBtn('Create Your Own', 'tingle-btn tingle-btn--primary', function() {
-            window.open('../');
-        });
-
-        modal.open();
-    }
-
     function scrollFunction() {
         var mybutton = document.getElementById("goTopBtn");
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -106,7 +88,7 @@
         focus = (focus === undefined)?false:true;
         if(focus) {
             setTimeout(function(){
-                document.getElementById('share').scrollIntoView();
+                document.getElementById('data-content').scrollIntoView();
             },100);
         } else {
             document.body.scrollTop = 0;
@@ -140,15 +122,6 @@
                             meta.name = "description";
                             meta.content = adesc;
                             document.getElementsByTagName('head')[0].appendChild(meta);
-                        }
-                    }
-
-                    if(json.hasOwnProperty('download')){
-                        if(hasValue(json.download)) {
-                            var dl = document.createElement('a');
-                            dl.href = json.download;
-                            dl.innerText = "Download";
-                            document.getElementById("menunav").appendChild(dl);
                         }
                     }
 
@@ -204,8 +177,6 @@
                     if(json.hasOwnProperty('title')){
                         if(hasValue(json.title)) document.title = newtitle;
                     }
-
-                    document.getElementById("share").style.display = "block";
 
                     var comment = document.getElementById("comment");
                     if(json.hasOwnProperty('use_comment')){
@@ -286,12 +257,6 @@
     document.getElementById("goTopBtn").addEventListener("click", function(){
         topFunction();
     });
-
-    document.getElementById("about").addEventListener("click", function(){
-        showAbout();
-    });
-
-    document.getElementById('copyrightyear').innerHTML= new Date().getFullYear();
 
     // pagination
     var btnPrevTop = document.getElementById("prev-page-top");
@@ -533,7 +498,6 @@
                 for(var i=0;i<zz.length;i++) {
                     zz[i].style.display = "none";
                 }
-                document.getElementById("share").style.display = "none";
                 document.getElementById("data-content").innerHTML = '';
                 var desc = document.getElementById("content-description");
                 desc.innerHTML = '';
@@ -543,18 +507,6 @@
             }
         }
     });
-
-    // social media
-    var curlink = encodeURIComponent(window.location.href);
-    var curtitle = encodeURIComponent(document.title);
-    document.getElementById("sb_facebook").href = "https://facebook.com/sharer/sharer.php?u="+curlink;
-    document.getElementById("sb_twitter").href = "https://twitter.com/intent/tweet/?text="+curtitle+"&amp;url="+curlink;
-    document.getElementById("sb_email").href = "mailto:?subject="+curtitle+"&amp;body="+curlink;
-    document.getElementById("sb_reddit").href = "https://reddit.com/submit/?url="+curlink+"&amp;resubmit=true&amp;title="+curtitle;
-    document.getElementById("sb_xing").href = "https://www.xing.com/app/user?op=share;url="+curlink+";title="+curtitle;
-    document.getElementById("sb_whatsapp").href = "whatsapp://send?text="+curtitle+"%20"+curlink;
-    document.getElementById("sb_hacker").href = "https://news.ycombinator.com/submitlink?u="+curlink+"&amp;t="+curtitle;
-    document.getElementById("sb_vk").href = "http://vk.com/share.php?title="+curtitle+"&amp;url="+curlink;
 
     // banner ads
     // function insertBannerAds(el,src,width,height) {
@@ -596,6 +548,26 @@
             showComment(hash);
         });
         this.style.display = "none";
+    });
+
+    var fullpath = window.location.href;
+    fullpath = fullpath.replace('embed','view');
+    document.getElementById('view-original').href = fullpath;
+
+    // set theme
+    window.addEventListener("load", function() { 
+        var body = document.body;
+        body.style.marginTop="25px";
+        var theme = parse_query_string(window.location.search)['theme'];
+        if(theme && theme.toLowerCase() === 'light') {
+            body.style.backgroundColor = '#f7f7f7';
+            body.style.color = '#000';
+            var links = document.getElementsByClassName("linker");
+            for(var i=0;i<links.length;i++)
+            {
+                links[i].style.color = '#000';
+            }
+        }
     });
 
 })();
