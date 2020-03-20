@@ -196,6 +196,10 @@
                 json.description = document.getElementById("content-description").value.trim();
             }
 
+            if(document.getElementById("content-comment").checked) {
+                json.use_comment = false;
+            }
+
             if(!isEmpty("content-images")) {
                 json.images = document.getElementById("content-images").value.trim().split(/\n/);
             }
