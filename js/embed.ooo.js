@@ -499,9 +499,6 @@
                     zz[i].style.display = "none";
                 }
                 document.getElementById("data-content").innerHTML = '';
-                var desc = document.getElementById("content-description");
-                desc.innerHTML = '';
-                desc.style.display = 'none';
                 document.getElementById("content-images").innerHTML = '';
                 showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
             }
