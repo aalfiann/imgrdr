@@ -572,6 +572,7 @@
     });
 
     // Set Fullscreen
+    document.getElementById("fullscreenBtn").style.display = "block";
     document.getElementById("fullscreenBtn").addEventListener("click", function(){
         setFullscreen('main-content');
     });

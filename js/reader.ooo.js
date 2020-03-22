@@ -95,10 +95,13 @@
 
     function scrollFunction() {
         var mybutton = document.getElementById("goTopBtn");
+        var fsbutton = document.getElementById("fullscreenBtn");
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             mybutton.style.display = "block";
+            fsbutton.style.display = "block";
         } else {
             mybutton.style.display = "none";
+            fsbutton.style.display = "none";
         }
     }
 
