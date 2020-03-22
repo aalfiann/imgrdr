@@ -94,6 +94,26 @@ select:hover, select:focus {
     background-color: #1f1f1f;
 }
 
+#fullscreenBtn {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 70px;
+    z-index: 99;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#fullscreenBtn:hover {
+    background-color: #1f1f1f;
+}
+
 .lazyload {
     opacity: 0;
 }

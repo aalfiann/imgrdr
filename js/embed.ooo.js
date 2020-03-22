@@ -572,4 +572,29 @@
         }
     });
 
+    // Set Fullscreen
+    document.getElementById("fullscreenBtn").addEventListener("click", function(){
+        setFullscreen('main-content');
+    });
+    function setFullscreen(elementid){
+        var el = document.getElementById(elementid);
+        if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+            if (el.requestFullscreen) {
+                el.requestFullscreen();
+            } else if (el.mozRequestFullScreen) {
+                el.mozRequestFullScreen();
+            } else if (el.webkitRequestFullscreen) {
+                el.webkitRequestFullscreen();
+            }
+        } else {
+            if (document.cancelFullScreen) {  
+                document.cancelFullScreen();  
+            } else if (document.mozCancelFullScreen) {  
+                document.mozCancelFullScreen();  
+            } else if (document.webkitCancelFullScreen) {  
+                document.webkitCancelFullScreen();  
+            }
+        }
+    }
+
 })();
