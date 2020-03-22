@@ -1,5 +1,4 @@
 (function(){
-    var imgreader_version = "1.9.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;

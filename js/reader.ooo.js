@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.9.0";
+    var imgreader_version = "1.10.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -689,5 +689,30 @@
         });
         this.style.display = "none";
     });
+
+    // Set Fullscreen
+    document.getElementById("fullscreenBtn").addEventListener("click", function(){
+        setFullscreen('main-content');
+    });
+    function setFullscreen(elementid){
+        var el = document.getElementById(elementid);
+        if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+            if (el.requestFullscreen) {
+                el.requestFullscreen();
+            } else if (el.mozRequestFullScreen) {
+                el.mozRequestFullScreen();
+            } else if (el.webkitRequestFullscreen) {
+                el.webkitRequestFullscreen();
+            }
+        } else {
+            if (document.cancelFullScreen) {  
+                document.cancelFullScreen();  
+            } else if (document.mozCancelFullScreen) {  
+                document.mozCancelFullScreen();  
+            } else if (document.webkitCancelFullScreen) {  
+                document.webkitCancelFullScreen();  
+            }
+        }
+    }
 
 })();
