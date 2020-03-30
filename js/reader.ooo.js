@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.10.0";
+    var imgreader_version = "1.10.1";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -324,8 +324,13 @@
                 }
             })
             .catch(function(error, xhr) {
-                showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
-                removeLoader();
+                if(link.indexOf('glcdn.githack.com') > -1) {
+                    link = link.replace('glcdn.githack.com','imgfo-cream.000webhostapp.com/gitlab');
+                    getData(link);
+                } else {
+                    showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
+                    removeLoader();
+                }
             });
     }
 
