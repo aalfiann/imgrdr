@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.10.2";
+    var imgreader_version = "1.10.3";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -42,7 +42,7 @@
             img.setAttribute("width","100%");
         } else {
             img.setAttribute("id","img_"+index);
-            img.setAttribute("style","max-width:100%;max-height:100%;");
+            img.setAttribute("style","max-width:100%;max-height:100%;display:block;");
         }
         img.setAttribute("referrerpolicy","no-referrer");
         img.setAttribute("data-src", url);
