@@ -2,4 +2,4 @@
   from = "/"
   to = "https://imgfo.com"
   status = 301
-  force = false
+  force = true
