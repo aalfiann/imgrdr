@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.10.3";
+    var imgreader_version = "1.11.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -31,6 +31,10 @@
             .replace(/\//g, '&#x2F;');
     }
 
+    function isContain(text,value) {
+        return text.indexOf(value) !== -1;
+    }
+
     function loadImages(el,url,fullwidth,index) {
         fullwidth = (fullwidth === undefined)?false:fullwidth;
         var div = document.createElement('div');
@@ -44,7 +48,9 @@
             img.setAttribute("id","img_"+index);
             img.setAttribute("style","max-width:100%;max-height:100%;display:block;");
         }
-        img.setAttribute("referrerpolicy","no-referrer");
+        if (!isContain(url,'img-proxy.imgfo.com')) {
+            img.setAttribute("referrerpolicy","no-referrer");
+        }
         img.setAttribute("data-src", url);
         div.appendChild(img);
         var src = document.getElementById(el);
