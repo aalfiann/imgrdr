@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.11.0";
+    var imgreader_version = "1.12.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -365,7 +365,7 @@
                                         }
                                     }
                                 } else {
-                                    showError("error","<b>This browser is not allowed!</b><p> Currently we don't allow for <b>Firefox mobile</b> browser for security reason.</p><p>Please use Firefox Lite or another well known browsers.</p>");
+                                    showError("error","<b>This browser is not allowed for security reason!</b><p>Please use another well known browsers.</p>");
                                     removeLoader();
                                 }
                             } else {
