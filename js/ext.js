@@ -73,7 +73,7 @@ function isBlacklistedMobileBrowser() {
     if(isMobileDevice()) {
         var ug = navigator.userAgent.toLowerCase();
         if (
-            (ug.indexOf('firefox') > -1) || // Firefox
+            // (ug.indexOf('firefox') > -1) || // Firefox
             // (ug.indexOf('rocket') > -1) || // Firefox Lite
             // (ug.indexOf('fxios') > -1) || // Firefox iOS Webkit
             // (ug.indexOf('opt') > -1) ||  // Opera Touch
