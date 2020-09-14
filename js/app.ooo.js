@@ -66,7 +66,8 @@
             message: 'Images data is required!',
             errorPlace:'error-content-images',
             errorAddClass: {
-                "error-content-images":"validate-error"
+                "error-content-images":"validate-error",
+                "content-images":"line-number-danger"
             }
         }
     });

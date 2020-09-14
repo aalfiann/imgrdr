@@ -25,6 +25,7 @@
     <style>
         @media screen and (max-width: 600px){table{border:0}table thead{display:none}table tr{margin-bottom:10px;display:block;border-bottom:2px solid #ddd}table td{display:block;text-align:right;font-size:13px;border-bottom:1px dotted #ccc}table td:last-child{border-bottom:0}table td:before{content:attr(data-label);float:left;font-weight:700}}
         .msg{padding:1.5em;background:#def;border-left:5px solid #59d}.msg-error{padding:1.5em;background:#fdd;border-left:5px solid #e44}.validate-error{color:red;display:block !important}
+        .line-number{border:1px solid #ccc;position:relative;height:300px;width:100%}.line-number-textarea{display:unset!important;margin:0!important}.line-number-danger{border:1px solid red!important}
     </style>
 </head>
 <body>
@@ -101,9 +102,11 @@
                         
                                 <label for="content-images"><span style="color:red">*</span> Images</label>
                                 <span id="error-content-images" class="pure-form-message" style="display:none"></span>
-                                <textarea class="pure-input-1" id="content-images" rows="5" style="resize: vertical;" placeholder="https://url.com/your-image-1.jpg&#10;https://url.com/your-image-2.jpg&#10;https://url.com/your-image-3.jpg&#10;https://url.com/your-image-4.jpg"></textarea>
+                                <div class="line-number">
+                                    <textarea class="line-number-textarea" id="content-images" rows="5" style="resize: vertical;" placeholder="https://url.com/your-image-1.jpg&#10;https://url.com/your-image-2.jpg&#10;https://url.com/your-image-3.jpg&#10;https://url.com/your-image-4.jpg"></textarea>
+                                </div>
                                 <span class="pure-form-message">Images must be separated by new line.</span>
-
+                                
                                 <hr>
                                 <legend><button id="btnMore" type="button" class="pure-button"><b>Add More Information &rang;</b></button></legend>
                                 <div id="more-info" style="display: none;">
