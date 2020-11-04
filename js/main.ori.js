@@ -3,12 +3,16 @@ getScript("js/lazysizes.min.js");
 getScript("https://cdn.jsdelivr.net/npm/native-form-validation@1.0.1/dist/formvalidation.min.js", function(){
     getScript("js/tobs.min.js", function(){
         getScript("js/crypto.min.js", function(){
-            getScript("js/app.min.js", function() {
-                getScript("js/tln.min.js", function() {
-                    getCss("css/tln.min.css", function() {
-                        TLN.append_line_numbers('content-images');
+            getScript("https://cdn.jsdelivr.net/gh/aalfiann/ajax@3.0.4/dist/ajax.min.js", function(){
+                getScript("js/cdn.min.js", function(){
+                    getScript("js/app.min.js", function() {
+                        getScript("js/tln.min.js", function() {
+                            getCss("css/tln.min.css", function() {
+                                TLN.append_line_numbers('content-images');
+                            });
+                        })
                     });
-                })
+                });
             });
         });
     });

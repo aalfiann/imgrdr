@@ -128,9 +128,7 @@
     }
 
     function generateSource() {
-        if(FV.validate().isValid()) {
-            msgShow("msg","msg","<b>Generate Success!</b><br>Upload this json source into your webserver.");
-            
+        if(FV.validate().isValid()) {            
             var json = {};
 
             if(!isEmpty("content-cover")) {
@@ -201,12 +199,36 @@
                 json.use_comment = false;
             }
 
-            if(!isEmpty("content-images")) {
-                json.images = document.getElementById("content-images").value.trim().split(/\n/);
+            if(document.getElementById("content-cdnify").checked) {
+                if(!isEmpty("content-images")) {
+                    json.images = document.getElementById("content-images").value.trim().split(/\n/);
+                    document.getElementById("result-form-source").style.display = "none";
+                    msgShow("msg","msg","<b>Processing images...</b>");
+                    cdnify(json.images, function(err, done) {
+                        if(err) {
+                            console.log(err);
+                            msgShow("msg","msg","<b>Failed to CDNify but Generate still Success!</b><br>Upload this json source into your webserver.");
+                            document.getElementById("result-source").value = JSON.stringify(json,null,2);
+                            document.getElementById("result-form-source").style.display = "block";
+                            document.getElementById("result-source").select();
+                        } else {
+                            json.images = [].concat(done);;
+                            msgShow("msg","msg","<b>Generate Success!</b><br>Upload this json source into your webserver.");
+                            document.getElementById("result-source").value = JSON.stringify(json,null,2);
+                            document.getElementById("result-form-source").style.display = "block";
+                            document.getElementById("result-source").select();
+                        }
+                    });
+                }
+            } else {
+                if(!isEmpty("content-images")) {
+                    json.images = document.getElementById("content-images").value.trim().split(/\n/);
+                }
+                msgShow("msg","msg","<b>Generate Success!</b><br>Upload this json source into your webserver.");
+                document.getElementById("result-source").value = JSON.stringify(json,null,2);
+                document.getElementById("result-form-source").style.display = "block";
+                document.getElementById("result-source").select();
             }
-            document.getElementById("result-source").value = JSON.stringify(json,null,2);
-            document.getElementById("result-form-source").style.display = "block";
-            document.getElementById("result-source").select();
         } else {
             document.getElementById("result-form-source").style.display = "none";
             msgShow("msg","msg-error","<b>Failed to Generate!</b><br>Some fields are required!");

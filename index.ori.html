@@ -26,6 +26,7 @@
         @media screen and (max-width: 600px){table{border:0}table thead{display:none}table tr{margin-bottom:10px;display:block;border-bottom:2px solid #ddd}table td{display:block;text-align:right;font-size:13px;border-bottom:1px dotted #ccc}table td:last-child{border-bottom:0}table td:before{content:attr(data-label);float:left;font-weight:700}}
         .msg{padding:1.5em;background:#def;border-left:5px solid #59d}.msg-error{padding:1.5em;background:#fdd;border-left:5px solid #e44}.validate-error{color:red;display:block !important}
         .line-number{border:1px solid #ccc;position:relative;height:300px;width:100%}.line-number-textarea{display:unset!important;margin:0!important}.line-number-danger{border:1px solid red!important}
+        .powered-list{margin: 0!important;display: flex;flex-wrap: wrap;justify-content: space-around;list-style: none;align-items: center;justify-items: center;}
     </style>
 </head>
 <body>
@@ -66,6 +67,7 @@
                         <h3>Features :</h3>
                         <p>
                             <ol>
+                                <li>Auto SSL, CDNify and Proxify</li>
                                 <li>Your content is strongly protected</li>
                                 <li>You control the image source</li>
                                 <li>Lightweight and Fast Loading</li>
@@ -74,6 +76,25 @@
                                 <li>No Registration and Free Forever</li>
                             </ol>
                         </p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="posts">
+                <h1 class="content-subhead">Thanks for making this free for us</h1>
+
+                <section class="post">
+                    <div class="post-description">
+                        <ul class="powered-list">
+                            <li><a href="https://gitlab.com" title="Example repository by GitLab."><img src="img/logo-gitlab.png"></a></li>
+                            <li><a href="https://github.com" title="Core repository by GitHub."><img src="img/logo-github.png"></a></li>
+                            <li><a href="https://vercel.com" title="Serverless hosting by Vercel."><img src="img/logo-vercel.png"></a></li>
+                            <li><a href="https://fastify.io" title="NodeJS Framework by Fastify."><img src="img/logo-fastify.png"></a></li>
+                            <li><a href="https://imgproxify.com" title="Auto SSL, CDNify and Proxify by ImgProxify."><img src="img/logo-imgproxify.png"></a></li>
+                            <li><a href="https://cloudflare.com" title="Global CDN Network by Cloudflare."><img src="img/logo-cloudflare.png"></a></li>
+                            <li><a href="https://apiembed.com" title="API Embed by Kong."><img src="img/logo-kong.png"></a></li>
+                            <li><a href="https://raw.githack.com" title="Static files by raw.githack.com."><img src="img/logo-githack.png"></a></li>
+                        </ul>
                     </div>
                 </section>
             </div>
@@ -106,6 +127,11 @@
                                     <textarea class="line-number-textarea" id="content-images" rows="5" style="resize: vertical;" placeholder="https://url.com/your-image-1.jpg&#10;https://url.com/your-image-2.jpg&#10;https://url.com/your-image-3.jpg&#10;https://url.com/your-image-4.jpg"></textarea>
                                 </div>
                                 <span class="pure-form-message">Images must be separated by new line.</span>
+
+                                <label for="content-cdnify" class="pure-checkbox">
+                                    <input id="content-cdnify" type="checkbox"> Auto SSL, CDNify & Proxify Images
+                                    <span class="pure-form-message">- This feature will make your images secured, load faster and save bandwidth.<br>- Your images link must not using dynamic url.</span>
+                                </label>
                                 
                                 <hr>
                                 <legend><button id="btnMore" type="button" class="pure-button"><b>Add More Information &rang;</b></button></legend>
