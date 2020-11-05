@@ -568,23 +568,6 @@
     fullpath = fullpath.replace('embed','view');
     document.getElementById('view-original').href = fullpath;
 
-    // set theme
-    window.addEventListener("load", function() { 
-        var body = document.body;
-        body.style.marginTop="25px";
-        var theme = parse_query_string(window.location.search)['theme'];
-        if(theme && theme.toLowerCase() === 'light') {
-            body.style.backgroundColor = '#f7f7f7';
-            body.style.color = '#000';
-            var links = document.getElementsByClassName("linker");
-            for(var i=0;i<links.length;i++)
-            {
-                links[i].style.color = '#000';
-            }
-            document.getElementById("xoxo").style.color = '#fff';
-        }
-    });
-
     // Set Fullscreen
     document.getElementById("fullscreenBtn").style.display = "block";
     document.getElementById("fullscreenBtn").addEventListener("click", function(){

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="theme-color" content="#f7f7f7">
+
+		<title>ImgFo</title>
+
+        <link href="../css/min.css" rel="stylesheet" type="text/css">
+        <link href="../css/embed-light.min.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon.ico" type="image/x-icon">
+	</head>
+	<body>
+        <button id="goTopBtn" title="Go to top">Top</button>
+        <button id="fullscreenBtn" title="Toggle Fullscreen">#</button>
+        <div class="preloader" id="preloader">
+            <div class="cssload-container">
+                <div class="cssload-whirlpool"></div>
+            </div>
+            <center><span id="xoxo"></span></center>
+        </div>
+        <button id="close" class="btn-close btn btn-sm" style="position: fixed;top:100px; right: 0px; visibility: hidden;" onclick="this.style.visibility ='hidden'">×</button>
+        <div class="container">
+            <div id="error"></div>
+            <div id="warning" class="msg-error" style="display: none;"></div>
+            <div id="data-content"></div>
+            <hr class="dotted">
+            <div id="main-content" class="row">
+                <div align="center" class="col c12 images-content">
+                    <div class="pagination">
+                        <a style="display: none;" class="btn btn-sm smooth change-style" title="Change Style View"></a>
+                        <span class="pagination-view" style="display: none;">
+                            <a id="prev-page-top" class="btn btn-sm smooth" title="Previous Page">&lang;</a>
+                            Page: <select id="pagination-top" class="btn-sm smooth"></select>
+                            <a id="next-page-top" class="btn btn-sm smooth" title="Next Page">&rang;</a>
+                        </span>
+                    </div>
+                    <div id="banner_top"></div>
+                    <div id="native_top"></div>
+                    <p align="center" id="content-images"></p>
+                    <div id="banner_bottom"></div>
+                    <div id="native_bottom"></div>
+                    <div class="pagination">
+                        <a style="display: none;" class="btn btn-sm smooth change-style" title="Change Style View"></a>
+                        <span class="pagination-view" style="display: none;">
+                            <a id="prev-page-bottom" class="btn btn-sm smooth" title="Previous Page">&lang;</a>
+                            Page: <select id="pagination-bottom" class="btn-sm smooth"></select>
+                            <a id="next-page-bottom" class="btn btn-sm smooth" title="Next Page">&rang;</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" align="center" id="comment" style="display:none">
+                <button id="show-comment" class="btn btn-sm smooth">Show Comments</button>
+            </div>
+            <div id="native_content" align="center" style="margin-top:15px;"></div>
+            <div id="disqus_thread"></div>
+            <hr class="dotted">
+            <div class="clearfix">
+                <p class="alignleft">
+                    <a id="view-original" class="linker" href="#" target="_blank" rel="nofollow">View in ImgFo</a> | <a class="linker" href="../" target="_blank" rel="nofollow">Create Your Own</a> 
+                </p>
+            </div>
+        </div>
+        <script src="../js/app-embed.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155148720-1"></script>
+        <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-155148720-1");</script>
+	</body>
+</html>

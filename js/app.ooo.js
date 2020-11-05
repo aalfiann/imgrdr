@@ -241,12 +241,12 @@
             document.getElementById('result-link').value = website+'view/?content='+link;
             var emlight = '',mosingle='';
             if(document.getElementById("embed-light").checked) {
-                emlight = '&theme=light';
+                emlight = 'light.html';
             }
             if(document.getElementById("mode-single").checked) {
                 mosingle = '&style=single';
             }
-            document.getElementById('result-embed').value = '<iframe src="'+website+'embed/?content='+link+mosingle+emlight+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+            document.getElementById('result-embed').value = '<iframe src="'+website+'embed/'+emlight+'?content='+link+mosingle+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
             msgShow("msg-link","msg","<b>Generate Success!</b><br>Your content is ready.");
             document.getElementById("result-form-link").style.display = "block";
             document.getElementById('result-link').select();
