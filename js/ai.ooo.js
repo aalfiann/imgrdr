@@ -162,7 +162,15 @@ var secondpath = '/embed'; // leave blank if you don't allow embed feature.
   })();
 
 function isHeadless() {
-    return (navigator.languages == "") ? true : false;
+    var ug = navigator.userAgent.toLowerCase();
+    if (
+        (ug.indexOf('headless') > -1) || // HeadlessChrome/Puppeteer
+        (ug.indexOf('phantomjs') > -1) || // PhantomJS
+        (navigator.languages == "")  // Browser with no languages
+    ) {
+        return true;
+    }
+    return false;
 }
 
 function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
