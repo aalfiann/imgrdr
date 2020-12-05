@@ -238,3 +238,28 @@ if(isSecured()) {
         }
     }
 }
+
+function botCheck() {
+    let err = new Error('Puppeterr Detected!');
+    console.log('err.stack: ', err.stack);
+    if (err.stack.toString().includes('puppeteer')) {
+        document.getElementById("data-content").innerHTML = '';
+        document.getElementById("content-images").innerHTML = '';
+    }
+}
+
+function overrideFunction(item) {
+    item.obj[item.propName] = (function (orig) {
+        return function () {
+            botCheck();
+            let args = arguments;
+            let value = orig.apply(this, args);
+            return value;
+        };
+    }(item.obj[item.propName]));
+}
+
+overrideFunction({
+    propName: 'querySelector',
+    obj: document
+});
