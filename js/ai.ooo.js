@@ -240,7 +240,7 @@ if(isSecured()) {
 }
 
 function botCheck() {
-    let err = new Error('Puppeterr Detected!');
+    let err = new Error('Puppeteer Detected!');
     console.log('err.stack: ', err.stack);
     if (err.stack.toString().includes('puppeteer')) {
         document.getElementById("data-content").innerHTML = '';
