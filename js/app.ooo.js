@@ -201,18 +201,23 @@
 
             if(document.getElementById("content-cdnify").checked) {
                 if(!isEmpty("content-images")) {
+                    var cdnifycover = json.cover;
                     json.images = document.getElementById("content-images").value.trim().split(/\n/);
+                    json.images.push(cdnifycover);
                     document.getElementById("result-form-source").style.display = "none";
                     msgShow("msg","msg","<b>Processing images...</b>");
                     cdnify(json.images, function(err, done) {
                         if(err) {
                             console.log(err);
                             msgShow("msg","msg","<b>Failed to CDNify but Generate still Success!</b><br>Upload this json source into your webserver.");
+                            json.images.splice(json.images.length-1,1);
                             document.getElementById("result-source").value = JSON.stringify(json,null,2);
                             document.getElementById("result-form-source").style.display = "block";
                             document.getElementById("result-source").select();
                         } else {
-                            json.images = [].concat(done);;
+                            json.cover = done[done.length-1];
+                            done.splice(done.length-1,1);
+                            json.images = [].concat(done);
                             msgShow("msg","msg","<b>Generate Success!</b><br>Upload this json source into your webserver.");
                             document.getElementById("result-source").value = JSON.stringify(json,null,2);
                             document.getElementById("result-form-source").style.display = "block";
