@@ -1,3 +1,4 @@
+// Don't obfuscated this code
 "use strict";
 
 var _gistToken = [
