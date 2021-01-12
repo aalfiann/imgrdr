@@ -27,6 +27,34 @@
         .msg{padding:1.5em;background:#def;border-left:5px solid #59d}.msg-error{padding:1.5em;background:#fdd;border-left:5px solid #e44}.validate-error{color:red;display:block !important}
         .line-number{border:1px solid #ccc;position:relative;height:300px;width:100%}.line-number-textarea{display:unset!important;margin:0!important}.line-number-danger{border:1px solid red!important}
         .powered-list{margin: 0!important;display: flex;flex-wrap: wrap;justify-content: space-around;list-style: none;align-items: center;justify-items: center;}
+        .button-success,
+        .button-error,
+        .button-warning,
+        .button-secondary {
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-success {
+            background: rgb(28, 184, 65);
+            /* this is a green */
+        }
+
+        .button-error {
+            background: rgb(202, 60, 60);
+            /* this is a maroon */
+        }
+
+        .button-warning {
+            background: rgb(223, 117, 20);
+            /* this is an orange */
+        }
+
+        .button-secondary {
+            background: rgb(66, 184, 221);
+            /* this is a light blue */
+        }
     </style>
 </head>
 <body>
@@ -110,8 +138,8 @@
 
                 <section class="post">
                     <header class="post-header">
-                        <h2 class="post-title">1. Generate Json Source</h2>
-                        <p>This is to generate the json data source to be uploaded to your webserver.</p>
+                        <h2 class="post-title">1. Create Images Content</h2>
+                        <p>Create your images content and upload to Gist server or generate the json data source to be uploaded to your own webserver.</p>
                         <hr>
                     </header>
 
@@ -128,11 +156,19 @@
                                 <input class="pure-input-1" id="content-title" type="text" placeholder="Title of your content..." maxlength="250" required>
                         
                                 <label for="content-images"><span style="color:red">*</span> Images</label>
+                                <span class="pure-form-message">Images must be separated by new line.</span>
                                 <span id="error-content-images" class="pure-form-message" style="display:none"></span>
                                 <div class="line-number">
                                     <textarea class="line-number-textarea" id="content-images" rows="5" style="resize: vertical;" placeholder="https://url.com/your-image-1.jpg&#10;https://url.com/your-image-2.jpg&#10;https://url.com/your-image-3.jpg&#10;https://url.com/your-image-4.jpg"></textarea>
                                 </div>
-                                <span class="pure-form-message">Images must be separated by new line.</span>
+                                <script async src="//freeimage.host/sdk/pup.js" data-url="https://freeimage.host/upload"></script>
+                                <br>
+                                <p>
+                                    <span class="pure-form-message">
+                                        - If you are using button <b>Upload Images</b> make sure you don't post 18+ content.<br>
+                                        - This is a free hosting images, so there is no guarantee for saved permanently.
+                                    </span>
+                                </p>
 
                                 <label for="content-cdnify" class="pure-checkbox">
                                     <input id="content-cdnify" type="checkbox"> Auto SSL, CDNify & Proxify Images
@@ -215,14 +251,29 @@
                                     </label>
                                 </div>
                                 <hr>
-                                <button id="generate-source" type="button" class="pure-button pure-button-primary">Generate</button>
+                                <button id="generate" type="button" class="pure-button button-success">Upload to Gist</button>
+                                <button id="generate-source" type="button" class="pure-button pure-button-primary">Generate JSON Only</button>
                                 <button id="generate-source-reset" type="button" class="pure-button pure-button-secondary">Reset</button>
                             </fieldset>
                         </form>
                         <div id="msg"></div>
+                        <form id="result-form-gen" class="pure-form pure-form-stacked" style="display: none;">
+                            <fieldset>
+                                <label for="result-link-gen"><b>Viewer</b></label>
+                                <textarea class="pure-input-1" id="result-link-gen" type="text" rows="3" readonly></textarea>
+                            </fieldset>
+                            <fieldset>
+                                <label for="result-embed-genlight"><b>Embed Light</b></label>
+                                <textarea class="pure-input-1" id="result-embed-genlight" type="text" rows="3" readonly></textarea>
+                            </fieldset>
+                            <fieldset>
+                                <label for="result-embed-genlight"><b>Embed Dark</b></label>
+                                <textarea class="pure-input-1" id="result-embed-gendark" type="text" rows="3" readonly></textarea>
+                            </fieldset>
+                        </form>
                         <form id="result-form-source" class="pure-form pure-form-stacked" style="display: none;">
                             <fieldset>
-                                <textarea class="pure-input-1" id="result-source" type="text" rows="5"></textarea>
+                                <textarea class="pure-input-1" id="result-source" type="text" rows="5" readonly></textarea>
                             </fieldset>
                         </form>
                     </div>
@@ -231,7 +282,8 @@
                 <section class="post">
                     <header class="post-header">
                         <h2 class="post-title">2. Generate Link</h2>
-                        <p>After you have the link of your json data source, you must generate it to hash the link.</p>
+                        <p>If you choose to <b>Generate JSON Only</b>, save it like <b>my-data.json</b> then upload it to your own webserver or any public server like Google Drive.<br>
+                            After you have the public link of your json data source, you must generate it to hash the link.</p>
                         <hr>
                     </header>
 
@@ -257,11 +309,11 @@
                         <form id="result-form-link" class="pure-form pure-form-stacked" style="display: none;">
                             <fieldset>
                                 <label for="result-link"><b>Viewer</b></label>
-                                <textarea class="pure-input-1" id="result-link" type="text" rows="3"></textarea>
+                                <textarea class="pure-input-1" id="result-link" type="text" rows="3" readonly></textarea>
                             </fieldset>
                             <fieldset>
                                 <label for="result-embed"><b>Embed</b></label>
-                                <textarea class="pure-input-1" id="result-embed" type="text" rows="3"></textarea>
+                                <textarea class="pure-input-1" id="result-embed" type="text" rows="3" readonly></textarea>
                             </fieldset>
                         </form>
 
@@ -288,7 +340,7 @@
                             </ul>
                         </p>
                         <p>
-                            If you don't want to use your own web server, as alternative, you are able to upload the json source into <b>GitHub</b>, <b>GitLab</b>, <b>BitBucket</b>, <b>AWS</b>, <b>CDN</b>, <b>etc</b>.
+                            If you don't want to use your own web server, you can choose <b>Upload to Gist</b> or as alternative, you are able to upload the json source into <b>GitHub</b>, <b>GitLab</b>, <b>BitBucket</b>, <b>AWS</b>, <b>CDN</b>, <b>etc</b>.
                         </p>
                     </div>
                 </section>
@@ -433,6 +485,9 @@
                                 <li>You are having 100% control for your content because ImgFo have no server to save your content, if you're lost or delete your source link, so you will lost your content in ImgFo.</li>
                                 <li>ImgFo service is free forever but ImgFo are non profit, so ImgFo will put some ads in our view content page.</li>
                                 <li>ImgFo is a free service and cannot provide any uptime, support and protection guarantees.</li>
+                                <li>ImgFo using 3rd party <a href="freeimage.host" target="_blank" rel="nofollow">freeimage.host</a> to host your image directly. This is an opional feature, but if you are using it, you have to follow their terms of service.</li>
+                                <li>ImgFo are able to block or delete your contents if having serious infringement of DMCA. But this only working if you are using <b>Upload to Gist</b> feature.</li>
+                                <li>There is no delete feature if you are using <b>Upload to Gist</b> for now.</li>
                             </ul>
                         </p>
                     </div>

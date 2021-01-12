@@ -84,6 +84,46 @@
         }
     });
 
+    function removeTag(pretag, suftag, str) {
+        if(str) {
+            var temp1 = str.split(pretag);
+            if (temp1[1]) {
+                var temp2 = temp1[1].split(suftag);
+                return temp2[0].trim(' ');
+            }
+            return str.trim(' ');
+        }
+        return '';
+    }
+
+    function rebuildArray(arr) {
+        var newdt = [];
+        for (var i = 0; i < arr.length; i++) {
+            newdt.push(removeTag('[img]','[/img]',arr[i]));
+        }
+        return newdt;
+    }
+
+    function sanitizeArray(arr) {
+        var newdt = [];
+        for(var i=0; i<arr.length; i++) {
+            if(arr[i]) {
+                newdt.push(arr[i].trim(' '));
+            }
+        }
+        return newdt;
+    }
+
+    document.getElementById('content-images').addEventListener('change', function(){
+        var dataimg = document.getElementById("content-images").value.trim().split(/\n/);
+        dataimg = [].concat(rebuildArray(sanitizeArray(dataimg)));
+        var imgresult = '';
+        for (var i=0; i<dataimg.length; i++) {
+            imgresult += dataimg[i]+'\n';
+        }
+        document.getElementById("content-images").value = imgresult;
+    })
+
     function msgShow(el,className,content) {
         var msg = document.createElement("div");
         msg.setAttribute("class",className);
@@ -107,6 +147,7 @@
         document.getElementById(formid).reset();
         if(formid === "form-source") {
             document.getElementById("result-form-source").style.display = "none";
+            document.getElementById("result-form-gen").style.display = "none";
             document.getElementById("msg").style.display = "none";
             var x = document.querySelectorAll(".validate-error");
             var z = x.length;
@@ -127,8 +168,10 @@
         }
     }
 
-    function generateSource() {
-        if(FV.validate().isValid()) {            
+    function generate() {
+        document.getElementById("result-form-gen").style.display = "none";
+        document.getElementById("result-form-source").style.display = "none";
+        if(FV.validate().isValid()) {
             var json = {};
 
             if(!isEmpty("content-cover")) {
@@ -204,7 +247,170 @@
                     var cdnifycover = json.cover;
                     json.images = document.getElementById("content-images").value.trim().split(/\n/);
                     json.images.push(cdnifycover);
-                    document.getElementById("result-form-source").style.display = "none";
+                    json.images = [].concat(sanitizeArray(json.images));
+                    msgShow("msg","msg","<b>Processing images...</b>");
+                    cdnify(json.images, function(err, done) {
+                        if(err) {
+                            console.log(err);
+                            json.images.splice(json.images.length-1,1);
+                            var datajson = JSON.stringify(json,null,2);
+                            var filejson = Crypto.encode(document.getElementById('content-title').value)+'.json';
+                            var objdata = {};
+                            objdata[filejson] = {content: datajson};
+                            createGist(filejson, {
+                                description: document.getElementById('content-title').value,
+                                files: objdata
+                            }, function(err, resdata) {
+                                if(err) {
+                                    msgShow("msg","msg-error","<b>Failed Upload to Gist!</b><br>Error: "+err);
+                                } else {
+                                    msgShow("msg","msg","<b>Failed to CDNify but Upload to Gist Success!</b>");
+                                    // data link
+                                    var datalink = encodeURIComponent(TextObfuscator.encode(Crypto.encode(resdata),3));
+                                    document.getElementById("result-link-gen").value = website+'view/?content='+datalink;
+                                    document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById("result-form-gen").style.display = "block";
+                                }
+                            });
+                        } else {
+                            json.cover = done[done.length-1];
+                            done.splice(done.length-1,1);
+                            json.images = [].concat(done);
+                            var datajson = JSON.stringify(json,null,2);
+                            var filejson = Crypto.encode(document.getElementById('content-title').value)+'.json';
+                            var objdata = {};
+                            objdata[filejson] = {content: datajson};
+                            createGist(filejson, {
+                                description: document.getElementById('content-title').value,
+                                files: objdata
+                            }, function(err, resdata) {
+                                if(err) {
+                                    msgShow("msg","msg-error","<b>Failed Upload to Gist!</b><br>Error: "+err);
+                                } else {
+                                    msgShow("msg","msg","<b>Upload to Gist Success!</b>");
+                                    // data link
+                                    var datalink = encodeURIComponent(TextObfuscator.encode(Crypto.encode(resdata),3));
+                                    document.getElementById("result-link-gen").value = website+'view/?content='+datalink;
+                                    document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById("result-form-gen").style.display = "block";
+                                }
+                            });
+                        }
+                    });
+                }
+            } else {
+                if(!isEmpty("content-images")) {
+                    json.images = document.getElementById("content-images").value.trim().split(/\n/);
+                    json.images = [].concat(sanitizeArray(json.images));
+                }
+                var datajson = JSON.stringify(json,null,2);
+                var filejson = Crypto.encode(document.getElementById('content-title').value)+'.json';
+                var objdata = {};
+                objdata[filejson] = {content: datajson};
+                createGist(filejson, {
+                    description: document.getElementById('content-title').value,
+                    files: objdata
+                }, function(err, resdata) {
+                    if(err) {
+                        msgShow("msg","msg-error","<b>Failed Upload to Gist!</b><br>Error: "+err);
+                    } else {
+                        msgShow("msg","msg","<b>Upload to Gist Success!</b>");
+                        // data link
+                        var datalink = encodeURIComponent(TextObfuscator.encode(Crypto.encode(resdata),3));
+                        document.getElementById("result-link-gen").value = website+'view/?content='+datalink;
+                        document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                        document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                        document.getElementById("result-form-gen").style.display = "block";
+                    }
+                });
+            }
+        } else {
+            msgShow("msg","msg-error","<b>Failed Upload to Gist!</b><br>Some fields are required!");
+        }
+    }
+
+    function generateSource() {
+        document.getElementById("result-form-source").style.display = "none";
+        document.getElementById("result-form-gen").style.display = "none";
+        if(FV.validate().isValid()) {   
+            var json = {};
+
+            if(!isEmpty("content-cover")) {
+                json.cover = document.getElementById("content-cover").value.trim();
+            }
+
+            if(!isEmpty("content-title")) {
+                json.title = document.getElementById("content-title").value.trim();
+            }
+
+            if(!isEmpty("content-origin-title")) {
+                json.original = document.getElementById("content-origin-title").value.trim();
+            }
+
+            if(!isEmpty("content-genre")) {
+                json.genre = document.getElementById("content-genre").value.trim();
+            }
+
+            if(!isEmpty("content-author")) {
+                json.author = document.getElementById("content-author").value.trim();
+            }
+
+            if(!isEmpty("content-chapter")) {
+                json.chapter = document.getElementById("content-chapter").value.trim();
+            }
+
+            if(!isEmpty("content-release")) {
+                json.release_date = document.getElementById("content-release").value.trim();
+            }
+
+            if(!isEmpty("content-isbn")) {
+                json.isbn = document.getElementById("content-isbn").value.trim();
+            }
+
+            if(!isEmpty("content-publisher")) {
+                json.publisher = document.getElementById("content-publisher").value.trim();
+            }
+            
+            if(!isEmpty("content-translator")) {
+                json.translator = document.getElementById("content-translator").value.trim();
+            }
+
+            if(!isEmpty("content-language")) {
+                json.language = document.getElementById("content-language").value.trim();
+            }
+
+            if(!isEmpty("content-status")) {
+                json.status = document.getElementById("content-status").value.trim();
+            }
+
+            if(!isEmpty("content-per-page")) {
+                json.item_per_page = document.getElementById("content-per-page").value.trim();
+            }
+
+            if(!isEmpty("content-backlink")) {
+                json.backlink = document.getElementById("content-backlink").value.trim();
+            }
+
+            if(!isEmpty("content-download")) {
+                json.download = document.getElementById("content-download").value.trim();
+            }
+
+            if(!isEmpty("content-description")) {
+                json.description = document.getElementById("content-description").value.trim();
+            }
+
+            if(document.getElementById("content-comment").checked) {
+                json.use_comment = false;
+            }
+
+            if(document.getElementById("content-cdnify").checked) {
+                if(!isEmpty("content-images")) {
+                    var cdnifycover = json.cover;
+                    json.images = document.getElementById("content-images").value.trim().split(/\n/);
+                    json.images.push(cdnifycover);
+                    json.images = [].concat(sanitizeArray(json.images));
                     msgShow("msg","msg","<b>Processing images...</b>");
                     cdnify(json.images, function(err, done) {
                         if(err) {
@@ -228,6 +434,7 @@
             } else {
                 if(!isEmpty("content-images")) {
                     json.images = document.getElementById("content-images").value.trim().split(/\n/);
+                    json.images = [].concat(sanitizeArray(json.images));
                 }
                 msgShow("msg","msg","<b>Generate Success!</b><br>Upload this json source into your webserver.");
                 document.getElementById("result-source").value = JSON.stringify(json,null,2);
@@ -235,7 +442,6 @@
                 document.getElementById("result-source").select();
             }
         } else {
-            document.getElementById("result-form-source").style.display = "none";
             msgShow("msg","msg-error","<b>Failed to Generate!</b><br>Some fields are required!");
         }
     }
@@ -263,6 +469,10 @@
     }
 
     // event
+    document.getElementById("generate").addEventListener("click", function(){
+        generate();
+    });
+
     document.getElementById("generate-source").addEventListener("click", function(){
         generateSource();
     });
