@@ -1,8 +1,8 @@
 // Don't obfuscated this code
 "use strict";
 
-var git_client_id = '00c20f97853bedd9c033';
-var git_client_secret = '7cfff52023ef207a1b58623757182cbb0806b3c6';
+var git_client_id = '101ba4f6b889fb8126f2';
+var git_client_secret = '5d586b-70710413-2d8015cb-8891cb78e-24521ae01';
 var git_ls_key = 'git_access_token';
 var git_redirect_uri = 'https://imgfo.com';
 var git_ttl = (3600*1000*8);
@@ -46,7 +46,7 @@ function gitAccessToken(code, _cb) {
         headers: {
             'Accept': 'application/json'
         }
-    }).post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token?client_id='+git_client_id+'&client_secret='+git_client_secret+'&code='+code, {})
+    }).post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token?client_id='+git_client_id+'&client_secret='+git_client_secret.replace(/-/g, "")+'&code='+code, {})
     .then(function(response, xhr) {
         if(xhr.status === 200) {
             if(_cb && typeof _cb === "function") {
