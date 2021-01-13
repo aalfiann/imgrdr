@@ -5,6 +5,7 @@ var git_client_id = '00c20f97853bedd9c033';
 var git_client_secret = '7cfff52023ef207a1b58623757182cbb0806b3c6';
 var git_ls_key = 'git_access_token';
 var git_redirect_uri = 'https://imgfo.com';
+var git_ttl = (3600*1000*8);
 
 function parse_query_string(e){for(var o=e.replace("?","").split("&"),n={},t=0;t<o.length;t++){var d=o[t].split("="),p=decodeURIComponent(d[0]),r=decodeURIComponent(d[1]);if(void 0===n[p])n[p]=decodeURIComponent(r);else if("string"==typeof n[p]){var i=[n[p],decodeURIComponent(r)];n[p]=i}else n[p].push(decodeURIComponent(r))}return n}
 
@@ -79,7 +80,7 @@ function checkGitAccess() {
                     document.getElementById('git-login').style.display = 'inline';
                     document.getElementById('generate').style.display = 'none';
                 } else {
-                    setWithExpiry(git_ls_key, token, 3600*1000);
+                    setWithExpiry(git_ls_key, token, git_ttl);
                     // remove code in param query
                     window.history.replaceState({}, document.title, "/");
                     // show Upload to Gist
