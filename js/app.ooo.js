@@ -242,6 +242,11 @@
                 json.use_comment = false;
             }
 
+            var msview = '';
+            if(document.getElementById("mode-single-gen").checked) {
+                msview = '&style=single';
+            }
+
             if(document.getElementById("content-cdnify").checked) {
                 if(!isEmpty("content-images")) {
                     var cdnifycover = json.cover;
@@ -267,9 +272,9 @@
                                     msgShow("msg","msg","<b>Failed to CDNify but Upload to Gist Success!</b>");
                                     // data link
                                     var datalink = encodeURIComponent(TextObfuscator.encode(Crypto.encode(resdata),3));
-                                    document.getElementById("result-link-gen").value = website+'view/?content='+datalink;
-                                    document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
-                                    document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById("result-link-gen").value = website+'view/?content='+datalink+msview;
+                                    document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+msview+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+msview+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
                                     document.getElementById("result-form-gen").style.display = "block";
                                 }
                             });
@@ -291,9 +296,9 @@
                                     msgShow("msg","msg","<b>Upload to Gist Success!</b>");
                                     // data link
                                     var datalink = encodeURIComponent(TextObfuscator.encode(Crypto.encode(resdata),3));
-                                    document.getElementById("result-link-gen").value = website+'view/?content='+datalink;
-                                    document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
-                                    document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById("result-link-gen").value = website+'view/?content='+datalink+msview;
+                                    document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+msview+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                                    document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+msview+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
                                     document.getElementById("result-form-gen").style.display = "block";
                                 }
                             });
@@ -319,9 +324,9 @@
                         msgShow("msg","msg","<b>Upload to Gist Success!</b>");
                         // data link
                         var datalink = encodeURIComponent(TextObfuscator.encode(Crypto.encode(resdata),3));
-                        document.getElementById("result-link-gen").value = website+'view/?content='+datalink;
-                        document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
-                        document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                        document.getElementById("result-link-gen").value = website+'view/?content='+datalink+msview;
+                        document.getElementById('result-embed-genlight').value = '<iframe src="'+website+'embed/light.html?content='+datalink+msview+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
+                        document.getElementById('result-embed-gendark').value = '<iframe src="'+website+'embed/?content='+datalink+msview+'" width="100%" height="600px" frameborder="0" scrolling="yes" allowfullscreen="true"></iframe>';
                         document.getElementById("result-form-gen").style.display = "block";
                     }
                 });
