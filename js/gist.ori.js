@@ -71,7 +71,7 @@ function checkGitAccess() {
         } else {
             // get access token
             gitAccessToken(gat, function(err, token) {
-                console.log(error, token);
+                console.log(err, token);
                 if(err) {
                     localStorage.removeItem(git_ls_key);
                     // Show github login button
