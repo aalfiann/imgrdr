@@ -40,7 +40,7 @@ function gitAccessToken(code, _cb) {
         headers: {
             'Accept': 'application/json'
         }
-    }).post('https://github.com/login/oauth/access_token?client_id='+git_client_id+'&client_secret='+git_client_secret+'&code='+code, {})
+    }).post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token?client_id='+git_client_id+'&client_secret='+git_client_secret+'&code='+code, {})
     .then(function(response, xhr) {
         if(xhr.status === 200) {
             if(_cb && typeof _cb === "function") {
@@ -109,6 +109,7 @@ function createGist(name,data,_cb) {
             }
         }
     }).catch(function(response, xhr) {
+        checkGitAccess()
         if(_cb && typeof _cb === "function") {
             _cb(response.message, null);
         }
