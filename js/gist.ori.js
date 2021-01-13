@@ -36,6 +36,11 @@ function gitLogin() {
     return location.href='https://github.com/login/oauth/authorize?client_id='+git_client_id+'&scope=gist&redirect_uri='+git_redirect_uri;
 }
 
+function gitLogout() {
+    localStorage.removeItem(git_ls_key);
+    checkGitAccess();
+}
+
 function gitAccessToken(code, _cb) {
     ajax({
         headers: {
@@ -68,6 +73,7 @@ function checkGitAccess() {
         if(gat === undefined || gat.length < 1) {
             // Show github login button
             document.getElementById('git-login').style.display = 'inline';
+            document.getElementById('git-logout').style.display = 'none';
             document.getElementById('generate').style.display = 'none';
         } else {
             // get access token
@@ -78,6 +84,7 @@ function checkGitAccess() {
                     window.history.replaceState({}, document.title, "/");
                     // Show github login button
                     document.getElementById('git-login').style.display = 'inline';
+                    document.getElementById('git-logout').style.display = 'none';
                     document.getElementById('generate').style.display = 'none';
                 } else {
                     setWithExpiry(git_ls_key, token, git_ttl);
@@ -85,6 +92,7 @@ function checkGitAccess() {
                     window.history.replaceState({}, document.title, "/");
                     // show Upload to Gist
                     document.getElementById('git-login').style.display = 'none';
+                    document.getElementById('git-logout').style.display = 'inline';
                     document.getElementById('generate').style.display = 'inline';
                 }
             });
@@ -92,6 +100,7 @@ function checkGitAccess() {
     } else {
         // show Upload to Gist
         document.getElementById('git-login').style.display = 'none';
+        document.getElementById('git-logout').style.display = 'inline';
         document.getElementById('generate').style.display = 'inline';
     }
 }

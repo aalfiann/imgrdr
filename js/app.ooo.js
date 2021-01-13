@@ -475,7 +475,11 @@
 
     // event
     document.getElementById("git-login").addEventListener("click", function(){
-        gitLogin(website);
+        gitLogin();
+    });
+
+    document.getElementById("git-logout").addEventListener("click", function(){
+        gitLogout();
     });
 
     document.getElementById("generate").addEventListener("click", function(){
