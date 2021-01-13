@@ -71,14 +71,15 @@ function checkGitAccess() {
         } else {
             // get access token
             gitAccessToken(gat, function(err, token) {
-                console.log(err, token);
                 if(err) {
                     localStorage.removeItem(git_ls_key);
                     // Show github login button
                     document.getElementById('git-login').style.display = 'inline';
                     document.getElementById('generate').style.display = 'none';
                 } else {
-                    setWithExpiry(git_ls_key, token, 3600);
+                    setWithExpiry(git_ls_key, token, 3600*1000);
+                    // remove code in param query
+                    window.history.replaceState({}, document.title, "/");
                     // show Upload to Gist
                     document.getElementById('git-login').style.display = 'none';
                     document.getElementById('generate').style.display = 'inline';
