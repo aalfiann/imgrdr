@@ -32,7 +32,7 @@ function getWithExpiry(key) {
     return item.value;
 }
 
-function gitLogin(website) {
+function gitLogin() {
     return location.href='https://github.com/login/oauth/authorize?client_id='+git_client_id+'&scope=gist&redirect_uri='+git_redirect_uri;
 }
 
