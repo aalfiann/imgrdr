@@ -161,7 +161,6 @@
                                 <div class="line-number">
                                     <textarea class="line-number-textarea" id="content-images" rows="5" style="resize: vertical;" placeholder="https://url.com/your-image-1.jpg&#10;https://url.com/your-image-2.jpg&#10;https://url.com/your-image-3.jpg&#10;https://url.com/your-image-4.jpg"></textarea>
                                 </div>
-                                <script async src="//freeimage.host/sdk/pup.js" data-url="https://freeimage.host/upload"></script>
                                 <br>
                                 <p>
                                     <span class="pure-form-message">
@@ -487,8 +486,6 @@
                                 <li>ImgFo service is free forever but ImgFo are non profit, so ImgFo will put some ads in our view content page.</li>
                                 <li>ImgFo is a free service and cannot provide any uptime, support and protection guarantees.</li>
                                 <li>ImgFo using 3rd party <a href="freeimage.host" target="_blank" rel="nofollow">freeimage.host</a> to host your image directly. This is an opional feature, but if you are using it, you have to follow their terms of service.</li>
-                                <li>ImgFo are able to block or delete your contents if having serious infringement of DMCA. But this only working if you are using <b>Upload to Gist</b> feature.</li>
-                                <li>There is no delete feature if you are using <b>Upload to Gist</b> for now.</li>
                             </ul>
                         </p>
                     </div>
@@ -565,6 +562,12 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155148720-1"></script>
 <script>
     function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-155148720-1");
+</script>
+<script src="//freeimage.host/sdk/pup.js" data-url="https://freeimage.host/upload"></script>
+<script>
+    setTimeout(function(){
+        document.getElementsByClassName('chevereto-pup-container')[1].style.display = 'none';
+    },2000);
 </script>
 </body>
 </html>
