@@ -73,6 +73,8 @@ function checkGitAccess() {
             gitAccessToken(gat, function(err, token) {
                 if(err) {
                     localStorage.removeItem(git_ls_key);
+                    // remove code in param query
+                    window.history.replaceState({}, document.title, "/");
                     // Show github login button
                     document.getElementById('git-login').style.display = 'inline';
                     document.getElementById('generate').style.display = 'none';
