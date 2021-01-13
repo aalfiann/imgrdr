@@ -469,6 +469,10 @@
     }
 
     // event
+    document.getElementById("git-login").addEventListener("click", function(){
+        gitLogin(website);
+    });
+
     document.getElementById("generate").addEventListener("click", function(){
         generate();
     });
