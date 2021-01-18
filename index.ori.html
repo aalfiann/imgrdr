@@ -30,10 +30,16 @@
         .button-success,
         .button-error,
         .button-warning,
+        .button-dark,
         .button-secondary {
             color: white;
             border-radius: 4px;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-dark {
+            background: rgb(0, 0, 0);
+            /* this is a green */
         }
 
         .button-success {
@@ -181,8 +187,13 @@
                                 
                                 <label for="mode-single-gen" class="pure-checkbox">
                                     <input id="mode-single-gen" type="checkbox"> Mode View Single
-                                    <span class="pure-form-message">- This feature will work with Upload to Gist only.</span>
+                                    <span class="pure-form-message">- This feature will work with Upload to Gist or Webhook only.</span>
                                 </label>
+
+                                <label for="content-webhook">Webhook URL</label>
+                                <span id="error-content-webhook" class="pure-form-message" style="display:none"></span>
+                                <input class="pure-input-1" id="content-webhook" type="text" placeholder="https://yourdomain.com/imgfo-webhook.php">
+                                
                                 <hr>
                                 <legend><button id="btnMore" type="button" class="pure-button"><b>Add More Information &rang;</b></button></legend>
                                 <div id="more-info" style="display: none;">
@@ -261,6 +272,7 @@
                                 <hr>
                                 <button id="git-login" type="button" class="pure-button button-success">GitHub Login</button>
                                 <button id="generate" type="button" class="pure-button button-success" style="display: none;">Upload to Gist</button>
+                                <button id="generate-webhook" type="button" class="pure-button button-dark" style="display: none;">Upload via Webhook</button>
                                 <button id="generate-source" type="button" class="pure-button pure-button-primary">Generate JSON Only</button>
                                 <button id="generate-source-reset" type="button" class="pure-button pure-button-secondary">Reset</button>
                                 <button id="git-logout" type="button" class="pure-button button-error" style="display: none;">Logout</button>
