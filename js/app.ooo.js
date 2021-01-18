@@ -460,7 +460,8 @@
                         if(err) {
                             console.log(err);
                             json.images.splice(json.images.length-1,1);
-                            pushWebhook(document.getElementById('content-webhook').value, json, function(err, resdata) {
+                            var datajson = JSON.stringify(json,null,2);
+                            pushWebhook(document.getElementById('content-webhook').value, datajson, function(err, resdata) {
                                 if(err) {
                                     msgShow("msg","msg-error","<b>Failed Upload via Webhook!</b><br>Error: "+err);
                                 } else {
@@ -477,7 +478,8 @@
                             json.cover = done[done.length-1];
                             done.splice(done.length-1,1);
                             json.images = [].concat(done);
-                            pushWebhook(document.getElementById('content-webhook').value, json, function(err, resdata) {
+                            var datajson = JSON.stringify(json,null,2);
+                            pushWebhook(document.getElementById('content-webhook').value, datajson, function(err, resdata) {
                                 if(err) {
                                     msgShow("msg","msg-error","<b>Failed Upload via Webhook!</b><br>Error: "+err);
                                 } else {
@@ -498,7 +500,8 @@
                     json.images = document.getElementById("content-images").value.trim().split(/\n/);
                     json.images = [].concat(sanitizeArray(json.images));
                 }
-                pushWebhook(document.getElementById('content-webhook').value, json, function(err, resdata) {
+                var datajson = JSON.stringify(json,null,2);
+                pushWebhook(document.getElementById('content-webhook').value, datajson, function(err, resdata) {
                     if(err) {
                         msgShow("msg","msg-error","<b>Failed Upload via Webhook!</b><br>Error: "+err);
                     } else {
