@@ -154,6 +154,7 @@
     function resetSource(formid) {
         document.getElementById(formid).reset();
         if(formid === "form-source") {
+            document.getElementById('generate-webhook').style.display = 'none';
             document.getElementById("result-form-source").style.display = "none";
             document.getElementById("result-form-gen").style.display = "none";
             document.getElementById("msg").style.display = "none";
