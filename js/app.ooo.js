@@ -177,11 +177,7 @@
     }
 
     function pushWebhook(url, json, _cb) {
-        ajax({
-            headers: {
-              'content-type': 'application/json'
-            }
-        })
+        ajax()
         .post(url,JSON.stringify(json))
         .then(function (response, xhr) {
             if(response.status === 'true') {
