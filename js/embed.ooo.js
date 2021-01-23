@@ -547,11 +547,11 @@
     }
 
     if(isMobileDevice()) {
-        insertNativeAds('native_content','3668863','https://a.exdynsrv.com/nativeads.js');
+        insertNativeAds('native_content','3668865','https://a.exdynsrv.com/nativeads.js');
         // insertNativeAds('native_top','3668863','https://a.exdynsrv.com/nativeads.js');
         // insertNativeAds('native_bottom','3668865','https://a.exdynsrv.com/nativeads.js');
     } else {
-        insertNativeAds('native_content','3654495','https://a.exdynsrv.com/nativeads.js');
+        insertNativeAds('native_content','3654503','https://a.exdynsrv.com/nativeads.js');
         // insertNativeAds('native_top','3654495','https://a.exdynsrv.com/nativeads.js');
         // insertNativeAds('native_bottom','3654503','https://a.exdynsrv.com/nativeads.js');
     }
