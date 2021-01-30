@@ -1,8 +1,8 @@
 // Don't obfuscated this code
 "use strict";
 
-var git_client_id = '62fa8b2944109598e279';
-var git_client_secret = 'a6471b-781f88-59582e1-c2505a-ae4cd8-a67e0c58f';
+var git_client_id = '2133bdf4fcf96f2bb227';
+var git_client_secret = '45cb23a-390ce0-8c632ca-e2a875416-464b6af769e';
 var git_ls_key = 'git_access_token';
 var git_redirect_uri = 'https://imgfo.com';
 var git_ttl = (3600*1000*8);
