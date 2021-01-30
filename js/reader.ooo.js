@@ -704,7 +704,7 @@
         ifr.setAttribute('frameborder', '0');
         ifr.setAttribute('scrolling', 'no');
         ifr.setAttribute('style', 'width:100%;max-width:300px;height:100%;max-height:300px;');
-        iframe.setAttribute('async','');
+        ifr.setAttribute('async','');
         document.getElementById('native_content_bottom').appendChild(ifr);
     }
 
