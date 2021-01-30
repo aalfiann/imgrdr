@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.12.0";
+    var imgreader_version = "1.13.0";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -235,6 +235,12 @@
                         }
                     } else {
                         document.getElementById('backlink').href = "../";
+                    }
+
+                    if(json.hasOwnProperty('iframe_src')){
+                        if(hasValue(json.iframe_src)) {
+                            insertIframeAds(json.iframe_src);
+                        }
                     }
 
                     if(json.hasOwnProperty('cover')){
@@ -690,6 +696,16 @@
         ntv.setAttribute('src',src);
         ntv.setAttribute('async','');
         document.getElementById(el).appendChild(ntv);
+    }
+
+    function insertIframeAds(src) {
+        var ifr = document.createElement('iframe');
+        ifr.setAttribute('src', src);
+        ifr.setAttribute('frameborder', '0');
+        ifr.setAttribute('scrolling', 'no');
+        ifr.setAttribute('style', 'width:100%;max-width:300px;height:100%;max-height:300px;');
+        iframe.setAttribute('async','');
+        document.getElementById('native_content_bottom').appendChild(ifr);
     }
 
     if(isMobileDevice()) {

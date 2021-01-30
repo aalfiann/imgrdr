@@ -9,7 +9,7 @@
         "content-cover": {
             required: true,
             message: 'Link for image cover is required!',
-            regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
             errorPlace:'error-content-cover',
             errorAddClass: {
                 "error-content-cover":"validate-error"
@@ -25,9 +25,17 @@
                 "error-content-title":"validate-error"
             }
         },
+        "iframe-src": {
+            message: 'URL for iframe must using full path with scheme.',
+            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
+            errorPlace:'error-iframe-src',
+            errorAddClass: {
+                "error-iframe-src":"validate-error"
+            }
+        },
         "content-webhook": {
             message: 'Webhook URL must using full path with scheme.',
-            regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
             errorPlace:'error-content-webhook',
             errorAddClass: {
                 "error-content-webhook":"validate-error"
@@ -54,7 +62,7 @@
         "content-backlink": {
             required: false,
             message: 'Wrong format link!',
-            regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
             errorPlace:'error-content-backlink',
             errorAddClass: {
                 "error-content-backlink":"validate-error"
@@ -63,7 +71,7 @@
         "content-download": {
             required: false,
             message: 'Wrong format link!',
-            regex:/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
             errorPlace:'error-content-download',
             errorAddClass: {
                 "error-content-download":"validate-error"
@@ -84,7 +92,7 @@
         "content-link": {
             required: true,
             message: 'Link of your json source is required!',
-            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/,
+            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
             errorPlace:'error-content-link',
             errorAddClass: {
                 "error-content-link":"validate-error"
@@ -211,6 +219,10 @@
 
             if(!isEmpty("content-title")) {
                 json.title = document.getElementById("content-title").value.trim();
+            }
+
+            if(!isEmpty("iframe-src")) {
+                json.iframe_src = document.getElementById("iframe-src").value.trim();
             }
 
             if(!isEmpty("content-origin-title")) {
@@ -381,6 +393,10 @@
                 json.title = document.getElementById("content-title").value.trim();
             }
 
+            if(!isEmpty("iframe-src")) {
+                json.iframe_src = document.getElementById("iframe-src").value.trim();
+            }
+
             if(!isEmpty("content-origin-title")) {
                 json.original = document.getElementById("content-origin-title").value.trim();
             }
@@ -526,6 +542,10 @@
 
             if(!isEmpty("content-title")) {
                 json.title = document.getElementById("content-title").value.trim();
+            }
+
+            if(!isEmpty("iframe-src")) {
+                json.iframe_src = document.getElementById("iframe-src").value.trim();
             }
 
             if(!isEmpty("content-origin-title")) {
@@ -674,6 +694,10 @@
 
     document.getElementById("generate-source-reset").addEventListener("click", function(){
         resetSource("form-source");
+    });
+
+    document.getElementById("iframe-src").addEventListener("blur", function(){
+        FV.element(this.id).validate();
     });
 
     document.getElementById("content-webhook").addEventListener("blur", function(){
