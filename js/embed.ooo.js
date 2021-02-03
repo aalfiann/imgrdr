@@ -231,7 +231,7 @@
     if(link){
         if(isSecured()) {
             if(!isHeadless()) {
-                document.getElementById("xoxo").innerHTML = "Are you a real human?<br><strong>TOUCH THE SCREEN or MOVE YOUR MOUSE</strong>.<br><br>If you can't pass this, maybe your browser is too old.";
+                document.getElementById("xoxo").innerHTML = "<strong>TOUCH THE SCREEN or MOVE YOUR MOUSE</strong>.<br><br>If you can't pass this, maybe your browser is too old.";
                 AI.onUser(function () { 
                     if(!window.devtools.isOpen) {
                         if(document.getElementById('aiueo')){
