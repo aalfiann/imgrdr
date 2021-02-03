@@ -356,12 +356,9 @@
         if(isSecured()) {
             if(!isHeadless()) {
                 document.getElementById("xoxo").innerHTML = "Please wait, we are checking your browser...<br>Touch the screen or Move your mouse to skip.";
-                AI.onUser(function () { 
-                    removeLoader();
-                });
-                setTimeout(function() {
-                    removeLoader();
-                }, 5000);
+                // AI.onUser(function () { 
+                //     // removed
+                // });
                 if(!window.devtools.isOpen) {
                     if(document.getElementById('aiueo')){
                         if(!isBlacklistExt()) {
