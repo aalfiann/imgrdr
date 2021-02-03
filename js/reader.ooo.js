@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.13.1";
+    var imgreader_version = "1.13.2";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -355,39 +355,38 @@
     if(link){
         if(isSecured()) {
             if(!isHeadless()) {
-                document.getElementById("xoxo").innerHTML = "Please wait, we are checking your browser...<br>Touch the screen or Move your mouse to skip.";
-                // AI.onUser(function () { 
-                //     // removed
-                // });
-                if(!window.devtools.isOpen) {
-                    if(document.getElementById('aiueo')){
-                        if(!isBlacklistExt()) {
-                            if(!isBlacklistedMobileBrowser()) {
-                                document.getElementById("xoxo").innerHTML = "Loading...";
-                                getData(link);
-                                if(isMobileDevice()) {
-                                    if(isExtDetected()) {
-                                        var warn = document.getElementById("warning");
-                                        warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
-                                        warn.style.display = 'block';
+                document.getElementById("xoxo").innerHTML = "Are you a real human?<br>Touch the screen or Move your mouse.<br><br>If you can't pass this, maybe your browser is too old.";
+                AI.onUser(function () { 
+                    if(!window.devtools.isOpen) {
+                        if(document.getElementById('aiueo')){
+                            if(!isBlacklistExt()) {
+                                if(!isBlacklistedMobileBrowser()) {
+                                    document.getElementById("xoxo").innerHTML = "Loading...";
+                                    getData(link);
+                                    if(isMobileDevice()) {
+                                        if(isExtDetected()) {
+                                            var warn = document.getElementById("warning");
+                                            warn.innerHTML = '<b>Bad Extension Detected!</b><p>Please disable any image downloader extension or we give you an images with low quality!</p>';
+                                            warn.style.display = 'block';
+                                        }
                                     }
+                                } else {
+                                    showError("error","<b>This browser is not allowed for security reason!</b><p>Please use another well known browsers.</p>");
+                                    removeLoader();
                                 }
                             } else {
-                                showError("error","<b>This browser is not allowed for security reason!</b><p>Please use another well known browsers.</p>");
+                                showError("error","<b>Bad Extension Detected!</b><p>Please disable any image downloader extensions.</p>");
                                 removeLoader();
                             }
                         } else {
-                            showError("error","<b>Bad Extension Detected!</b><p>Please disable any image downloader extensions.</p>");
+                            showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
                             removeLoader();
                         }
                     } else {
-                        showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
+                        showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
                         removeLoader();
                     }
-                } else {
-                    showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
-                    removeLoader();
-                }
+                });
             } else {
                 showError("error","<b>Whoops!</b><p>Your browser is too old! Please update your browser into the latest version and reload this page!</p>");
                 removeLoader();
