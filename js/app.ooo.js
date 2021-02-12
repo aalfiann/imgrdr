@@ -131,7 +131,9 @@
     }
 
     document.getElementById('content-images').addEventListener('change', function(){
-        var dataimg = document.getElementById("content-images").value.trim().split(/\n/);
+        var dataimg = document.getElementById("content-images").value
+            .replace(/\[url\=https:\/\/freeimage.host\/\]pic hosting\[\/url\]/g,'')
+            .trim().split(/\n/);
         dataimg = [].concat(rebuildArray(sanitizeArray(dataimg)));
         var imgresult = '';
         for (var i=0; i<dataimg.length; i++) {
