@@ -299,7 +299,7 @@
                     json.images.push(cdnifycover);
                     json.images = [].concat(sanitizeArray(json.images));
                     msgShow("msg","msg","<b>Processing images...</b>");
-                    cdnify(json.images, function(err, done) {
+                    statically(json.images, function(err, done) {
                         if(err) {
                             console.log(err);
                             json.images.splice(json.images.length-1,1);
@@ -471,7 +471,7 @@
                     json.images.push(cdnifycover);
                     json.images = [].concat(sanitizeArray(json.images));
                     msgShow("msg","msg","<b>Processing images...</b>");
-                    cdnify(json.images, function(err, done) {
+                    statically(json.images, function(err, done) {
                         if(err) {
                             console.log(err);
                             json.images.splice(json.images.length-1,1);
@@ -617,7 +617,7 @@
                     json.images.push(cdnifycover);
                     json.images = [].concat(sanitizeArray(json.images));
                     msgShow("msg","msg","<b>Processing images...</b>");
-                    cdnify(json.images, function(err, done) {
+                    statically(json.images, function(err, done) {
                         if(err) {
                             console.log(err);
                             msgShow("msg","msg","<b>Failed to CDNify but Generate still Success!</b><br>Upload this json source into your webserver.");

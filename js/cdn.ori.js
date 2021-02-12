@@ -95,3 +95,35 @@ function cdnify(images, _cb) {
 
     })
 }
+
+function getLocation(href) {
+    var match = href.match(/^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
+    return match && {
+      href: href,
+      protocol: match[1],
+      host: match[2],
+      hostname: match[3],
+      port: match[4],
+      pathname: match[5],
+      search: match[6],
+      hash: match[7]
+    }
+}
+
+function imageCDNBuilder(url) {
+    var parser = getLocation(url);
+    return 'https://cdn.statically.io/img/'+parser.host + parser.pathname + parser.search;
+}
+
+function statically(images, _cb) {
+    if(images.length < 1) {
+        return _cb('No images found!', false);
+    }
+    var newlist = [];
+    for (var i=0;i<images.length;i++) {
+        newlist.push(imageCDNBuilder(images[i]));
+    }
+    if(_cb && typeof _cb === "function") {
+        _cb(null, newlist);
+    }
+}
