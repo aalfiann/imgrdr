@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.13.2";
+    var imgreader_version = "1.13.3";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -97,6 +97,26 @@
         });
 
         modal.open();
+    }
+
+    function getLocation(href) {
+        var match = href.match(/^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
+        return match && {
+          href: href,
+          protocol: match[1],
+          host: match[2],
+          hostname: match[3],
+          port: match[4],
+          pathname: match[5],
+          search: match[6],
+          hash: match[7]
+        }
+    }
+
+    function setPage(page) {
+        var curi = window.location.href.split('&page=');
+        var url = getLocation(curi[0]);
+        window.history.replaceState({}, document.title, url.pathname+url.search+'&page='+page);
     }
 
     function scrollFunction() {
@@ -267,16 +287,29 @@
                         if(totalimg > 1 && itemPerPage > 1) {
                             var styleview = document.getElementsByClassName('change-style');
                             var xx = styleview;
+                            var reuri = '';
+                            var pageuri = parse_query_string(window.location.search)['page'];
                             for(var i=0;i<xx.length;i++) {
                                 xx[i].style.display = "inline";
+                                var reuri = '';
                                 if(dataitem && dataitem.toLowerCase() == 'single') {
                                     itemPerPage = 1;
                                     xx[i].textContent = 'Mode Default';
-                                    xx[i].href = window.location.href.replace('#','').replace('&style=single','');
+                                    if(pageuri) {
+                                        reuri = window.location.href.replace('#','').replace('&style=single','').replace('&page='+pageuri,'');
+                                    } else {
+                                        reuri = window.location.href.replace('#','').replace('&style=single','');
+                                    }
+                                    xx[i].href = reuri;
                                     viewmode = 'single';
                                 } else {
                                     xx[i].textContent = 'Mode Single';
-                                    xx[i].href = window.location.href.replace('#','')+'&style=single';
+                                    if(pageuri) {
+                                        reuri = window.location.href.replace('#','').replace('&page='+pageuri,'')+'&style=single';
+                                    } else {
+                                        reuri = window.location.href.replace('#','')+'&style=single';
+                                    }
+                                    xx[i].href = reuri;
                                     viewmode = 'default';
                                 }
                             }
@@ -448,6 +481,7 @@
             loadImagePerPage(result[pagenow-1]);
             paginationTop.value = pagenow;
             paginationBottom.value = pagenow;
+            setPage(pagenow);
         }
     }
 
@@ -457,6 +491,7 @@
             loadImagePerPage(result[pagenow-1]);
             paginationTop.value = pagenow;
             paginationBottom.value = pagenow;
+            setPage(pagenow);
         }
     }
 
@@ -501,6 +536,7 @@
         pagenow = parseInt(this.options[this.selectedIndex].value);
         loadImagePerPage(result[pagenow-1]);
         setOption("pagination-bottom",pagenow);
+        setPage(pagenow);
         checkPage();
     });
 
@@ -508,6 +544,7 @@
         pagenow = parseInt(this.options[this.selectedIndex].value);
         loadImagePerPage(result[pagenow-1]);
         setOption("pagination-top",pagenow);
+        setPage(pagenow);
         checkPage();
         topFunction(true);
     });
