@@ -105,7 +105,6 @@
                         <p>
                             <ol>
                                 <li>Auto SSL and CDNify</li>
-                                <li>Make money by putting your iframe ads</li>
                                 <li>Your content is strongly protected</li>
                                 <li>You control the image source</li>
                                 <li>Lightweight and Fast Loading</li>
@@ -181,14 +180,6 @@
                                         - This is a free hosting images, so there is no guarantee for saved permanently.
                                     </span>
                                 </p>
-
-                                <label for="iframe-src">Iframe Src</label>
-                                <span id="error-iframe-src" class="pure-form-message" style="display:none"></span>
-                                <input class="pure-input-1" id="iframe-src" type="text" placeholder="https://yourdomain.com/link-to-your-iframe.html">
-                                <span class="pure-form-message">
-                                    - This is the link to be injected to the iframe src attribute.<br>
-                                    - Iframe ads is responsive with max width 300px and max height 300px.
-                                </span>
 
                                 <label for="content-webhook">Webhook URL</label>
                                 <span id="error-content-webhook" class="pure-form-message" style="display:none"></span>
@@ -468,7 +459,6 @@
                                 <li><b>description</b> {string} : This is the description of your content.</li>
                                 <li><b>item_per_page</b> {string} : This is to set how many item content to display per page. Default is 50.</li>
                                 <li><b>use_comment</b> {bool|string} : This is to display disqus comment box. Default is true.</li>
-                                <li><b>iframe_src</b> {string} : This is the iframe link to display your ads at ImgFo.</li>
                             </ul>
                         </p>
                         <p>
@@ -577,7 +567,6 @@
                             <ul>
                                 <li>You are having 100% control for your content because ImgFo have no server to save your content, if you're lost or delete your source link, so you will lost your content in ImgFo.</li>
                                 <li>ImgFo service is free forever but ImgFo are non profit, so ImgFo will put some ads in our view content page.</li>
-                                <li>ImgFo's user is allowed to put their ads in iframe formatted.</li>
                                 <li>ImgFo is a free service and cannot provide any uptime, support and protection guarantees.</li>
                                 <li>ImgFo using 3rd party (button Upload Images) by <a href="freeimage.host" target="_blank" rel="nofollow">freeimage.host</a> to host your image directly. This is an optional feature, but if you are using it, you have to follow their terms of service.</li>
                                 <li>ImgFo using 3rd party Gist GitHub to make you easy to create your own images content. This is an optional feature, but if you are using it, you have to follow their terms of service</li>
@@ -601,11 +590,10 @@
                         <p>
                             At ImgFo, accessible from https://imgfo.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by ImgFo and how we use it.
                             <ul>
-                                <li><b>Log Files</b><br>ImgFo follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services’ analytics.</li>
-                                <li><b>Cookies and Web Beacons</b><br>Like any other website, ImgFo uses ‘cookies’. These cookies are used to store information including visitors’ preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users’ experience by customizing our web page content based on visitors’ browser type and/or other information.</li>
+                                <li><b>Cookies and Web Beacons</b><br>ImgFo not use ‘cookies’ but use `web beacon`. Web beacon are used to store information including visitors’ preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users’ experience by customizing our web page content based on visitors’ browser type and/or other information. Web beacon are using 3rd party service via javascript.</li>
                                 <li><b>Third Party Policies</b><br>ImgFo's Privacy Policy does not apply to other advertisers or websites and ImgFo has no access to or control over these cookies that are used by third-party advertisers.</li>
                                 <li><b>Children’s Information</b><br>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</li>
-                                <li><b>Online Privacy Policy Only</b><br>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in ImgFo. This policy is not applicable to any information collected offline or via channels other than this website.</li>
+                                <li><b>Online Privacy Policy</b><br>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in ImgFo. This policy is not applicable to any information collected offline or via channels other than this website.</li>
                                 <li><b>Consent</b><br>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</li>
                             </ul>
                         </p>
@@ -627,10 +615,9 @@
                     <div class="post-description">
                         <p>
                             We are non profit company, so we will display ads in our content pages.<br>
-                            These ads are from 3rd party. So if you having problem with these ads, just contact to them.<br>
                             Please see our <a href="#disclaimer">disclaimer</a> and <a href="#tos">terms of service</a>.<br><br>
 
-                            There are 3 types of main ads in ImgFo:<br>
+                            There are 3 types of available ads in ImgFo:<br>
                             A. For Desktop<br>
                             <ol>
                                 <li>Square 525x230<br>
@@ -651,14 +638,13 @@
                                 </li>
                             </ol>
 
-                            <b>Want to make money with us?</b><br>
-                            We are also open for your ads to be put at ImgFo.<br>
-                            How to create an ads to be put in ImgFo:<br>
+                            <b>Current traffic is :</b>
                             <ul>
-                                <li>Ads must be in iframe formatted.</li>
-                                <li>Ads size must be responsive not more than 300px.</li>
-                                <li>ImgFo iframe itself is already responsive with max width 300px and max height 300px</li>
+                                <li>600K++ visitors/monthly</li>
+                                <li>1M++ impressions/monthly</li>
                             </ul>
+
+                            For more details please contact us, I could give you the analytics link if needed.
                         </p>
                     </div>
                 </section>
@@ -704,10 +690,6 @@
 </div>
 
 <script src="js/main.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155148720-1"></script>
-<script>
-    function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-155148720-1");
-</script>
 <script type="text/javascript">var _Hasync= _Hasync|| [];
     _Hasync.push(['Histats.start', '1,4504223,4,0,0,0,00010000']);
     _Hasync.push(['Histats.fasi', '1']);

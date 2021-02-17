@@ -25,14 +25,6 @@
                 "error-content-title":"validate-error"
             }
         },
-        "iframe-src": {
-            message: 'URL for iframe must using full path with scheme.',
-            regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
-            errorPlace:'error-iframe-src',
-            errorAddClass: {
-                "error-iframe-src":"validate-error"
-            }
-        },
         "content-webhook": {
             message: 'Webhook URL must using full path with scheme.',
             regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,9}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/,
@@ -223,10 +215,6 @@
                 json.title = document.getElementById("content-title").value.trim();
             }
 
-            if(!isEmpty("iframe-src")) {
-                json.iframe_src = document.getElementById("iframe-src").value.trim();
-            }
-
             if(!isEmpty("content-origin-title")) {
                 json.original = document.getElementById("content-origin-title").value.trim();
             }
@@ -395,9 +383,6 @@
                 json.title = document.getElementById("content-title").value.trim();
             }
 
-            if(!isEmpty("iframe-src")) {
-                json.iframe_src = document.getElementById("iframe-src").value.trim();
-            }
 
             if(!isEmpty("content-origin-title")) {
                 json.original = document.getElementById("content-origin-title").value.trim();
@@ -546,10 +531,6 @@
                 json.title = document.getElementById("content-title").value.trim();
             }
 
-            if(!isEmpty("iframe-src")) {
-                json.iframe_src = document.getElementById("iframe-src").value.trim();
-            }
-
             if(!isEmpty("content-origin-title")) {
                 json.original = document.getElementById("content-origin-title").value.trim();
             }
@@ -696,10 +677,6 @@
 
     document.getElementById("generate-source-reset").addEventListener("click", function(){
         resetSource("form-source");
-    });
-
-    document.getElementById("iframe-src").addEventListener("blur", function(){
-        FV.element(this.id).validate();
     });
 
     document.getElementById("content-webhook").addEventListener("blur", function(){
