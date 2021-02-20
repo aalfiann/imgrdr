@@ -556,8 +556,23 @@
         document.getElementById(el).appendChild(ntv);
     }
 
+    // intersitial ads
+    function insertIntersitialAds(idzone,src) {
+        var ntv = document.createElement('script');
+        ntv.setAttribute('data-idzone',idzone);
+        ntv.setAttribute('data-ad_frequency_count','1');
+        ntv.setAttribute('data-ad_frequency_period','60');
+        ntv.setAttribute('data-type','mobile');
+        ntv.setAttribute('data-browser_settings','1');
+        ntv.setAttribute('data-ad_trigger_method','3');
+        ntv.setAttribute('src',src);
+        ntv.setAttribute('async','');
+        document.getElementsByTagName("head")[0].appendChild(ntv);
+    }
+
     if(isMobileDevice()) {
         insertNativeAds('native_content','3668865','https://a.exdynsrv.com/nativeads.js');
+        insertIntersitialAds('4191800','https://a.exdynsrv.com/fp-interstitial.js');
     } else {
         insertNativeAds('native_content','3654503','https://a.exdynsrv.com/nativeads.js');
     }
