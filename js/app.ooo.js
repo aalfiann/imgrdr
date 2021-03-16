@@ -125,6 +125,7 @@
     document.getElementById('content-images').addEventListener('change', function(){
         var dataimg = document.getElementById("content-images").value
             .replace(/\[url\=https:\/\/freeimage.host\/\]pic hosting\[\/url\]/g,'')
+            .replace(/\[url\=https:\/\/freeimage.host\/\]upload a pic\[\/url\]/g,'')
             .trim().split(/\n/);
         dataimg = [].concat(rebuildArray(sanitizeArray(dataimg)));
         var imgresult = '';
