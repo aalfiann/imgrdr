@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.14.0";
+    var imgreader_version = "1.14.1";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -384,7 +384,7 @@
             if(!isHeadless()) {
                 document.getElementById("xoxo").innerHTML = "<strong>TOUCH THE SCREEN<br>or<br>MOVE YOUR MOUSE</strong><br><br>If you can't pass this, maybe your browser is too old.";
                 AI.onUser(function () { 
-                    if(!window.devtools.isOpen) {
+                    if(!window.devtools.isOpen || isMobileDevice()) {
                         if(document.getElementById('aiueo')){
                             if(!isBlacklistExt()) {
                                 if(!isBlacklistedMobileBrowser()) {
@@ -672,7 +672,7 @@
     });
 
     window.addEventListener('devtoolschange', function(event) {
-        if(event.detail.isOpen) {
+        if(!isMobileDevice() && event.detail.isOpen) {
             if(isSecured()) {
                 var z = pagination;
                 for(var i=0;i<z.length;i++) {

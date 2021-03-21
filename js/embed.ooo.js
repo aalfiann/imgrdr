@@ -227,7 +227,7 @@
             if(!isHeadless()) {
                 document.getElementById("xoxo").innerHTML = "<strong>TOUCH THE SCREEN<br>or<br>MOVE YOUR MOUSE</strong><br><br>If you can't pass this, maybe your browser is too old.";
                 AI.onUser(function () { 
-                    if(!window.devtools.isOpen) {
+                    if(!window.devtools.isOpen || isMobileDevice()) {
                         if(document.getElementById('aiueo')){
                             if(!isBlacklistExt()) {
                                 if(!isBlacklistedMobileBrowser()) {
@@ -505,7 +505,7 @@
     });
 
     window.addEventListener('devtoolschange', function(event) {
-        if(event.detail.isOpen) {
+        if(event.detail.isOpen && !isMobileDevice()) {
             if(isSecured()) {
                 var z = pagination;
                 for(var i=0;i<z.length;i++) {
