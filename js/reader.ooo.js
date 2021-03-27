@@ -1,5 +1,5 @@
 (function(){
-    var imgreader_version = "1.14.1";
+    var imgreader_version = "1.14.2";
     var pagenow = 1;
     var totalpage = 1;
     var itemPerPage = 50;
@@ -364,13 +364,18 @@
             })
             .catch(function(error, xhr) {
                 if(link.indexOf('glcdn.githack.com') > -1) {
-                    link = link.replace('glcdn.githack.com','imgfo-cream.000webhostapp.com/gitlab');
+                    //link = link.replace('glcdn.githack.com','imgfo-cream.000webhostapp.com/gitlab');
+                    link = link.replace('glcdn.githack.com', 'cdn.statically.io/gl').replace('-/raw/','');
                     getData(link);
                 } else if(link.indexOf('rawcdn.githack.com') > -1) {
-                    link = link.replace('rawcdn.githack.com','imgfo-cream.000webhostapp.com/raw');
+                    // link = link.replace('rawcdn.githack.com','imgfo-cream.000webhostapp.com/raw');
+                    var glxhash = link.split('/')[5];
+                    var glnhash = glxhash.substr(0,8);
+                    link = link.replace('rawcdn.githack.com','cdn.statically.io/gh').replace(glxhash,glnhash);
                     getData(link);
                 } else if(link.indexOf('gistcdn.githack.com') > -1) {
-                    link = link.replace('gistcdn.githack.com','imgfo-cream.000webhostapp.com/gist');
+                    // link = link.replace('gistcdn.githack.com','imgfo-cream.000webhostapp.com/gist');
+                    link = link.replace('gistcdn.githack.com', 'cdn.statically.io/gist');
                     getData(link);
                 } else {
                     showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
