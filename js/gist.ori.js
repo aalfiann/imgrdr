@@ -46,7 +46,7 @@ function gitAccessToken(code, _cb) {
         headers: {
             'Accept': 'application/json'
         }
-    }).post('https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token?client_id='+git_client_id+'&client_secret='+git_client_secret.replace(/-/g, "")+'&code='+code, {})
+    }).post('https://imgfo-gist.herokuapp.com/https://github.com/login/oauth/access_token?client_id='+git_client_id+'&client_secret='+git_client_secret.replace(/-/g, "")+'&code='+code, {})
     .then(function(response, xhr) {
         if(xhr.status === 200) {
             if(_cb && typeof _cb === "function") {
