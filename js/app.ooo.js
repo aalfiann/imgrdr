@@ -123,9 +123,11 @@
     }
 
     document.getElementById('content-images').addEventListener('change', function(){
-        var dataimg = document.getElementById("content-images").value
-            .replace(/\[url\=https:\/\/freeimage.host\/\]pic hosting\[\/url\]/g,'')
-            .replace(/\[url\=https:\/\/freeimage.host\/\]upload a pic\[\/url\]/g,'')
+        var dataimg = document.getElementById("content-images").value;
+        if (dataimg.indexOf('iili.io') !== -1) {
+            dataimg = dataimg.replace(/.md./g,'.');
+        }
+        dataimg = dataimg.replace(/\[(\w+)[^\]]*](.*?)\[\/\1]/g, '')
             .trim().split(/\n/);
         dataimg = [].concat(rebuildArray(sanitizeArray(dataimg)));
         var imgresult = '';
