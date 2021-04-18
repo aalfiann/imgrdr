@@ -127,8 +127,8 @@
         if (dataimg.indexOf('iili.io') !== -1) {
             dataimg = dataimg.replace(/.md./g,'.');
         }
-        dataimg = dataimg.replace(/\[(\w+)[^\]]*](.*?)\[\/\1]/g, '')
-            .trim().split(/\n/);
+        // dataimg = dataimg.replace(/\[(\w+)[^\]]*](.*?)\[\/\1]/g, '').trim().split(/\n/);
+        dataimg = dataimg.replace(/\[\/?url[^\]]*\]/g, '').trim().split(/\n/);
         dataimg = [].concat(rebuildArray(sanitizeArray(dataimg)));
         var imgresult = '';
         for (var i=0; i<dataimg.length; i++) {
