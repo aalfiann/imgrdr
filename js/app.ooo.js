@@ -71,7 +71,18 @@
         },
         "content-images": {
             required: true,
-            message: 'Images data is required!',
+            message: 'Wrong format image link! Please check again.',
+            method: function(element) {
+                var values = element.value.split('\n');
+                var valen = values.length;
+                var valctr = 0;
+                for(var i=0;i<valen;i++) {
+                    if(values[i].indexOf('http://') !== -1 || values[i].indexOf('https://') !== -1) {
+                        valctr++;
+                    }
+                }
+                return valctr === valen;
+            },
             errorPlace:'error-content-images',
             errorAddClass: {
                 "error-content-images":"validate-error",
