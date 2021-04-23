@@ -67,15 +67,18 @@ function gitAccessToken(code, _cb) {
 }
 
 function checkGitAccess() {
+    var btnGitLogin = document.getElementById('git-login');
     if(getWithExpiry(git_ls_key) === null) {
         var gat = parse_query_string(window.location.search)['code'];
+        btnGitLogin.innerText = 'GitHub Login';
         // if not found
         if(gat === undefined || gat.length < 1) {
             // Show github login button
-            document.getElementById('git-login').style.display = 'inline';
+            btnGitLogin.style.display = 'inline';
             document.getElementById('git-logout').style.display = 'none';
             document.getElementById('generate').style.display = 'none';
         } else {
+            btnGitLogin.innerText = 'Logging in...'
             // get access token
             gitAccessToken(gat, function(err, token) {
                 if(err) {
@@ -83,15 +86,17 @@ function checkGitAccess() {
                     // remove code in param query
                     window.history.replaceState({}, document.title, "/");
                     // Show github login button
-                    document.getElementById('git-login').style.display = 'inline';
+                    btnGitLogin.innerText = 'GitHub Login';
+                    btnGitLogin.style.display = 'inline';
                     document.getElementById('git-logout').style.display = 'none';
                     document.getElementById('generate').style.display = 'none';
                 } else {
+                    btnGitLogin.innerText = 'Upload to Gist';
                     setWithExpiry(git_ls_key, token, git_ttl);
                     // remove code in param query
                     window.history.replaceState({}, document.title, "/");
                     // show Upload to Gist
-                    document.getElementById('git-login').style.display = 'none';
+                    btnGitLogin.style.display = 'none';
                     document.getElementById('git-logout').style.display = 'inline';
                     document.getElementById('generate').style.display = 'inline';
                 }
@@ -99,7 +104,7 @@ function checkGitAccess() {
         }
     } else {
         // show Upload to Gist
-        document.getElementById('git-login').style.display = 'none';
+        btnGitLogin.style.display = 'none';
         document.getElementById('git-logout').style.display = 'inline';
         document.getElementById('generate').style.display = 'inline';
     }
