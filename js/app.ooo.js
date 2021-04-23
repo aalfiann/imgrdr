@@ -754,6 +754,15 @@
         }
     });
 
+    document.getElementById("btnAdvanced").addEventListener("click", function(){
+        var moreAdvanced = document.getElementById("more-advanced");
+        if(moreAdvanced.style.display === "none") {
+            moreAdvanced.style.display = "inline";
+        } else {
+            moreAdvanced.style.display = "none";
+        }
+    });
+
     document.getElementById('copyrightyear').innerHTML= new Date().getFullYear();
     document.getElementById('website').innerHTML = website;
 

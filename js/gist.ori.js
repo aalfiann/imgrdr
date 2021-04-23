@@ -71,6 +71,7 @@ function checkGitAccess() {
     if(getWithExpiry(git_ls_key) === null) {
         var gat = parse_query_string(window.location.search)['code'];
         btnGitLogin.innerText = 'GitHub Login';
+        btnGitLogin.disabled = false;
         // if not found
         if(gat === undefined || gat.length < 1) {
             // Show github login button
@@ -79,6 +80,7 @@ function checkGitAccess() {
             document.getElementById('generate').style.display = 'none';
         } else {
             btnGitLogin.innerText = 'Logging in...'
+            btnGitLogin.disabled = true;
             // get access token
             gitAccessToken(gat, function(err, token) {
                 if(err) {
@@ -86,12 +88,10 @@ function checkGitAccess() {
                     // remove code in param query
                     window.history.replaceState({}, document.title, "/");
                     // Show github login button
-                    btnGitLogin.innerText = 'GitHub Login';
                     btnGitLogin.style.display = 'inline';
                     document.getElementById('git-logout').style.display = 'none';
                     document.getElementById('generate').style.display = 'none';
                 } else {
-                    btnGitLogin.innerText = 'Upload to Gist';
                     setWithExpiry(git_ls_key, token, git_ttl);
                     // remove code in param query
                     window.history.replaceState({}, document.title, "/");
@@ -100,6 +100,8 @@ function checkGitAccess() {
                     document.getElementById('git-logout').style.display = 'inline';
                     document.getElementById('generate').style.display = 'inline';
                 }
+                btnGitLogin.innerText = 'GitHub Login';
+                btnGitLogin.disabled = false;
             });
         }
     } else {

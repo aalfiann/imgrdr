@@ -180,24 +180,6 @@
                                         - This is a free hosting images, so there is no guarantee for saved permanently.
                                     </span>
                                 </p>
-
-                                <label for="content-webhook">Webhook URL</label>
-                                <span id="error-content-webhook" class="pure-form-message" style="display:none"></span>
-                                <input class="pure-input-1" id="content-webhook" type="text" placeholder="https://yourdomain.com/imgfo-webhook.php">
-                                <span class="pure-form-message">
-                                    - This feature will make ImgFo upload the json source to your own webserver directly.<br>
-                                    - For more details about WebHook, please read <a href="#create-webhook">here</a>.
-                                </span>
-
-                                <label for="content-cdnify" class="pure-checkbox">
-                                    <input id="content-cdnify" type="checkbox"> Auto SSL & CDNify Images
-                                    <span class="pure-form-message">- This feature will make your images secured, load faster and save bandwidth.<br>- Your images link must not using dynamic url.</span>
-                                </label>
-                                
-                                <label for="mode-single-gen" class="pure-checkbox">
-                                    <input id="mode-single-gen" type="checkbox"> Mode View Single
-                                    <span class="pure-form-message">- This feature will work with Upload to Gist or Webhook only.</span>
-                                </label>
                                 <hr>
                                 <legend><button id="btnMore" type="button" class="pure-button"><b>Add More Information &rang;</b></button></legend>
                                 <div id="more-info" style="display: none;">
@@ -268,6 +250,27 @@
                                             <input class="pure-u-23-24" id="content-per-page" type="text" placeholder="Default is 50 item per page...">
                                         </div>
                                     </div>
+                                </div>
+                                <hr>
+                                <legend><button id="btnAdvanced" type="button" class="pure-button"><b>Advanced &rang;</b></button></legend>
+                                <div id="more-advanced" style="display: none;">
+                                    <label for="content-webhook">Webhook URL</label>
+                                    <span id="error-content-webhook" class="pure-form-message" style="display:none"></span>
+                                    <input class="pure-input-1" id="content-webhook" type="text" placeholder="https://yourdomain.com/imgfo-webhook.php">
+                                    <span class="pure-form-message">
+                                        - This feature will make ImgFo upload the json source to your own webserver directly.<br>
+                                        - For more details about WebHook, please read <a href="#create-webhook">here</a>.
+                                    </span>
+
+                                    <label for="content-cdnify" class="pure-checkbox">
+                                        <input id="content-cdnify" type="checkbox"> Auto SSL & CDNify Images
+                                        <span class="pure-form-message">- This feature will make your images secured, load faster and save bandwidth.<br>- Your images link must not using dynamic url.</span>
+                                    </label>
+                                    
+                                    <label for="mode-single-gen" class="pure-checkbox">
+                                        <input id="mode-single-gen" type="checkbox"> Mode View Single
+                                        <span class="pure-form-message">- This feature will work with Upload to Gist or Webhook only.</span>
+                                    </label>
 
                                     <label for="content-comment" class="pure-checkbox">
                                         <input id="content-comment" type="checkbox"> Disable Comment System
