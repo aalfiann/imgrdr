@@ -58,6 +58,7 @@
     }
 
     function loadImagePerPage(data) {
+        showSpinner();
         document.getElementById("content-images").innerHTML = "";
         data.forEach(function(item,index){
             loadImages("content-images",item,false,index);
@@ -79,6 +80,13 @@
         document.getElementById("xoxo").innerHTML = "";
         var element = document.getElementById('preloader');
         element.parentNode.removeChild(element);
+    }
+
+    function showSpinner() {
+        var spinner = document.getElementById('content-spinner');
+        if(spinner.style.display === 'none') {
+            spinner.style.display = 'block';
+        }
     }
 
     function removeSpinner() {
