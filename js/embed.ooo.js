@@ -77,7 +77,14 @@
     function removeLoader(){
         document.getElementById("xoxo").innerHTML = "";
         var element = document.getElementById('preloader');
-            element.parentNode.removeChild(element);
+        element.parentNode.removeChild(element);
+    }
+
+    function removeSpinner() {
+        var spinner = document.getElementById('content-spinner');
+        if(spinner.style.display === 'block') {
+            spinner.style.display = 'none';
+        }
     }
 
     function scrollFunction() {
@@ -203,6 +210,7 @@
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
                     removeLoader();
+                    removeSpinner();
                 }
             })
             .catch(function(error, xhr) {
@@ -223,6 +231,7 @@
                 } else {
                     showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
                     removeLoader();
+                    removeSpinner();
                 }
             });
     }
@@ -248,23 +257,28 @@
                                 } else {
                                     showError("error","<b>This browser is not allowed for security reason!</b><p>Please use another well known browsers.</p>");
                                     removeLoader();
+                                    removeSpinner();
                                 }
                             } else {
                                 showError("error","<b>Bad Extension Detected!</b><p>Please disable any image downloader extensions.</p>");
                                 removeLoader();
+                                removeSpinner();
                             }
                         } else {
                             showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
                             removeLoader();
+                            removeSpinner();
                         }
                     } else {
                         showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
                         removeLoader();
+                        removeSpinner();
                     }
                 });
             } else {
                 showError("error","<b>Whoops!</b><p>Your browser is too old! Please update your browser into the latest version and reload this page!</p>");
                 removeLoader();
+                removeSpinner();
             }
         } else {
             getData(link);
@@ -272,6 +286,7 @@
     } else {
         showError("error","<b>Whoops!</b><p>There is no any data source detected!</p><p>Try to clear your browser cache sometimes will fix this.</p>");
         removeLoader();
+        removeSpinner();
     }
 
     window.onscroll = function() {scrollFunction()};
@@ -453,6 +468,7 @@
     };
 
     document.addEventListener('lazyloaded',function(e) {
+        removeSpinner();
         var imgp = e.target.parentNode;
         if(screen.width > 870) {
             var cvs = document.createElement('canvas');
@@ -523,6 +539,7 @@
                 document.getElementById("data-content").innerHTML = '';
                 document.getElementById("content-images").innerHTML = '';
                 showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
+                removeSpinner();
             }
         }
     });

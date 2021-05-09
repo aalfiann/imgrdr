@@ -12,6 +12,31 @@
         <link href="../css/reader-dark.min.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon.ico" type="image/x-icon">
+        <style>
+            @keyframes spinner {
+              0% {
+                transform: translate3d(-50%, -50%, 0) rotate(0deg);
+              }
+              100% {
+                transform: translate3d(-50%, -50%, 0) rotate(360deg);
+              }
+            }
+            .spin::before {
+              animation: 1.5s linear infinite spinner;
+              animation-play-state: inherit;
+              border: solid 5px #1f1f1f;
+              border-bottom-color: #aaa;
+              border-radius: 50%;
+              content: "";
+              height: 40px;
+              width: 40px;
+              position: absolute;
+              transform: translate3d(-50%, -50%, 0);
+              will-change: transform;
+              margin-top: 10px;
+              text-align: center;
+            }
+        </style>
 	</head>
 	<body>
         <button id="goTopBtn" title="Go to top">Top</button>
@@ -122,6 +147,11 @@
                     </div>
                     <div id="banner_top"></div>
                     <div id="native_top"></div>
+                    <div id="content-spinner" class="row" style="display: block;">
+                        <div class="col c12">
+                            <div class="spin"></div>
+                        </div>
+                    </div>
                     <p align="center" id="content-images"></p>
                     <div id="banner_bottom"></div>
                     <div id="native_bottom"></div>
