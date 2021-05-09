@@ -58,7 +58,7 @@
     }
 
     function loadImagePerPage(data) {
-        showSpinner();
+        spinner();
         document.getElementById("content-images").innerHTML = "";
         data.forEach(function(item,index){
             loadImages("content-images",item,false,index);
@@ -82,17 +82,17 @@
         element.parentNode.removeChild(element);
     }
 
-    function showSpinner() {
+    function spinner(bool) {
+        bool = (bool === undefined) ? true : bool;
         var spinner = document.getElementById('content-spinner');
-        if(spinner.style.display === 'none') {
-            spinner.style.display = 'block';
-        }
-    }
-
-    function removeSpinner() {
-        var spinner = document.getElementById('content-spinner');
-        if(spinner.style.display === 'block') {
-            spinner.style.display = 'none';
+        if(bool) { // show
+            if(spinner.style.display === 'none') {
+                spinner.style.display = 'block';
+            }
+        } else { // hide
+            if(spinner.style.display === 'block') {
+                spinner.style.display = 'none';
+            }
         }
     }
 
@@ -375,7 +375,7 @@
                 } catch (e) {
                     showError("error","<b>Whoops!</b><p>The data source is not using a valid format!</p>");
                     removeLoader();
-                    removeSpinner();
+                    spinner(false);
                 }
             })
             .catch(function(error, xhr) {
@@ -396,7 +396,7 @@
                 } else {
                     showError("error","<b>Whoops!</b><p>We failed to find the document you are looking for!<br>Maybe the document has been removed or deleted by the owner.</p>");
                     removeLoader();
-                    removeSpinner();
+                    spinner(false);
                 }
             });
     }
@@ -422,28 +422,28 @@
                                 } else {
                                     showError("error","<b>This browser is not allowed for security reason!</b><p>Please use another well known browsers.</p>");
                                     removeLoader();
-                                    removeSpinner();
+                                    spinner(false);
                                 }
                             } else {
                                 showError("error","<b>Bad Extension Detected!</b><p>Please disable any image downloader extensions.</p>");
                                 removeLoader();
-                                removeSpinner();
+                                spinner(false);
                             }
                         } else {
                             showError("error","<b>Adblocker Detected!</b><p>Please support us by disable Adblocker then reload this page!</p>");
                             removeLoader();
-                            removeSpinner();
+                            spinner(false);
                         }
                     } else {
                         showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
                         removeLoader();
-                        removeSpinner();
+                        spinner(false);
                     }
                 });
             } else {
                 showError("error","<b>Whoops!</b><p>Your browser is too old! Please update your browser into the latest version and reload this page!</p>");
                 removeLoader();
-                removeSpinner();
+                spinner(false);
             }
         } else {
             getData(link);
@@ -451,7 +451,7 @@
     } else {
         showError("error","<b>Whoops!</b><p>There is no any data source detected!</p><p>Try to clear your browser cache sometimes will fix this.</p>");
         removeLoader();
-        removeSpinner();
+        spinner(false);
     }
 
     window.onscroll = function() {scrollFunction()};
@@ -643,7 +643,7 @@
     };
 
     document.addEventListener('lazyloaded',function(e) {
-        removeSpinner();
+        spinner(false);
         var imgp = e.target.parentNode;
         if(screen.width > 870) {
             var cvs = document.createElement('canvas');
@@ -718,7 +718,7 @@
                 desc.style.display = 'none';
                 document.getElementById("content-images").innerHTML = '';
                 showError("error","<b>Whoops!</b><p>Please close the devtools and reload this page!</p>");
-                removeSpinner();
+                spinner(false);
             }
         }
     });
